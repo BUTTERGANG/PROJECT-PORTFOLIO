@@ -1,0 +1,16 @@
+{
+  "project": "TheKnot Vendor Scraper",
+  "demo_type": "case-study-only",
+  "items": [
+    {
+      "file": "shot-01.png",
+      "caption": "Demo: None clickable — it's a data-collection service. This is a case-study on engineering rigor.",
+      "type": "placeholder"
+    },
+    {
+      "file": "shot-02.png",
+      "caption": "Visuals needed: an excerpt of the engineering analysis (especially the \"this is NOT an access problem — it's a page-type mismatch\" conclusion); the README success-rate table; the extracted vendor Pydantic model; the docker-compose health-check block. This project sells the *documentation and process* as much as the code.",
+      "type": "placeholder"
+    }
+  ]
+}

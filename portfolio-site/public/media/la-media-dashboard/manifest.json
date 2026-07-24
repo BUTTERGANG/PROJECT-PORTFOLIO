@@ -1,0 +1,16 @@
+{
+  "project": "LA Media Dashboard",
+  "demo_type": "live",
+  "items": [
+    {
+      "file": "shot-01.png",
+      "caption": "Demo: Deploy to a public URL with a seeded demo tenant (repo stays private). A visitor should be able to open a sample project, view an invoice with a Stripe test link, and open a public contract-sign page.",
+      "type": "placeholder"
+    },
+    {
+      "file": "shot-02.png",
+      "caption": "Visuals needed: the project pipeline board; an invoice detail with the Send modal (blur real client names/emails/amounts); the public contract-sign page with a drawn signature; the SOP Claude chat panel mid-stream; a small architecture diagram (React → Express routers → NeonDB, with Stripe/Gmail/Claude on the side). Mark all client PII and `workwithla.media` addresses as blur-sensitive.",
+      "type": "placeholder"
+    }
+  ]
+}

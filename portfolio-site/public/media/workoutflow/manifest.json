@@ -1,0 +1,16 @@
+{
+  "project": "Workout Programming Platform",
+  "demo_type": "live",
+  "items": [
+    {
+      "file": "shot-01.png",
+      "caption": "Demo: Deploy the Replit build to a public URL (repo stays private). Seed with a demo org so a visitor can view the coach dashboard and the athlete logging flow.",
+      "type": "placeholder"
+    },
+    {
+      "file": "shot-02.png",
+      "caption": "Visuals needed: the program builder (library / tree / details three-pane); the mobile set-logger with the RPE slider; the coach dashboard statistics; a strength-progression chart. Blur any real athlete names/emails in seeded data.",
+      "type": "placeholder"
+    }
+  ]
+}

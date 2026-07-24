@@ -1,0 +1,42 @@
+{
+  "project": "MASS Gym Platform",
+  "demo_type": "live",
+  "captured_at": "2026-07-15T02:54:06.086Z",
+  "items": [
+    {
+      "file": "shot-01.webp",
+      "caption": "Public home — the gym’s front door: hero, mission, and calls to register.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "file": "shot-02.webp",
+      "caption": "Coaches — the public roster that presents the gym’s staff.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "file": "shot-03.webp",
+      "caption": "Programs — the public training-program offerings.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "file": "shot-04.webp",
+      "caption": "Approval-gated registration — athletes self-register as PENDING; an admin promotes to ACTIVE.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "file": "demo.webm",
+      "caption": "Recorded walk-through of the running app.",
+      "type": "video",
+      "width": 1440,
+      "height": 900
+    }
+  ]
+}

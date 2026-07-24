@@ -1,0 +1,62 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { pillarByKey } from '../data/pillars';
+import { projectsByCluster } from '../lib/projects';
+
+const pillar = pillarByKey('business')!;
+// The photo cluster is the software behind LA Media.
+const photoProjects = await projectsByCluster('photo');
+---
+<BaseLayout title={`${pillar.label} — Alex Butterfield`} description={pillar.tagline}>
+  <section class="phead">
+    <div class="wrap-narrow">
+      <p class="eyebrow">Pillar 0{pillar.num}</p>
+      <h1>{pillar.label}</h1>
+      <p class="lede">{pillar.tagline}</p>
+    </div>
+  </section>
+
+  <div class="wrap-narrow prose">
+    <h2>LA Media</h2>
+    <p>
+      A photo/video business that <strong>started as a two-person team</strong> and moved from wedding and personal work into <strong>B2B commercial</strong>,
+      with the goal of going full-time. The interesting part isn’t just the shoots — it’s the operating
+      system built underneath the business, which is itself an application of the Build Loop.
+    </p>
+    <ul class="stat-band reveal-group">
+      <li class="stat" style="--i:0"><span class="stat__num" data-count="$2,000+">$2,000+</span><span class="stat__label">weddings, starting</span></li>
+      <li class="stat" style="--i:1"><span class="stat__num" data-count="$450">$450</span><span class="stat__label">portrait sessions</span></li>
+      <li class="stat" style="--i:2"><span class="stat__num" data-count="$250">$250</span><span class="stat__label">sports photography</span></li>
+      <li class="stat" style="--i:3"><span class="stat__num" data-count="250+">250+</span><span class="stat__label">photos / wedding</span></li>
+    </ul>
+    <ul>
+      <li><strong>Commercial packages &amp; pricing</strong> — tiered offerings: weddings from <strong>$2,000</strong>, portraits <strong>$450</strong>, sports photography <strong>$250</strong>, plus product/brand work. Delivers 250+ photos per wedding on an 8–10 week turnaround.</li>
+      <li><strong>Brand partnerships</strong> — product-photography campaigns for brands including <strong>Airwave</strong> performance mouthpieces — the concrete step from favor-shoots toward B2B commercial.</li>
+      <li><strong>Cold outreach + CRM</strong> — systematized targeting of fitness, real estate, and restaurant businesses, fed by a <strong>25,000-business dataset</strong> scraped from a state registry and summarized via local Ollama.</li>
+      <li><strong>Venue partnerships</strong> — a cold-email system offering free shoots to venues (e.g. Scottish Rite Cathedral) in exchange for portfolio and marketing content.</li>
+      <li><strong>LA Media operating system</strong> — an 8-tab internal doc covering roles, meeting cadence, social strategy, and tech stack (HoneyBook, Flodesk, Pictime, Google Workspace), built to target six-figure revenue scaling.</li>
+    </ul>
+    <p>
+      <a href="https://workwithla.media" target="_blank" rel="noopener">workwithla.media →</a>
+    </p>
+  </div>
+
+  <section class="software reveal">
+    <div class="wrap">
+      <h2>The software behind it</h2>
+      <p class="muted">The business and the tooling grew together — these are the LA Media builds.</p>
+      <div class="grid grid--cards">
+        {photoProjects.map((p) => <ProjectCard project={p} />)}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .phead { padding-block: 3rem 1rem; border-bottom: 1px solid var(--border); }
+  .prose { padding-block: 2rem; }
+  .software { padding-block: 1rem 3rem; border-top: 1px solid var(--border); }
+  .software h2 { margin-bottom: .2em; }
+  .software .grid { margin-top: 1.4rem; }
+</style>

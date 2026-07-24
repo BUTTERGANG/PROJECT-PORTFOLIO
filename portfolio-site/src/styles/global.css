@@ -1,0 +1,258 @@
+/* ============================================================================
+   Design tokens — one system, dark-mode default, light supported.
+   Neutral slate base + single warm amber accent (the "builder at 11pm" tone).
+   ========================================================================== */
+
+:root {
+  /* dark is the default theme */
+  --bg:        #0d1117;
+  --bg-raised: #161b22;
+  --bg-inset:  #10151c;
+  --border:    #232b36;
+  --border-strong: #333e4d;
+
+  --text:      #e6edf3;
+  --text-dim:  #9aa7b4;
+  --text-faint:#7d8896;     /* ≥4.5:1 on --bg (WCAG AA normal text) */
+
+  --accent:      #f5a623;   /* amber — decorative / on dark */
+  --accent-soft: #f5a62322;
+  --accent-text: #ffcb6b;
+  --accent-label:#f5a623;   /* small amber labels; darkened for light theme below */
+
+  --live:    #3fb950;       /* live demo / working */
+  --info:    #58a6ff;       /* case-study-only */
+  --warn:    #d29922;       /* prototype */
+  --private: #a371f7;       /* private repo */
+
+  --radius:   14px;
+  --radius-sm: 9px;
+  --maxw: 1080px;
+  --gap: 1.25rem;
+
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+
+  --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.25);
+}
+
+:root[data-theme="light"] {
+  --bg:        #fbfaf7;
+  --bg-raised: #ffffff;
+  --bg-inset:  #f2efe9;
+  --border:    #e4ddd1;
+  --border-strong: #cfc6b6;
+
+  --text:      #1b1e23;
+  --text-dim:  #4d5560;
+  --text-faint:#6b7480;     /* ≥4.5:1 on light --bg (WCAG AA normal text) */
+
+  --accent:      #c77b0a;
+  --accent-soft: #c77b0a18;
+  --accent-text: #a8650a;
+  --accent-label:#8f5600;   /* ≥4.5:1 on light --bg for small .eyebrow/badge text */
+
+  --live: #1a7f37;
+  --info: #0969da;
+  --warn: #9a6700;
+  --private: #8250df;
+
+  --shadow: 0 1px 2px rgba(0,0,0,.06), 0 8px 24px rgba(0,0,0,.08);
+}
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-wrap: break-word;   /* never let a long word/URL force horizontal scroll */
+}
+
+/* Nothing should ever cause a horizontal scrollbar on small screens. */
+html, body { max-width: 100%; overflow-x: hidden; }
+img, video, svg { max-width: 100%; height: auto; }
+
+@media (max-width: 400px) {
+  body { font-size: 16px; }
+  .wrap, .wrap-narrow { padding-inline: 1rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; }
+}
+
+/* ── Layout ────────────────────────────────────────────────────────────── */
+.wrap { max-width: var(--maxw); margin-inline: auto; padding-inline: 1.25rem; }
+.wrap-narrow { max-width: 760px; margin-inline: auto; padding-inline: 1.25rem; }
+
+section { padding-block: clamp(2.5rem, 6vw, 4.5rem); }
+
+/* ── Type ──────────────────────────────────────────────────────────────── */
+h1, h2, h3 { line-height: 1.15; letter-spacing: -0.02em; font-weight: 700; }
+h1 { font-size: clamp(2rem, 5vw, 3.25rem); margin: 0 0 .5em; }
+h2 { font-size: clamp(1.5rem, 3.4vw, 2.1rem); margin: 0 0 .6em; }
+h3 { font-size: 1.2rem; margin: 0 0 .4em; }
+
+a { color: var(--accent-text); text-decoration: none; }
+a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: .8rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--accent-label);
+  margin: 0 0 .8rem;
+}
+.lede { font-size: clamp(1.05rem, 2vw, 1.28rem); color: var(--text-dim); }
+.muted { color: var(--text-dim); }
+.faint { color: var(--text-faint); }
+
+/* ── Chips ─────────────────────────────────────────────────────────────── */
+.chips { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; }
+.chip {
+  display: inline-flex; align-items: center; gap: .35em;
+  font-family: var(--font-mono); font-size: .72rem; font-weight: 600;
+  padding: .28em .7em; border-radius: 999px;
+  border: 1px solid var(--border-strong); color: var(--text-dim);
+  background: var(--bg-inset); white-space: nowrap; max-width: 100%;
+}
+.chip[data-kind="live"]    { color: var(--live);    border-color: color-mix(in srgb, var(--live) 45%, transparent); }
+.chip[data-kind="info"]    { color: var(--info);    border-color: color-mix(in srgb, var(--info) 45%, transparent); }
+.chip[data-kind="warn"]    { color: var(--warn);    border-color: color-mix(in srgb, var(--warn) 45%, transparent); }
+.chip[data-kind="private"] { color: var(--private); border-color: color-mix(in srgb, var(--private) 45%, transparent); }
+.chip[data-kind="accent"]  { color: var(--accent-text); border-color: color-mix(in srgb, var(--accent) 45%, transparent); background: var(--accent-soft); }
+
+/* ── Cards / surfaces ──────────────────────────────────────────────────── */
+.card {
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.btn {
+  display: inline-flex; align-items: center; gap: .5em;
+  font-weight: 600; font-size: .95rem;
+  padding: .6em 1.1em; border-radius: var(--radius-sm);
+  border: 1px solid var(--border-strong); color: var(--text);
+  background: var(--bg-raised); cursor: pointer; transition: border-color .15s, transform .05s;
+}
+.btn:hover { border-color: var(--accent); text-decoration: none; }
+.btn:active { transform: translateY(1px); }
+.btn--accent { background: var(--accent); color: #1a1200; border-color: var(--accent); }
+.btn--accent:hover { filter: brightness(1.08); }
+
+/* ── Grids ─────────────────────────────────────────────────────────────── */
+.grid { display: grid; gap: var(--gap); }
+/* min(100%, 300px) prevents overflow on <320px phones (300 + padding > vw). */
+.grid--cards { grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); }
+
+/* ── Origin (Build Loop) block ─────────────────────────────────────────── */
+.origin {
+  border-left: 3px solid var(--accent);
+  background: var(--accent-soft);
+  padding: 1rem 1.25rem; border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-size: 1.08rem; line-height: 1.6;
+}
+.origin strong { color: var(--accent-text); font-weight: 700; }
+
+/* ── Prose (rendered markdown body) ────────────────────────────────────── */
+.prose h2 { margin-top: 2em; padding-bottom: .3em; border-bottom: 1px solid var(--border); }
+.prose h3 { margin-top: 1.5em; color: var(--accent-text); }
+.prose ul { padding-left: 1.2em; }
+.prose li { margin: .3em 0; }
+.prose { overflow-wrap: anywhere; }  /* long paths/URLs wrap instead of overflowing */
+.prose code {
+  font-family: var(--font-mono); font-size: .85em;
+  background: var(--bg-inset); padding: .15em .4em; border-radius: 5px;
+  border: 1px solid var(--border); overflow-wrap: anywhere;
+}
+.prose pre { overflow-x: auto; max-width: 100%; }
+.prose pre code { overflow-wrap: normal; white-space: pre; }
+/* Defensive: if any doc adds a markdown table, let it scroll rather than overflow. */
+.prose table { display: block; overflow-x: auto; max-width: 100%; border-collapse: collapse; }
+.prose img, .prose video { border-radius: var(--radius-sm); }
+.prose blockquote {
+  margin: 1.2em 0; padding: .6em 1.1em;
+  border-left: 3px solid var(--accent); background: var(--accent-soft);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0; color: var(--text);
+}
+.prose a { text-decoration: underline; text-underline-offset: 2px; }
+
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* ── Focus & skip-link (keyboard accessibility) ─────────────────────────────
+   Visible focus ring for keyboard users only (:focus-visible), plus a
+   skip-to-content link that stays offscreen until it receives focus. */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+/* Mouse users don't get a ring on click (browsers only match :focus-visible
+   for keyboard), but ensure buttons/summary never show the legacy default. */
+:focus:not(:focus-visible) { outline: none; }
+
+.skip-link {
+  position: absolute; left: 8px; top: -48px; z-index: 100;
+  padding: .55em 1em; border-radius: var(--radius-sm);
+  background: var(--accent); color: #1a1200; font-weight: 700;
+  transition: top .15s ease;
+}
+.skip-link:focus { top: 8px; text-decoration: none; }
+
+/* ── Motion ────────────────────────────────────────────────────────────────
+   Scroll-driven motion is gated behind BOTH `no-preference` AND `html.js`.
+   `html.js` is set by a pre-paint inline script in BaseLayout, so the hidden
+   initial state (opacity:0) only ever applies when JS is present to un-hide it.
+   No-JS and reduced-motion users get the final, fully-visible state with zero
+   motion. The JS in BaseLayout adds `.is-visible` / `.is-grown` on scroll. */
+@media (prefers-reduced-motion: no-preference) {
+  html.js .reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity .6s ease, transform .6s cubic-bezier(.2, .7, .2, 1);
+  }
+  html.js .reveal.is-visible { opacity: 1; transform: none; }
+  /* Stagger children of a reveal-group by index for a gentle cascade. */
+  html.js .reveal-group > * {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity .55s ease, transform .55s cubic-bezier(.2, .7, .2, 1);
+    transition-delay: calc(var(--i, 0) * 70ms);
+  }
+  html.js .reveal-group.is-visible > * { opacity: 1; transform: none; }
+}
+
+/* ── Stat tiles (count-up targets) ─────────────────────────────────────────── */
+.stat-band {
+  list-style: none; padding: 0; margin: 1.4rem 0 1.6rem;
+  display: grid; gap: var(--gap);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr));
+}
+.stat {
+  background: var(--bg-raised); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 1.1rem 1.2rem; box-shadow: var(--shadow);
+}
+.stat__num {
+  font-size: clamp(1.7rem, 4vw, 2.35rem); font-weight: 700;
+  line-height: 1; letter-spacing: -.02em; color: var(--accent-text);
+  font-variant-numeric: tabular-nums; display: block;
+}
+.stat__label { margin-top: .45rem; font-size: .88rem; color: var(--text-dim); }

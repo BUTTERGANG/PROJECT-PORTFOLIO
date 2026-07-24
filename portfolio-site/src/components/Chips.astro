@@ -1,0 +1,11 @@
+---
+import { chipsFor, type Project } from '../lib/projects';
+interface Props { data: Project['data']; }
+const { data } = Astro.props;
+const chips = chipsFor(data);
+---
+<div class="chips">
+  {chips.map((c) => (
+    <span class="chip" data-kind={c.kind === 'default' ? undefined : c.kind}>{c.label}</span>
+  ))}
+</div>

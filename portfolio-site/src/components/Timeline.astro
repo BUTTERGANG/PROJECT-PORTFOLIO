@@ -1,0 +1,82 @@
+---
+// The acceleration arc — provable from commit history. Three phases of rising
+// build velocity. Data mirrors NARRATIVE.md / _INDEX.md.
+const phases = [
+  {
+    when: 'Mid 2025',
+    rate: '~1 / quarter',
+    note: 'Single-purpose, slow. The first wedding timeline planner.',
+    projects: ['TIMELINE'],
+    fill: 18,
+  },
+  {
+    when: 'Late 2025',
+    rate: 'a cluster',
+    note: 'Getting reps — a scraper, a coaching platform, a lighting tracker.',
+    projects: ['TheKnot scraper', 'WORKOUTFLOW', 'LIGHTLOG'],
+    fill: 48,
+  },
+  {
+    when: 'Early–mid 2026',
+    rate: 'several / month',
+    note: 'Velocity compounds as AI tooling gets leveraged.',
+    projects: ['POLYBOT', 'thrift-lens', 'k9-overwatch', 'CIVIC-DUTY', 'VBT', 'Mind Games', 'Job Hunter', 'ECHO'],
+    fill: 100,
+  },
+];
+---
+<section class="tl">
+  <div class="wrap">
+    <p class="eyebrow">The one thing to take away</p>
+    <h2>From one app a quarter to several a month — in about a year.</h2>
+    <p class="lede tl__lede">
+      As I learned to leverage AI tooling, my build velocity compounded. That curve —
+      not any single project — is the point, and it’s provable from commit history.
+    </p>
+
+    <ol class="tl__track">
+      {phases.map((p) => (
+        <li class="tl__phase">
+          <div class="tl__bar" style={`--fill:${p.fill}%`}><span></span></div>
+          <div class="tl__meta">
+            <span class="tl__when">{p.when}</span>
+            <span class="tl__rate">{p.rate}</span>
+          </div>
+          <p class="tl__note muted">{p.note}</p>
+          <div class="tl__chips">
+            {p.projects.map((n) => <span class="chip">{n}</span>)}
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .tl { background: var(--bg-raised); border-block: 1px solid var(--border); }
+  .tl__lede { max-width: 68ch; }
+  .tl__track {
+    list-style: none; margin: 2rem 0 0; padding: 0;
+    display: grid; gap: 1.5rem; grid-template-columns: repeat(3, 1fr);
+  }
+  .tl__phase { display: grid; gap: .6rem; align-content: start; }
+  .tl__bar { height: 10px; background: var(--bg-inset); border-radius: 999px; overflow: hidden; border: 1px solid var(--border); }
+  .tl__bar span {
+    display: block; height: 100%; width: var(--fill);
+    background: linear-gradient(90deg, color-mix(in srgb, var(--accent) 55%, transparent), var(--accent));
+    border-radius: 999px;
+  }
+  /* Grow the fill from 0 → --fill when the bar scrolls into view. Reduced-motion
+     users never get .is-grown removed-state: bars render at full --fill. */
+  @media (prefers-reduced-motion: no-preference) {
+    .tl__bar span { width: 0; transition: width 1s cubic-bezier(.2, .7, .2, 1); }
+    .tl__bar.is-grown span { width: var(--fill); }
+  }
+  .tl__meta { display: flex; align-items: baseline; justify-content: space-between; gap: .5rem; }
+  .tl__when { font-weight: 700; }
+  .tl__rate { font-family: var(--font-mono); font-size: .8rem; color: var(--accent-text); }
+  .tl__note { margin: 0; font-size: .92rem; }
+  .tl__chips { display: flex; flex-wrap: wrap; gap: .35rem; }
+  .tl__chips .chip { font-size: .68rem; padding: .2em .55em; }
+  @media (max-width: 720px) { .tl__track { grid-template-columns: 1fr; } }
+</style>

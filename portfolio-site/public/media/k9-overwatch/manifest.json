@@ -1,0 +1,16 @@
+{
+  "project": "K9-Overwatch",
+  "demo_type": "live",
+  "items": [
+    {
+      "file": "shot-01.png",
+      "caption": "Demo: Deploy to a public URL (repo is public). The interactive map with real aggregated Indy-area listings is the hero view.",
+      "type": "placeholder"
+    },
+    {
+      "file": "shot-02.png",
+      "caption": "Visuals needed: the map with filters applied; a lost→found match example; the source-analysis table from `docs/`.",
+      "type": "placeholder"
+    }
+  ]
+}

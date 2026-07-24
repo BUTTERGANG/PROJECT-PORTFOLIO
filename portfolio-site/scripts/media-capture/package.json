@@ -1,0 +1,9 @@
+{
+  "name": "portfolio-media-capture",
+  "private": true,
+  "type": "module",
+  "description": "Isolated Playwright capture harness. Deliberately separate from the portfolio-site package.json so Playwright never enters the lean Replit build tree.",
+  "dependencies": {
+    "playwright": "^1.58.0"
+  }
+}

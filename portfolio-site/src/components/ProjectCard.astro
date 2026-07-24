@@ -1,0 +1,68 @@
+---
+// Compact card. Standard-tier projects render as a self-contained expandable
+// card (no dedicated page). Anchor/advanced render as a linking card to
+// /projects/<slug>. Both lead with the origin one-liner.
+import Chips from './Chips.astro';
+import MediaItem from './MediaItem.astro';
+import { extractOneLiner, extractOrigin, mdBoldToHtml, repoUrl, type Project } from '../lib/projects';
+
+interface Props { project: Project; }
+const { project } = Astro.props;
+const { data, slug, body } = project;
+
+const oneLiner = extractOneLiner(body);
+const origin = extractOrigin(body);
+const hasPage = data.tier !== 'standard';
+const href = `/projects/${slug}/`;
+const gitHub = repoUrl(data);
+---
+<article class="pcard card">
+  <div class="pcard__body">
+    <div class="pcard__top">
+      <h3 class="pcard__title">
+        {hasPage ? <a href={href}>{data.project}</a> : data.project}
+      </h3>
+      <Chips data={data} />
+    </div>
+
+    {oneLiner && <p class="pcard__oneliner">{oneLiner}</p>}
+
+    {hasPage ? (
+      <a class="pcard__more" href={href}>Read the case study →</a>
+    ) : (
+      <details class="pcard__details">
+        <summary>The story &amp; how it’s built</summary>
+        {origin && <p class="pcard__origin" set:html={mdBoldToHtml(origin)}></p>}
+        <div class="pcard__media">
+          <MediaItem slug={slug} file="shot-01.png" caption={oneLiner ?? data.project} type="placeholder" />
+        </div>
+        {(data.demo_url || gitHub) && (
+          <div class="pcard__actions">
+            {data.demo_url && (
+              <a class="btn" href={data.demo_url} target="_blank" rel="noopener">Open live demo ↗</a>
+            )}
+            {gitHub && (
+              <a class="btn" href={gitHub} target="_blank" rel="noopener">View on GitHub ↗</a>
+            )}
+          </div>
+        )}
+      </details>
+    )}
+  </div>
+</article>
+
+<style>
+  .pcard { overflow: hidden; }
+  .pcard__body { padding: 1.1rem 1.2rem; display: grid; gap: .7rem; }
+  .pcard__top { display: flex; flex-direction: column; gap: .5rem; }
+  .pcard__title { margin: 0; font-size: 1.12rem; }
+  .pcard__title a { color: var(--text); }
+  .pcard__title a:hover { color: var(--accent-text); text-decoration: none; }
+  .pcard__oneliner { margin: 0; color: var(--text-dim); font-size: .95rem; line-height: 1.5; }
+  .pcard__more { font-size: .9rem; font-weight: 600; }
+  .pcard__details summary { cursor: pointer; font-size: .9rem; color: var(--accent-text); font-weight: 600; }
+  .pcard__origin { font-size: .9rem; line-height: 1.55; color: var(--text); }
+  .pcard__origin :global(strong) { color: var(--accent-text); }
+  .pcard__media { margin: .3rem 0; }
+  .pcard__actions { display: flex; flex-wrap: wrap; gap: .5rem; }
+</style>

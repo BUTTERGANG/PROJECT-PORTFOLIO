@@ -1,0 +1,113 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Contact channels. To go live, replace the `value`/`href` on any pending
+// item and flip `pending` to false. Items left pending render as a muted
+// "coming soon" row instead of a dead link.
+const channels = [
+  {
+    label: 'LA Media',
+    value: 'workwithla.media',
+    href: 'https://workwithla.media',
+    external: true,
+    pending: false,
+  },
+  {
+    label: 'GitHub',
+    value: 'github.com/BUTTERGANG',
+    href: 'https://github.com/BUTTERGANG',
+    external: true,
+    pending: false,
+  },
+  {
+    label: 'Email',
+    value: 'alex@workwithla.media',
+    href: 'mailto:alex@workwithla.media',
+    external: false,
+    pending: false,
+  },
+  {
+    label: 'LinkedIn',
+    value: 'linkedin.com/in/alex-butterfield',
+    href: 'https://www.linkedin.com/in/alex-butterfield-7865a0204/',
+    external: true,
+    pending: false,
+  },
+];
+
+const resumeReady = false; // flip true once assets/resume.pdf is in place
+---
+<BaseLayout title="Contact — Alex Butterfield" description="Get in touch with Alex Butterfield — operator who builds his own tools.">
+  <section class="phead">
+    <div class="wrap-narrow">
+      <p class="eyebrow">Contact</p>
+      <h1>Let’s talk.</h1>
+      <p class="lede">
+        The operator who builds his own tools. If you’re hiring for a role that
+        needs someone who executes live <em>and</em> builds the systems behind it,
+        this is the fastest way to reach me.
+      </p>
+    </div>
+  </section>
+
+  <div class="wrap-narrow prose">
+    <ul class="contact">
+      {channels.map((c) => (
+        <li class="contact__row" class:list={[{ 'is-pending': c.pending }]}>
+          <span class="contact__label">{c.label}</span>
+          {c.pending ? (
+            <span class="contact__pending">Coming soon</span>
+          ) : (
+            <a
+              class="contact__value"
+              href={c.href}
+              {...(c.external ? { target: '_blank', rel: 'noopener' } : {})}
+            >{c.value}</a>
+          )}
+        </li>
+      ))}
+    </ul>
+
+    <div class="resume">
+      <h2>Resume</h2>
+      {resumeReady ? (
+        <a class="btn btn--accent" href="/assets/resume.pdf" target="_blank" rel="noopener">
+          📄 Download master resume
+        </a>
+      ) : (
+        <p class="resume__pending">
+          📄 <strong>Full work history</strong> — I tailor a resume to the specific role.
+          Reach out by email or <a href="https://www.linkedin.com/in/alex-butterfield-7865a0204/" target="_blank" rel="noopener">LinkedIn</a> and I’ll send one over.
+        </p>
+      )}
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .phead { padding-block: 3rem 1rem; border-bottom: 1px solid var(--border); }
+  .phead .lede em { color: var(--text); font-style: italic; }
+  .prose { padding-block: 2rem 3rem; }
+
+  .contact { list-style: none; padding: 0; margin: 0; display: grid; gap: 0; }
+  .contact__row {
+    display: flex; align-items: baseline; gap: 1rem;
+    padding: .85rem 0; border-bottom: 1px solid var(--border);
+  }
+  .contact__row:first-child { border-top: 1px solid var(--border); }
+  .contact__label {
+    flex: 0 0 7rem; font-weight: 600; color: var(--text);
+    font-size: .95rem;
+  }
+  .contact__value { font-size: 1.05rem; }
+  .contact__pending {
+    font-family: var(--font-mono); font-size: .8rem;
+    color: var(--text-faint); letter-spacing: .02em;
+  }
+  .is-pending .contact__label { color: var(--text-dim); }
+
+  .resume { margin-top: 2.5rem; }
+  .resume h2 { margin-bottom: .6em; }
+  .resume__pending { color: var(--text-dim); font-size: .98rem; line-height: 1.6; }
+  .resume__pending strong { color: var(--text); }
+</style>

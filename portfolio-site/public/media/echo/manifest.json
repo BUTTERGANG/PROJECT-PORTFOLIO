@@ -1,0 +1,16 @@
+{
+  "project": "ECHO",
+  "demo_type": "case-study-only",
+  "items": [
+    {
+      "file": "shot-01.png",
+      "caption": "Demo: None — the entries are my personal journal. Even though it runs on web, a live demo would mean exposing real journal data, so this is case-study-only.",
+      "type": "placeholder"
+    },
+    {
+      "file": "shot-02.png",
+      "caption": "Visuals needed: a data-locality diagram (Web Worker + WASM SQLite + IndexedDB on-device, vs. the single opt-in arrow out to the Claude proxy); a screenshot of the record → transcript → summary flow with entry text redacted; the mood heatmap / streak insights with placeholder data.",
+      "type": "placeholder"
+    }
+  ]
+}

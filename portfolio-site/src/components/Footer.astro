@@ -1,0 +1,27 @@
+---
+const year = 2026; // static build; avoid Date.now() nondeterminism
+---
+<footer class="footer">
+  <div class="wrap footer__inner">
+    <p class="footer__thesis">The operator who builds his own tools.</p>
+    <nav class="footer__links" aria-label="Footer">
+      <a href="/">Home</a>
+      <a href="/builder/">Builder</a>
+      <a href="/next-chapter/">Next Chapter</a>
+      <a href="/contact/">Contact</a>
+      <a href="https://github.com/BUTTERGANG" rel="me noopener" target="_blank">GitHub</a>
+      <a href="https://workwithla.media" rel="noopener" target="_blank">LA Media</a>
+    </nav>
+    <p class="footer__meta faint">© {year} Alex Butterfield · Built with Astro</p>
+  </div>
+</footer>
+
+<style>
+  .footer { border-top: 1px solid var(--border); background: var(--bg-raised); margin-top: 3rem; }
+  .footer__inner { padding-block: 2rem; display: grid; gap: .8rem; }
+  .footer__thesis { font-weight: 600; margin: 0; }
+  .footer__links { display: flex; flex-wrap: wrap; gap: 1rem; }
+  .footer__links a { color: var(--text-dim); font-size: .9rem; }
+  .footer__links a:hover { color: var(--accent-text); }
+  .footer__meta { font-size: .82rem; margin: 0; }
+</style>

@@ -1,0 +1,20 @@
+# build output
+dist/
+.astro/
+
+# deps
+node_modules/
+
+# media-capture harness deps (isolated Playwright — never ships to Replit build)
+scripts/media-capture/node_modules/
+scripts/media-capture/package-lock.json
+
+# NOTE: src/content/projects/ is intentionally COMMITTED (not ignored).
+# It's regenerated from ../docs by scripts/sync-content.mjs when that source is
+# present (local dev), but committed so Replit can build without the sibling docs/ dir.
+
+# env & os
+.env
+.env.production
+.DS_Store
+npm-debug.log*

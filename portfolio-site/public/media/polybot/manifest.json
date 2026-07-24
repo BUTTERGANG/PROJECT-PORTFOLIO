@@ -1,0 +1,16 @@
+{
+  "project": "POLYBOT",
+  "demo_type": "case-study-only",
+  "items": [
+    {
+      "file": "shot-01.png",
+      "caption": "Demo: None — a trading bot has no clickable UI, and the value is the logic, not a screen. This is a case-study-only write-up.",
+      "type": "placeholder"
+    },
+    {
+      "file": "shot-02.png",
+      "caption": "Visuals needed: the decision-pipeline diagram (rule gates → Haiku → Sonnet → Bayesian → risk → trade); a redacted paper-trade performance report (`analyze_performance.py` output); a code snippet of the pre-filter gates or the Kelly/risk logic. Reads as \"engineer,\" not \"gambler.\"",
+      "type": "placeholder"
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://butterfield-portfolio.replit.app/sitemap-index.xml

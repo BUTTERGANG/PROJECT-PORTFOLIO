@@ -1,0 +1,18 @@
+modules = ["nodejs-20"]
+
+# Local dev: `npm run dev` serves the Astro dev server.
+run = "npm run dev"
+
+# ── Static Deployment ────────────────────────────────────────────────
+# In the Replit Deployments pane choose "Static", then set:
+#   Build command:    npm install && npm run build
+#   Public directory: dist
+# Astro emits a fully static site into dist/ which Replit serves + caches.
+[deployment]
+deploymentTarget = "static"
+publicDir = "dist"
+build = ["sh", "-c", "npm install && npm run build"]
+
+[[ports]]
+localPort = 4321
+externalPort = 80

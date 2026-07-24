@@ -1,0 +1,16 @@
+{
+  "project": "CivicDuty",
+  "demo_type": "live",
+  "items": [
+    {
+      "file": "shot-01.png",
+      "caption": "Demo: Deploy to a public URL (repo stays private) with seeded/public Fishers data behind a demo login.",
+      "type": "placeholder"
+    },
+    {
+      "file": "shot-02.png",
+      "caption": "Visuals needed: the unified dashboard/search; a council-votes or zoning detail view; a small diagram of the nightly ingestion schedule.",
+      "type": "placeholder"
+    }
+  ]
+}

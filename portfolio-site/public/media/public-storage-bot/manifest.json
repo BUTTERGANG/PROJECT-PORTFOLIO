@@ -1,0 +1,16 @@
+{
+  "project": "Public Storage Rate Aggregator & AI Analyzer",
+  "demo_type": "case-study-only",
+  "items": [
+    {
+      "file": "shot-01.png",
+      "caption": "Demo: None — it's a Telegram bot / CLI. Case-study-only.",
+      "type": "placeholder"
+    },
+    {
+      "file": "shot-02.png",
+      "caption": "Visuals needed: a Telegram screenshot of a deal verdict; a sample of the aggregated CSV; a one-line diagram (scrape → CSV → Claude → Telegram).",
+      "type": "placeholder"
+    }
+  ]
+}

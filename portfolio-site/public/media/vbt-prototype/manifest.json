@@ -1,0 +1,16 @@
+{
+  "project": "VBT Tracker",
+  "demo_type": "live",
+  "items": [
+    {
+      "file": "shot-01.png",
+      "caption": "Demo: Deploy the Replit build to a public URL. Best live demo is camera VBT on a phone — point it at a loaded bar and show live per-rep velocity, then the post-set autoregulation call.",
+      "type": "placeholder"
+    },
+    {
+      "file": "shot-02.png",
+      "caption": "Visuals needed: the CameraLiveLiftScreen mid-rep with bar-path overlay; the load-velocity profile building across a set; the coach-mode multi-athlete BLE dashboard; the analytics velocity-trend view. No sensitive data to blur.",
+      "type": "placeholder"
+    }
+  ]
+}

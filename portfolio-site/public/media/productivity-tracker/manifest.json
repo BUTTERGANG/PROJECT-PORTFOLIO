@@ -1,0 +1,16 @@
+{
+  "project": "365 Day Productivity Tracker",
+  "demo_type": "live",
+  "items": [
+    {
+      "file": "shot-01.png",
+      "caption": "Demo: Deploy the static build to Vercel/Pages (repo is public) — instant live URL.",
+      "type": "placeholder"
+    },
+    {
+      "file": "shot-02.png",
+      "caption": "Visuals needed: the filled-in contribution grid; a streak view.",
+      "type": "placeholder"
+    }
+  ]
+}

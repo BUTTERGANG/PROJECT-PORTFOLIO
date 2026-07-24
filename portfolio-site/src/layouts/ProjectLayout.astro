@@ -1,0 +1,80 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Chips from '../components/Chips.astro';
+import OriginBlock from '../components/OriginBlock.astro';
+import MediaGallery from '../components/MediaGallery.astro';
+import { extractOneLiner, extractOrigin, repoUrl, type Project } from '../lib/projects';
+import { CLUSTERS } from '../data/clusters';
+import { pillarByKey } from '../data/pillars';
+
+interface Props { project: Project; }
+const { project } = Astro.props;
+const { data, slug, body } = project;
+
+const { Content } = await project.render();
+const oneLiner = extractOneLiner(body);
+const origin = extractOrigin(body);
+const cluster = CLUSTERS[data.cluster];
+const pillar = pillarByKey(cluster.pillar);
+const gitHub = repoUrl(data);
+
+const title = `${data.project} — Alex Butterfield`;
+const description = oneLiner ?? `${data.project} case study.`;
+---
+<BaseLayout title={title} description={description}>
+  <article class="proj">
+    <div class="wrap-narrow">
+      <nav class="proj__crumbs" aria-label="Breadcrumb">
+        <a href={pillar?.slug ?? '/builder/'}>{pillar?.label ?? 'Builder'}</a>
+        <span aria-hidden="true">/</span>
+        <a href={`/builder/#${cluster.key}`}>{cluster.label}</a>
+      </nav>
+
+      <header class="proj__hero">
+        <h1>{data.project}</h1>
+        {oneLiner && <p class="lede">{oneLiner}</p>}
+        <Chips data={data} />
+        {(data.demo_url || gitHub) && (
+          <p class="proj__cta">
+            {data.demo_url && (
+              <a class="btn btn--accent" href={data.demo_url} target="_blank" rel="noopener">Open live demo ↗</a>
+            )}
+            {gitHub && (
+              <a class="btn" href={gitHub} target="_blank" rel="noopener">View on GitHub ↗</a>
+            )}
+          </p>
+        )}
+        {!data.demo_url && !gitHub && data.demo_type === 'live' && (
+          <p class="proj__cta faint">Runs privately — walkthrough available on request.</p>
+        )}
+      </header>
+
+      {origin && <OriginBlock text={origin} />}
+    </div>
+
+    <div class="wrap-narrow proj__gallery">
+      <MediaGallery slug={slug} title="What it looks like" />
+    </div>
+
+    <div class="wrap-narrow prose proj__prose">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .proj { padding-block: 2rem 3rem; }
+  .proj__crumbs { display: flex; gap: .5rem; font-size: .85rem; color: var(--text-faint); margin-bottom: 1.2rem; }
+  .proj__crumbs a { color: var(--text-dim); }
+  .proj__hero { margin-bottom: 1.5rem; }
+  .proj__hero h1 { margin-bottom: .3em; }
+  .proj__hero .chips { margin-top: 1rem; }
+  .proj__cta { margin-top: 1.2rem; }
+  .proj__gallery { margin-block: 2.5rem; }
+  /*
+    The rendered markdown repeats some of what the hero already shows (the
+    One-liner line and the Origin blockquote). Hide the first "One-liner"
+    paragraph and the Origin section's duplicate quote via prose styling below.
+  */
+  .proj__prose :global(h1) { display: none; } /* body starts with an H1 title we already show */
+</style>

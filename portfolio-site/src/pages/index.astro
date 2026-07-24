@@ -1,0 +1,101 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Timeline from '../components/Timeline.astro';
+import { PILLARS } from '../data/pillars';
+import { allProjects } from '../lib/projects';
+
+const projects = await allProjects();
+const count = projects.length;
+const featured = projects.find((p) => p.slug === 'mind-games');
+---
+<BaseLayout>
+  <!-- Hero: the Build Loop thesis first -->
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">The operator who builds his own tools</p>
+      <h1 class="hero__h1">
+        I run live events for a living — and build the tools that make them,
+        and the businesses behind them, better.
+      </h1>
+      <p class="lede hero__lede">
+        I don’t start with “I want to build an app.” I start by <em>doing something</em> —
+        running a wedding in front of 200 people, cutting a photo gallery at 1am, hitting a lift,
+        hunting a job — and hitting the same friction twice. The second time, I build the tool.
+      </p>
+      <p class="hero__loop">
+        That’s the whole method. It’s why my work looks scattered until you notice the pattern:
+        <strong>every project is downstream of something I was already doing.</strong>
+        {count} of them. I call it the <span class="accent">Build Loop</span>.
+      </p>
+      <div class="hero__cta">
+        <a class="btn btn--accent" href="/builder/">See what I’ve built</a>
+        <a class="btn" href="/next-chapter/">Why I’m here</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- The four pillars = the narrative arc -->
+  <section class="pillars">
+    <div class="wrap">
+      <div class="pillars__grid reveal-group">
+        {PILLARS.map((p, i) => (
+          <a class="pillar card" href={p.slug} style={`--i:${i}`}>
+            <span class="pillar__num">0{p.num}</span>
+            <h2 class="pillar__label">{p.label}</h2>
+            <p class="pillar__tag">{p.tagline}</p>
+            <p class="pillar__teaser muted">{p.teaser}</p>
+            <span class="pillar__go">Explore →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured anchor -->
+  {featured && (
+    <section class="featured reveal">
+      <div class="wrap featured__inner">
+        <div>
+          <p class="eyebrow">Anchor case study</p>
+          <h2>{featured.data.project}</h2>
+          <p class="lede">
+            An IWF-compliant Olympic weightlifting competition simulator — ~7,000 real USAW
+            records ETL’d into PostgreSQL, fed by Playwright automation through Sport80’s authenticated portal.
+            The clearest proof of the thesis: I build where my lived expertise is deepest.
+          </p>
+          <a class="btn btn--accent" href={`/projects/${featured.slug}/`}>Read the case study →</a>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <Timeline />
+</BaseLayout>
+
+<style>
+  .hero { padding-block: clamp(3rem, 8vw, 6rem) 2rem; }
+  .hero__h1 { max-width: 18ch; }
+  .hero__lede { max-width: 62ch; margin-bottom: 1rem; }
+  .hero__lede em { color: var(--text); font-style: italic; }
+  .hero__loop { max-width: 62ch; font-size: 1.1rem; }
+  .hero__loop strong { color: var(--text); }
+  .accent { color: var(--accent-text); font-weight: 700; }
+  .hero__cta { display: flex; gap: .8rem; margin-top: 1.8rem; flex-wrap: wrap; }
+
+  .pillars { padding-top: 1rem; }
+  .pillars__grid { display: grid; gap: var(--gap); grid-template-columns: repeat(2, 1fr); }
+  .pillar { padding: 1.5rem 1.5rem 1.3rem; display: grid; gap: .5rem; align-content: start; transition: border-color .15s, transform .1s; }
+  .pillar:hover { border-color: var(--accent); text-decoration: none; transform: translateY(-2px); }
+  .pillar__num { font-family: var(--font-mono); color: var(--accent); font-size: .85rem; }
+  .pillar__label { margin: 0; color: var(--text); }
+  .pillar__tag { margin: 0; font-weight: 600; color: var(--accent-text); font-size: .98rem; }
+  .pillar__teaser { margin: .2rem 0 0; font-size: .92rem; }
+  .pillar__go { font-size: .85rem; color: var(--text-dim); margin-top: .4rem; font-weight: 600; }
+  .pillar:hover .pillar__go { color: var(--accent-text); }
+
+  .featured { padding-block: 1rem 2rem; }
+  .featured__inner { }
+  .featured .lede { max-width: 64ch; }
+
+  @media (max-width: 720px) { .pillars__grid { grid-template-columns: 1fr; } }
+</style>

@@ -1,0 +1,16 @@
+{
+  "project": "ThriftLens",
+  "demo_type": "live",
+  "items": [
+    {
+      "file": "shot-01.png",
+      "caption": "Demo: Live PWA (private repo, public demo when deployed). Best shown on an actual phone — open in iPhone Safari, Add to Home Screen, scan a real item.",
+      "type": "placeholder"
+    },
+    {
+      "file": "shot-02.png",
+      "caption": "Visuals needed: phone screen recording of the scan → processing stepper (Identify → Comps → Analysis) → results card with the deal badge; a diagram of the `/api/scan` pipeline; a results screenshot showing the profit estimate. Blur any real API keys if the network tab is visible.",
+      "type": "placeholder"
+    }
+  ]
+}

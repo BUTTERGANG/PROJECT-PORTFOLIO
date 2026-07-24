@@ -1,0 +1,16 @@
+{
+  "project": "DJ Ops (Complete Paperwork)",
+  "demo_type": "live",
+  "items": [
+    {
+      "file": "shot-01.png",
+      "caption": "Demo: Deploy to a public URL (repo is public). Seed with a sample (non-real) contract so a visitor can scan → see extracted fields → search. Use a dummy document, not a client's real contract.",
+      "type": "placeholder"
+    },
+    {
+      "file": "shot-02.png",
+      "caption": "Visuals needed: the scan/capture screen; the extracted-fields result; the search view. Blur or fake any real client/PII.",
+      "type": "placeholder"
+    }
+  ]
+}

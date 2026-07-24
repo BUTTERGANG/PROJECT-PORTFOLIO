@@ -1,0 +1,16 @@
+{
+  "project": "Personal Finance Dashboard",
+  "demo_type": "case-study-only",
+  "items": [
+    {
+      "file": "shot-01.png",
+      "caption": "Demo: None, and never a public one. This dashboard aggregates my real financial data across five institutions — a live, clickable demo would expose actual account balances and transactions. It is case-study-only by hard rule.",
+      "type": "placeholder"
+    },
+    {
+      "file": "shot-02.png",
+      "caption": "Visuals needed: screenshots with all dollar figures blurred (metric cards, net-worth chart, account list), plus a clean architecture diagram showing the two-path ingestion (Plaid + OFX → sync engine → SQLite → React) and where encryption sits. Never publish an unredacted screen.",
+      "type": "placeholder"
+    }
+  ]
+}

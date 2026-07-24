@@ -1,0 +1,106 @@
+---
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+const {
+  title = 'Alex Butterfield — The Operator Who Builds His Own Tools',
+  description = 'I run live events for a living and build the tools that make them — and the businesses behind them — better. A portfolio organized by the Build Loop.',
+  ogImage = '/media/og-default.png',
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+---
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="color-scheme" content="dark light" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL(ogImage, Astro.site).href} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(ogImage, Astro.site).href} />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <!-- Set theme + mark JS-enabled before paint (avoids theme flash, and lets
+         reveal animations hide their initial state ONLY when JS can un-hide it —
+         no-JS visitors never get `.js`, so they see the final visible state). -->
+    <script is:inline>
+      (function () {
+        document.documentElement.classList.add('js');
+        try {
+          var t = localStorage.getItem('theme');
+          if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <a href="#main" class="skip-link">Skip to content</a>
+    <Nav />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+
+    <!-- Scroll-driven motion: reveals, timeline-bar growth, and stat count-up.
+         Fully skipped for reduced-motion users — the markup already renders the
+         final visible state, so no-JS / reduced-motion sees everything at once. -->
+    <script is:inline>
+      (function () {
+        var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduce || !('IntersectionObserver' in window)) return;
+
+        // Count a number up from 0 to its target, preserving prefix/suffix
+        // (e.g. "~", "$", "%", "+", ",") by only animating the digits.
+        function countUp(el) {
+          var raw = el.getAttribute('data-count');
+          if (raw == null) return;
+          var target = parseFloat(raw.replace(/[^0-9.]/g, ''));
+          if (!isFinite(target)) { el.textContent = raw; return; }
+          var decimals = (raw.split('.')[1] || '').replace(/[^0-9]/g, '').length;
+          var prefix = raw.slice(0, raw.search(/[0-9]/));
+          var suffix = raw.slice(raw.search(/[0-9.,]+/) + String(raw.match(/[0-9.,]+/)[0]).length);
+          var dur = 1100, start = null;
+          function fmt(n) {
+            return n.toLocaleString('en-US', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+          }
+          function tick(ts) {
+            if (start === null) start = ts;
+            var p = Math.min((ts - start) / dur, 1);
+            var eased = 1 - Math.pow(1 - p, 3); // easeOutCubic
+            el.textContent = prefix + fmt(target * eased) + suffix;
+            if (p < 1) requestAnimationFrame(tick);
+            else el.textContent = raw; // land exactly on the authored string
+          }
+          requestAnimationFrame(tick);
+        }
+
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            var el = entry.target;
+            el.classList.add('is-visible', 'is-grown');
+            if (el.hasAttribute('data-count')) countUp(el);
+            el.querySelectorAll && el.querySelectorAll('[data-count]').forEach(countUp);
+            io.unobserve(el);
+          });
+        }, { threshold: 0.2, rootMargin: '0px 0px -8% 0px' });
+
+        document.querySelectorAll('.reveal, .reveal-group, .tl__bar, [data-count]')
+          .forEach(function (el) { io.observe(el); });
+      })();
+    </script>
+  </body>
+</html>

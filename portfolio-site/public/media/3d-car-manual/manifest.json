@@ -1,0 +1,16 @@
+{
+  "project": "3D Car Manual",
+  "demo_type": "live",
+  "items": [
+    {
+      "file": "shot-01.png",
+      "caption": "Demo: Deploy the front end to a public URL (repo is public) so visitors can spin the model and click parts. Flag clearly which features are live vs. planned.",
+      "type": "placeholder"
+    },
+    {
+      "file": "shot-02.png",
+      "caption": "Visuals needed: the interactive 3D model; a part-detail panel; a diagnosis example.",
+      "type": "placeholder"
+    }
+  ]
+}

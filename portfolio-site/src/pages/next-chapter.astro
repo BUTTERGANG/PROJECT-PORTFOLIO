@@ -1,0 +1,80 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Chips from '../components/Chips.astro';
+import MediaGallery from '../components/MediaGallery.astro';
+import { pillarByKey } from '../data/pillars';
+import { allProjects, extractOneLiner } from '../lib/projects';
+
+const pillar = pillarByKey('next')!;
+const projects = await allProjects();
+const jobHunter = projects.find((p) => p.slug === 'job-hunter');
+const oneLiner = jobHunter ? extractOneLiner(jobHunter.body) : null;
+---
+<BaseLayout title={`${pillar.label} — Alex Butterfield`} description={pillar.tagline}>
+  <section class="phead">
+    <div class="wrap-narrow">
+      <p class="eyebrow">Pillar 0{pillar.num}</p>
+      <h1>{pillar.label}</h1>
+      <p class="lede">{pillar.tagline}</p>
+      <p class="muted">
+        The whole portfolio makes one argument: I run high-stakes things in real time, and I build
+        the systems that make them run better. The next chapter is taking that profile into an
+        operations/management role — an AGM-type seat with more leverage than a solo side hustle gives.
+      </p>
+    </div>
+  </section>
+
+  {jobHunter && (
+    <section class="proof reveal">
+      <div class="wrap-narrow">
+        <p class="eyebrow">And here’s the proof I mean it</p>
+        <h2>I built the tool for this job search.</h2>
+        {oneLiner && <p class="lede">{oneLiner}</p>}
+        <Chips data={jobHunter.data} />
+        <div class="proof__gallery">
+          <MediaGallery slug={jobHunter.slug} title="Job Hunter — what it looks like" />
+        </div>
+        <p>
+          The same instinct that turns a wedding into a paperwork PWA and a lift into a competition
+          simulator turned “I need a better job” into a system. That’s the operator you’d be hiring.
+        </p>
+        <a class="btn btn--accent" href={`/projects/${jobHunter.slug}/`}>Read the full case study →</a>
+      </div>
+    </section>
+  )}
+
+  <section class="looking">
+    <div class="wrap-narrow prose">
+      <h2>What I’m looking for</h2>
+      <p>
+        Operations and management roles — AGM and similar — that need someone who can execute live
+        <em>and</em> build the systems behind the execution. Fitness/events backgrounds map directly,
+        but the core skill is domain-agnostic: I learn the operation, then I improve it in code.
+      </p>
+      <p>
+        And this isn’t a career pivot — it’s the through-line. I’ve run high-throughput operations at
+        <strong>Amazon</strong> (teams of 25–50, ~25,000 packages/day), held
+        <strong>R2 V3 compliance</strong> on a returns-and-repair line, and coordinated
+        <strong>3 simultaneous events</strong> with sub-15-minute room flips — then spent years as the
+        person couples and vendors rely on to keep a live event on the rails. The
+        <a href="/live-execution/">operations track record</a> is already there; the AGM seat just
+        gives it more leverage.
+      </p>
+      <h2>Resume</h2>
+      <p class="muted">
+        📄 I tailor a resume to the specific role rather than shipping one generic PDF.
+        <a href="/contact/">Get in touch</a> and I’ll send the version that fits the seat.
+      </p>
+      <p class="next"><a href="/contact/">Get in touch →</a></p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .phead { padding-block: 3rem 1rem; border-bottom: 1px solid var(--border); }
+  .proof { padding-block: 2.5rem; background: var(--bg-raised); border-bottom: 1px solid var(--border); }
+  .proof .chips { margin: 1rem 0; }
+  .proof__gallery { margin: 1.5rem 0; }
+  .looking { padding-block: 2rem 3rem; }
+  .next { margin-top: 2rem; font-weight: 600; }
+</style>

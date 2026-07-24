@@ -1,0 +1,16 @@
+{
+  "project": "Hermes + n8n automation stack",
+  "demo_type": "case-study-only",
+  "items": [
+    {
+      "file": "shot-01.png",
+      "caption": "Demo: None — it's backend infrastructure on a private VPS. Case-study-only.",
+      "type": "placeholder"
+    },
+    {
+      "file": "shot-02.png",
+      "caption": "Visuals needed: a screenshot of the n8n workflow canvas (nodes visible); an example Discord summary post; a simple diagram (schedule → MCP search → summarize → deliver). Redact any keys/endpoints.",
+      "type": "placeholder"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+---
+// Renders the Build Loop origin sentence prominently (bold preserved).
+import { mdBoldToHtml } from '../lib/projects';
+interface Props { text: string; }
+const { text } = Astro.props;
+const html = mdBoldToHtml(text);
+---
+<div class="origin">
+  <span class="origin__label">The Build Loop</span>
+  <p class="origin__text" set:html={html}></p>
+</div>
+
+<style>
+  .origin__label {
+    display: block; font-family: var(--font-mono); font-size: .68rem; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: .4rem;
+  }
+  .origin__text { margin: 0; }
+</style>

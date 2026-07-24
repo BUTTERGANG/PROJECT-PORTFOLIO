@@ -1,0 +1,16 @@
+{
+  "project": "Bible Study App",
+  "demo_type": "live",
+  "items": [
+    {
+      "file": "shot-01.png",
+      "caption": "Demo: Deploy to a public URL (repo is public); note prototype status and which features are live.",
+      "type": "placeholder"
+    },
+    {
+      "file": "shot-02.png",
+      "caption": "Visuals needed: the study interface (passage + commentary + word study); an AI-assistant answer; the ingest pipeline diagram.",
+      "type": "placeholder"
+    }
+  ]
+}

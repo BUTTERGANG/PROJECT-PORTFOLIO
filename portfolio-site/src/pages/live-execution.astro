@@ -1,0 +1,103 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { pillarByKey } from '../data/pillars';
+const pillar = pillarByKey('live')!;
+---
+<BaseLayout title={`${pillar.label} — Alex Butterfield`} description={pillar.tagline}>
+  <section class="phead">
+    <div class="wrap-narrow">
+      <p class="eyebrow">Pillar 0{pillar.num}</p>
+      <h1>{pillar.label}</h1>
+      <p class="lede">{pillar.tagline}</p>
+      <p class="muted">
+        Before I build anything, I run the live event. This is where the operator instinct comes
+        from — reading a room, adjusting on the fly, no do-overs. Every tool in
+        <a href="/builder/">Builder</a> traces back to a night like these.
+      </p>
+    </div>
+  </section>
+
+  <div class="wrap-narrow prose">
+    <h2>DJ / MC &amp; day-of coordinator — Complete Weddings + Events</h2>
+    <p>
+      Runs <strong>25–40 live weddings and events a year</strong> — <strong>120+ completed</strong>
+      across central Indiana — reading the floor and adjusting song flow in real time rather than
+      running a fixed playlist. Often doubles as day-of coordinator: primary point of contact on the
+      timeline, orchestrating 2–5 vendors per event so the night stays seamless. Crowds run 100–250
+      guests, the largest <strong>1,000</strong>, at venues including The Omni, Ritz Charles, Regions
+      Tower, and Laurel Hall.
+    </p>
+    <ul class="stat-band reveal-group">
+      <li class="stat" style="--i:0"><span class="stat__num" data-count="120+">120+</span><span class="stat__label">events completed</span></li>
+      <li class="stat" style="--i:1"><span class="stat__num" data-count="90%+">90%+</span><span class="stat__label">Net Promoter Score</span></li>
+      <li class="stat" style="--i:2"><span class="stat__num" data-count="1,000">1,000</span><span class="stat__label">largest crowd</span></li>
+    </ul>
+    <ul class="awards">
+      <li>🏆 Rookie of the Year 2023</li>
+      <li>🥇 #1 DJ, Q3 2025</li>
+    </ul>
+    <p>
+      Selected events: Campion (Barn at Bay Horse Inn), Gill (The Wilds), Milholland (Three Fat
+      Labs), Long-Merits (Laurel Hall), Kane (Ghibli / Tyler Childers theme), Aping, Lowers
+      (alt/rock, no rap, no country), Nortel (The Sycamore at Mallow Run).
+    </p>
+
+    <h2>Fight-sport content — BKFC</h2>
+    <p>
+      Produces fighter interview content and shoot plans under event-day time pressure for BKFC
+      athletes Cameron “Jumpman” VanCamp and Damien Black (Indy Boxing and Grappling). Nashville
+      media-credential research in progress.
+    </p>
+
+    <h2>Olympic weightlifting</h2>
+    <p>
+      Competes in and films USAW-sanctioned weightlifting meets, working IWF-rule live scoring and
+      broadcast logistics. That deep rules familiarity is exactly what made
+      <a href="/projects/mind-games/">Mind Games</a> possible — the live experience fed the software.
+    </p>
+
+    <h2>Operations at scale — before the events</h2>
+    <p>
+      The live-event instinct didn’t come from nowhere. It was built on years of high-throughput
+      operations where the same rules apply — volume, deadlines, and a team that has to stay in sync.
+    </p>
+    <ul>
+      <li>
+        <strong>Amazon (DIN1 + Return Center)</strong> — coordinated same-day delivery and returns
+        across teams of <strong>25–50</strong>, moving up to <strong>~25,000 packages a day</strong>,
+        and trained new associates on the logistics and scanner systems.
+      </li>
+      <li>
+        <strong>Quickship Brands</strong> — ran a returns-and-repair line under
+        <strong>R2 V3 e-waste compliance</strong>: disposition decisions, electronics diagnostics
+        and repair, secure data erasure, and fraud verification on eBay return claims.
+      </li>
+      <li>
+        <strong>The Mill Top</strong> — coordinated up to <strong>3 simultaneous events</strong>
+        (100–250 guests each) and executed full room flips between them in <strong>under 15
+        minutes</strong>.
+      </li>
+    </ul>
+    <p class="muted">
+      This is the operations spine behind the <a href="/next-chapter/">AGM chapter</a> — the same
+      execute-under-pressure profile, applied to logistics and teams rather than a dance floor.
+    </p>
+
+    <p class="next"><a href="/builder/">Next: how the events became software →</a></p>
+  </div>
+</BaseLayout>
+
+<style>
+  .phead { padding-block: 3rem 1rem; border-bottom: 1px solid var(--border); }
+  .prose { padding-block: 2rem 3rem; }
+  .awards {
+    list-style: none; padding: 0; margin: 0 0 1.4rem;
+    display: flex; flex-wrap: wrap; gap: .6rem;
+  }
+  .awards li {
+    background: var(--bg-raised); border: 1px solid var(--border);
+    border-radius: 999px; padding: .35em .9em; font-size: .9rem; color: var(--accent-text);
+    font-weight: 600;
+  }
+  .next { margin-top: 2rem; font-weight: 600; }
+</style>

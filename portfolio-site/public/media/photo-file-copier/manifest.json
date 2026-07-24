@@ -1,0 +1,16 @@
+{
+  "project": "Photo File Copier",
+  "demo_type": "live",
+  "items": [
+    {
+      "file": "shot-01.png",
+      "caption": "Demo: It's a desktop app, so \"demo\" = a short screen-recording or screenshots plus the public repo/download, not a hosted URL.",
+      "type": "placeholder"
+    },
+    {
+      "file": "shot-02.png",
+      "caption": "Visuals needed: the app window; a before/after of a paste → copied-selects run.",
+      "type": "placeholder"
+    }
+  ]
+}

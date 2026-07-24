@@ -1,0 +1,16 @@
+{
+  "project": "Grocery Price Scrapers",
+  "demo_type": "case-study-only",
+  "items": [
+    {
+      "file": "shot-01.png",
+      "caption": "Demo: The scrapers are backend/CLI, but the React comparison dashboard is deployable — consider a live demo of that with cached data. Otherwise case-study screenshots + the retailer/method table (it's genuinely impressive on its own).",
+      "type": "placeholder"
+    },
+    {
+      "file": "shot-02.png",
+      "caption": "Visuals needed: the retailer×method table from the README; a comparison-dashboard screenshot; a price-trend chart.",
+      "type": "placeholder"
+    }
+  ]
+}

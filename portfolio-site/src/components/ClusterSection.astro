@@ -1,0 +1,26 @@
+---
+// A cluster heading + blurb + grid of its project cards.
+import ProjectCard from './ProjectCard.astro';
+import type { Cluster } from '../data/clusters';
+import type { Project } from '../lib/projects';
+
+interface Props { cluster: Cluster; projects: Project[]; }
+const { cluster, projects } = Astro.props;
+if (!projects.length) return null;
+---
+<section class="cluster" id={cluster.key}>
+  <div class="cluster__head">
+    <h2 class="cluster__title">{cluster.label}</h2>
+    <p class="cluster__blurb muted">{cluster.blurb}</p>
+  </div>
+  <div class="grid grid--cards">
+    {projects.map((p) => <ProjectCard project={p} />)}
+  </div>
+</section>
+
+<style>
+  .cluster { padding-block: 2rem; scroll-margin-top: 70px; }
+  .cluster__head { margin-bottom: 1.2rem; }
+  .cluster__title { margin: 0 0 .2em; }
+  .cluster__blurb { margin: 0; font-size: 1.02rem; max-width: 62ch; }
+</style>

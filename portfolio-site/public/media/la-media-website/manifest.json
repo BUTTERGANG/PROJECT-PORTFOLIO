@@ -1,0 +1,16 @@
+{
+  "project": "LA Media Website",
+  "demo_type": "live",
+  "items": [
+    {
+      "file": "shot-01.png",
+      "caption": "Demo: Deploy the React `client/` build to a public URL (repo stays private). Land on Home, click through Weddings/Portraits, and show the cart; a seeded demo client account can show the portal + a gallery.",
+      "type": "placeholder"
+    },
+    {
+      "file": "shot-02.png",
+      "caption": "Visuals needed: the home hero and a category gallery (react-photo-album + lightbox); the cart/checkout; the client portal dashboard and gallery-renewal page (blur real client names/emails and any Dropbox links); a before/after note on the Supabase → NeonDB migration. Mark client PII as blur-sensitive.",
+      "type": "placeholder"
+    }
+  ]
+}

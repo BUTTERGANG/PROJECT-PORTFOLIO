@@ -1,0 +1,16 @@
+{
+  "project": "Job Hunter",
+  "demo_type": "live",
+  "items": [
+    {
+      "file": "shot-01.png",
+      "caption": "Demo: Deploy to a public URL (repo is already public). Seed with a live scrape so a visitor sees the ranked list, the Market Analysis charts, and a sample Discord alert.",
+      "type": "placeholder"
+    },
+    {
+      "file": "shot-02.png",
+      "caption": "Visuals needed: the ranked job list with scores; the Market Analysis dashboard (sector/salary charts); a Discord alert screenshot.",
+      "type": "placeholder"
+    }
+  ]
+}

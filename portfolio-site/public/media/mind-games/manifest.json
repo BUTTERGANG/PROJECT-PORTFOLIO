@@ -1,0 +1,49 @@
+{
+  "project": "Mind Games",
+  "demo_type": "live",
+  "captured_at": "2026-07-13T19:53:26.567Z",
+  "items": [
+    {
+      "file": "shot-01.webp",
+      "caption": "Landing — \"Analyze Every Lifter. Simulate Every Meet.\" on ~7,000 real USAW records.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "file": "shot-02-full.webp",
+      "caption": "Full landing page — the data platform pitch coaches use to win Nationals.",
+      "type": "image",
+      "width": 1600,
+      "height": 4172
+    },
+    {
+      "file": "shot-03.webp",
+      "caption": "Data Browser — searching 68,637 lifters across 7,358 competitions of public USAW results.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "file": "shot-04.webp",
+      "caption": "Competition Mode — simulate a live meet: attempt selection, the clock, who leads.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "file": "shot-05.webp",
+      "caption": "Warmup Generator — timed warm-up plan derived from the opener.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "file": "demo.webm",
+      "caption": "Recorded walk-through of the running app.",
+      "type": "video",
+      "width": 1440,
+      "height": 900
+    }
+  ]
+}

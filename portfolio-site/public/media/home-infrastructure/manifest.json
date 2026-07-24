@@ -1,0 +1,16 @@
+{
+  "project": "Home Infrastructure & CCS Proxy",
+  "demo_type": "case-study-only",
+  "items": [
+    {
+      "file": "shot-01.png",
+      "caption": "Demo: None — it's private home infrastructure. Case-study-only.",
+      "type": "placeholder"
+    },
+    {
+      "file": "shot-02.png",
+      "caption": "Visuals needed: a simple network diagram (clients → Tailscale → QNAP + IDrive); optionally a terminal snippet of one of the fixes (redact hostnames/keys). Keep it light — this is a supporting credential, not a headline.",
+      "type": "placeholder"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "project": "Wedding Timeline Planner",
+  "demo_type": "live",
+  "items": [
+    {
+      "file": "shot-01.png",
+      "caption": "Demo: Deploy WEDDINGTIMELINE to a public URL (repo stays private); TIMELINE v1 is already public and linkable as the predecessor.",
+      "type": "placeholder"
+    },
+    {
+      "file": "shot-02.png",
+      "caption": "Visuals needed: the timeline-builder input screen; a generated run-of-show output.",
+      "type": "placeholder"
+    }
+  ]
+}

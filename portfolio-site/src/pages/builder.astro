@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ClusterSection from '../components/ClusterSection.astro';
+import { clusterList } from '../data/clusters';
+import { projectsByCluster } from '../lib/projects';
+import { pillarByKey } from '../data/pillars';
+
+const pillar = pillarByKey('builder')!;
+// Builder shows all clusters whose pillar is 'builder', in cluster order.
+const clusters = clusterList().filter((c) => c.pillar === 'builder');
+const sections = await Promise.all(
+  clusters.map(async (c) => ({ cluster: c, projects: await projectsByCluster(c.key) }))
+);
+const total = sections.reduce((n, s) => n + s.projects.length, 0);
+---
+<BaseLayout title={`${pillar.label} — Alex Butterfield`} description={pillar.tagline}>
+  <section class="phead">
+    <div class="wrap">
+      <p class="eyebrow">Pillar 0{pillar.num}</p>
+      <h1>{pillar.label}</h1>
+      <p class="lede phead__tag">{pillar.tagline}</p>
+      <p class="phead__intro muted">
+        Everything here came out of the Build Loop: I was already doing the thing — running events,
+        cutting photos, lifting, reselling, managing my own life — hit the same friction twice, and
+        built the fix. So this isn’t organized by programming language. It’s organized by the life
+        that spawned each project — {total} of them here, grouped by origin. (The job search itself
+        spawned one more; it lives in <a href="/next-chapter/">Next Chapter</a>.)
+      </p>
+    </div>
+  </section>
+
+  <div class="wrap">
+    {sections.map((s) => <ClusterSection cluster={s.cluster} projects={s.projects} />)}
+  </div>
+</BaseLayout>
+
+<style>
+  .phead { padding-block: 3rem 1rem; border-bottom: 1px solid var(--border); }
+  .phead__tag { margin-bottom: .8rem; }
+  .phead__intro { max-width: 70ch; }
+</style>

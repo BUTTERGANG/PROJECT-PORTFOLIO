@@ -1,0 +1,35 @@
+{
+  "project": "portfolio-site",
+  "demo_type": "live",
+  "captured_at": "2026-07-13T19:19:18.175Z",
+  "items": [
+    {
+      "file": "shot-01.webp",
+      "caption": "Home — the thesis and the acceleration-arc timeline.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "file": "shot-02-full.webp",
+      "caption": "The Builder — every project grouped by origin cluster.",
+      "type": "image",
+      "width": 1600,
+      "height": 5414
+    },
+    {
+      "file": "shot-03.webp",
+      "caption": "A project case study — the anchor, Mind Games.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "file": "demo.webm",
+      "caption": "Recorded walk-through of the running app.",
+      "type": "video",
+      "width": 1280,
+      "height": 720
+    }
+  ]
+}

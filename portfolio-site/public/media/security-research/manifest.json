@@ -1,0 +1,16 @@
+{
+  "project": "Security Research & Pentest Tooling",
+  "demo_type": "case-study-only",
+  "items": [
+    {
+      "file": "shot-01.png",
+      "caption": "Demo: None — this is security research and private tooling. Case-study-only.",
+      "type": "placeholder"
+    },
+    {
+      "file": "shot-02.png",
+      "caption": "Visuals needed: a redacted HackerOne submission summary (respect any non-disclosure); a screenshot of the Obsidian framework structure; a short diagram of the agent → MCP → Kali/Metasploit loop. Confirm which findings are disclosed before showing specifics.",
+      "type": "placeholder"
+    }
+  ]
+}

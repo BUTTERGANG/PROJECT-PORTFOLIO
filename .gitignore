@@ -1,0 +1,24 @@
+# ── Internal / not for public consumption ──────────────────────────────────
+# Copywriting strategy doc — names private repos, describes persuasion approach.
+NARRATIVE.md
+# Superseded old Jekyll site (kept locally as an archive).
+_legacy-jekyll/
+# Media "drop-zone" READMEs — internal shot-list TODOs, never read by the build.
+portfolio-site/public/media/*/README.md
+
+# ── Dependencies ────────────────────────────────────────────────────────────
+node_modules/
+portfolio-site/node_modules/
+portfolio-site/scripts/media-capture/node_modules/
+portfolio-site/scripts/media-capture/package-lock.json
+
+# ── Build output ────────────────────────────────────────────────────────────
+portfolio-site/dist/
+portfolio-site/.astro/
+
+# ── Env & OS cruft ──────────────────────────────────────────────────────────
+.env
+.env.*
+!.env.example
+.DS_Store
+npm-debug.log*
