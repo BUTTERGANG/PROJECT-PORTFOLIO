@@ -4,13 +4,10 @@
   "items": [
     {
       "file": "shot-01.png",
-      "caption": "Demo: None — this is security research and private tooling. Case-study-only.",
-      "type": "placeholder"
-    },
-    {
-      "file": "shot-02.png",
-      "caption": "Visuals needed: a redacted HackerOne submission summary (respect any non-disclosure); a screenshot of the Obsidian framework structure; a short diagram of the agent → MCP → Kali/Metasploit loop. Confirm which findings are disclosed before showing specifics.",
-      "type": "placeholder"
+      "caption": "The loop: AI agent ⇄ custom MCP servers (Kali Linux, Metasploit) → tool execution → findings captured in an Obsidian methodology vault → HackerOne report.",
+      "type": "image",
+      "width": 1200,
+      "height": 480
     }
   ]
 }

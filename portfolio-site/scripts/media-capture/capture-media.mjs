@@ -247,7 +247,7 @@ async function main() {
       // recording context at `url`, lets the SPA settle to the desktop layout
       // (avoids the mobile-first reflow flash), runs an optional interaction fn,
       // then closes → one clean, short walk-through. Called once per shot list.
-      record: async (url = args.url, fn) => {
+      record: async (url = args.url, fn, opts = {}) => {
         if (!args.video) return;
         const vctx = await browser.newContext({
           viewport: { width, height },
@@ -255,6 +255,16 @@ async function main() {
         });
         const vpage = await vctx.newPage();
         try {
+          // For SPAs seeded via localStorage (e.g. no backend to fake data
+          // through): register the seed BEFORE this page's first navigation,
+          // so the opening frames never show the real empty/first-run state.
+          if (opts.initScript) await vpage.addInitScript(opts.initScript);
+          for (const script of opts.initScripts ?? []) await vpage.addInitScript(script);
+          // opts.setup: for apps that mock their backend via page.route() on
+          // the stills context — that context's mocks don't carry over to
+          // this fresh recording context, so re-register them here, before
+          // the first navigation fires any requests.
+          if (opts.setup) await opts.setup(vpage);
           await healthyGoto(vpage, url);
           // Settle at the top so the opening frames are the finished desktop
           // layout, not the SPA reflowing in.

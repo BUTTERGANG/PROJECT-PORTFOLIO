@@ -1,16 +1,35 @@
 {
   "project": "LightLog",
   "demo_type": "live",
+  "captured_at": "2026-08-12T06:41:51.896Z",
   "items": [
     {
-      "file": "shot-01.png",
-      "caption": "Demo: Deploy to a public URL (repo stays private). Open on a location, show today's timeline and the AI wizard recommendation for the current conditions.",
-      "type": "placeholder"
+      "file": "shot-01.webp",
+      "caption": "Dashboard — live sun elevation/azimuth, today’s light schedule (sunrise through blue hour), current weather, and moon phase.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
     },
     {
-      "file": "shot-02.png",
-      "caption": "Visuals needed: the main dashboard with sun/moon + weather; the photography timeline (golden/blue hour, twilight bands); the AI Photography Wizard recommendation card; the dynamic theme at a couple of sun positions. TODO: capture a mobile screenshot to show the mobile-first bottom-nav layout.",
-      "type": "placeholder"
+      "file": "shot-02.webp",
+      "caption": "Camera Settings Wizard — ISO, aperture, and shutter recommendations plus pro tips for the current lighting conditions.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "file": "shot-03.webp",
+      "caption": "Sessions — tracks lighting sessions over time.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "file": "demo.webm",
+      "caption": "Recorded walk-through of the running app.",
+      "type": "video",
+      "width": 1440,
+      "height": 900
     }
   ]
 }

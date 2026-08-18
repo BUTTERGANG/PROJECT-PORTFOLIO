@@ -4,13 +4,31 @@
   "items": [
     {
       "file": "shot-01.png",
-      "caption": "Demo: None clickable — it's a data-collection service. This is a case-study on engineering rigor.",
-      "type": "placeholder"
+      "caption": "Root-cause analysis from a real failed run: navigation, cookies, and price extraction all worked — the actual miss was a page-type mismatch (marketplace listing vs. individual vendor page), not bot detection.",
+      "type": "image",
+      "width": 800,
+      "height": 700
     },
     {
       "file": "shot-02.png",
-      "caption": "Visuals needed: an excerpt of the engineering analysis (especially the \"this is NOT an access problem — it's a page-type mismatch\" conclusion); the README success-rate table; the extracted vendor Pydantic model; the docker-compose health-check block. This project sells the *documentation and process* as much as the code.",
-      "type": "placeholder"
+      "caption": "Published success rates by configuration, straight from the README — an honest operational range instead of a single \"it works\" claim.",
+      "type": "image",
+      "width": 760,
+      "height": 420
+    },
+    {
+      "file": "shot-03.png",
+      "caption": "The typed record every scrape produces — business name, starting price, structured packages, and a success flag with an error message when a run comes back incomplete.",
+      "type": "image",
+      "width": 900,
+      "height": 620
+    },
+    {
+      "file": "shot-04.png",
+      "caption": "Container health check — reports unhealthy if the package fails to import, catching broken dependency state before a scheduled run starts.",
+      "type": "image",
+      "width": 720,
+      "height": 320
     }
   ]
 }

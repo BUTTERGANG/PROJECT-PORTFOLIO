@@ -1,16 +1,35 @@
 {
   "project": "K9-Overwatch",
   "demo_type": "live",
+  "captured_at": "2026-08-12T05:38:43.452Z",
   "items": [
     {
-      "file": "shot-01.png",
-      "caption": "Demo: Deploy to a public URL (repo is public). The interactive map with real aggregated Indy-area listings is the hero view.",
-      "type": "placeholder"
+      "file": "shot-01.webp",
+      "caption": "Map view — lost and found pet reports plotted from multiple scraped sources.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
     },
     {
-      "file": "shot-02.png",
-      "caption": "Visuals needed: the map with filters applied; a lost→found match example; the source-analysis table from `docs/`.",
-      "type": "placeholder"
+      "file": "shot-02.webp",
+      "caption": "Pet listings — normalized records aggregated from shelters and lost-pet boards.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "file": "shot-03.webp",
+      "caption": "Match candidates — the matcher pairing lost reports against found reports and flagging cross-source duplicates.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "file": "demo.webm",
+      "caption": "Recorded walk-through of the running app.",
+      "type": "video",
+      "width": 1440,
+      "height": 900
     }
   ]
 }

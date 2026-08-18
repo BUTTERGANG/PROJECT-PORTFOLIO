@@ -1,16 +1,77 @@
 {
   "project": "VBT Tracker",
   "demo_type": "live",
+  "captured_at": "2026-08-12T18:21:33.618Z",
   "items": [
     {
-      "file": "shot-01.png",
-      "caption": "Demo: Deploy the Replit build to a public URL. Best live demo is camera VBT on a phone — point it at a loaded bar and show live per-rep velocity, then the post-set autoregulation call.",
-      "type": "placeholder"
+      "file": "shot-01.webp",
+      "caption": "Home dashboard with quick stats pulled from real session history.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
     },
     {
-      "file": "shot-02.png",
-      "caption": "Visuals needed: the CameraLiveLiftScreen mid-rep with bar-path overlay; the load-velocity profile building across a set; the coach-mode multi-athlete BLE dashboard; the analytics velocity-trend view. No sensitive data to blur.",
-      "type": "placeholder"
+      "file": "shot-02.webp",
+      "caption": "Session history — exercise, sets, and average velocity across recent training sessions.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "file": "shot-03.webp",
+      "caption": "Analytics dashboard — velocity trend over time, zone distribution, and fatigue alerts.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "file": "shot-04.webp",
+      "caption": "Athlete profiles — bodyweight, primary lifts, and baseline velocity per athlete.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "file": "shot-05.webp",
+      "caption": "Video library — saved training sets by exercise, filterable and linked to their performance data.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "file": "shot-06.webp",
+      "caption": "Active workout — sets logged this session with per-set average and best velocity.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "file": "shot-07.webp",
+      "caption": "Coach mode — multiple athletes streaming live velocity and zone data over BLE.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "file": "shot-08.webp",
+      "caption": "Post-set summary — autoregulation call with confidence score and load recommendation for the next set.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "file": "shot-09.webp",
+      "caption": "Set review with bar-path overlay — per-rep velocity, zone tags, and estimated 1RM.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "file": "demo.webm",
+      "caption": "Recorded walk-through of the running app.",
+      "type": "video",
+      "width": 1440,
+      "height": 900
     }
   ]
 }

@@ -4,13 +4,17 @@
   "items": [
     {
       "file": "shot-01.png",
-      "caption": "Demo: None — a trading bot has no clickable UI, and the value is the logic, not a screen. This is a case-study-only write-up.",
-      "type": "placeholder"
+      "caption": "Decision pipeline: pre-filter gates → Haiku batch screen → Sonnet confirm → Bayesian blend → risk gate → trade or skip. Paper-trade by default.",
+      "type": "image",
+      "width": 1280,
+      "height": 480
     },
     {
       "file": "shot-02.png",
-      "caption": "Visuals needed: the decision-pipeline diagram (rule gates → Haiku → Sonnet → Bayesian → risk → trade); a redacted paper-trade performance report (`analyze_performance.py` output); a code snippet of the pre-filter gates or the Kelly/risk logic. Reads as \"engineer,\" not \"gambler.\"",
-      "type": "placeholder"
+      "caption": "Real risk-gate code from src/risk.py — every trade checked against duplicate-position, single-trade, exposure, balance-floor, and daily-loss limits before it's allowed.",
+      "type": "image",
+      "width": 980,
+      "height": 700
     }
   ]
 }

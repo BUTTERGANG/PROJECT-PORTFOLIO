@@ -4,13 +4,17 @@
   "items": [
     {
       "file": "shot-01.png",
-      "caption": "Demo: None — it's a Telegram bot / CLI. Case-study-only.",
-      "type": "placeholder"
+      "caption": "Real output of the scraper CLI — live pricing pulled from two actual Public Storage locations via the internal API + HTML, aggregated into a single CSV.",
+      "type": "image",
+      "width": 1080,
+      "height": 620
     },
     {
       "file": "shot-02.png",
-      "caption": "Visuals needed: a Telegram screenshot of a deal verdict; a sample of the aggregated CSV; a one-line diagram (scrape → CSV → Claude → Telegram).",
-      "type": "placeholder"
+      "caption": "Pipeline: scrape (API + HTML) → aggregate to CSV → Claude analysis → Telegram delivery, plus a daily price-drop watcher via APScheduler + SQLite.",
+      "type": "image",
+      "width": 1200,
+      "height": 420
     }
   ]
 }

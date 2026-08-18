@@ -1,16 +1,35 @@
 {
   "project": "LA Media Website",
   "demo_type": "live",
+  "captured_at": "2026-08-13T04:41:41.982Z",
   "items": [
     {
-      "file": "shot-01.png",
-      "caption": "Demo: Deploy the React `client/` build to a public URL (repo stays private). Land on Home, click through Weddings/Portraits, and show the cart; a seeded demo client account can show the portal + a gallery.",
-      "type": "placeholder"
+      "file": "shot-01.webp",
+      "caption": "Home hero — the studio’s front door: full-bleed photography, not a \"DM us\" placeholder.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
     },
     {
-      "file": "shot-02.png",
-      "caption": "Visuals needed: the home hero and a category gallery (react-photo-album + lightbox); the cart/checkout; the client portal dashboard and gallery-renewal page (blur real client names/emails and any Dropbox links); a before/after note on the Supabase → NeonDB migration. Mark client PII as blur-sensitive.",
-      "type": "placeholder"
+      "file": "shot-02.webp",
+      "caption": "Weddings category page — the photo-first layout (react-photo-album) presenting the offering by category.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "file": "shot-03.webp",
+      "caption": "Client portal dashboard — a seeded demo client’s gallery, access countdown, and renew/view actions (Better Auth cookie session).",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "file": "shot-04.webp",
+      "caption": "Gallery renewal — the real Stripe Checkout entry point for extending a client’s 1-year gallery access.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
     }
   ]
 }

@@ -1,16 +1,35 @@
 {
   "project": "Job Hunter",
   "demo_type": "live",
+  "captured_at": "2026-08-12T03:15:39.805Z",
   "items": [
     {
-      "file": "shot-01.png",
-      "caption": "Demo: Deploy to a public URL (repo is already public). Seed with a live scrape so a visitor sees the ranked list, the Market Analysis charts, and a sample Discord alert.",
-      "type": "placeholder"
+      "file": "shot-01.webp",
+      "caption": "Ranked job list — every scraped listing scored across six weighted dimensions.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
     },
     {
-      "file": "shot-02.png",
-      "caption": "Visuals needed: the ranked job list with scores; the Market Analysis dashboard (sector/salary charts); a Discord alert screenshot.",
-      "type": "placeholder"
+      "file": "shot-02-full.webp",
+      "caption": "Full ranked list — pay, flexibility, location, requirements, hours, workload.",
+      "type": "image",
+      "width": 1600,
+      "height": 2417
+    },
+    {
+      "file": "shot-03.webp",
+      "caption": "Market Analysis — sector breakdown, salary distribution, remote vs. onsite, posting timeline.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "file": "demo.webm",
+      "caption": "Recorded walk-through of the running app.",
+      "type": "video",
+      "width": 1440,
+      "height": 900
     }
   ]
 }

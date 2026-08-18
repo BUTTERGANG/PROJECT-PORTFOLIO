@@ -4,13 +4,23 @@
   "items": [
     {
       "file": "shot-01.png",
-      "caption": "Demo: No clickable UI — it's a scraper/CLI + background monitor. Show terminal output and exports.",
-      "type": "placeholder"
+      "caption": "python run.py --once: scrapes 50 live lots, compares against cached/manual retail prices, prints a savings report.",
+      "type": "screenshot"
     },
     {
       "file": "shot-02.png",
-      "caption": "Visuals needed: the `--once` comparison report in the terminal (lot, current bid, retail, $ saved, % off); a `deals.csv` export opened in a spreadsheet sorted by % savings; optionally a snippet of the price-history table showing a lot's bid climbing across cycles.",
-      "type": "placeholder"
+      "caption": "deals.csv export opened as a spreadsheet, sorted by savings %.",
+      "type": "screenshot"
+    },
+    {
+      "file": "shot-03.png",
+      "caption": "price_history table: a lot's bid climbing across two real monitor cycles ($11 → $17).",
+      "type": "screenshot"
+    },
+    {
+      "file": "deals.csv",
+      "caption": "Raw CSV export of auction lots vs. retail comparisons.",
+      "type": "data"
     }
   ]
 }

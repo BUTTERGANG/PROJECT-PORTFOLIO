@@ -1,16 +1,42 @@
 {
   "project": "Grocery Price Scrapers",
   "demo_type": "case-study-only",
+  "captured_at": "2026-08-12T05:43:08.365Z",
   "items": [
     {
-      "file": "shot-01.png",
-      "caption": "Demo: The scrapers are backend/CLI, but the React comparison dashboard is deployable — consider a live demo of that with cached data. Otherwise case-study screenshots + the retailer/method table (it's genuinely impressive on its own).",
-      "type": "placeholder"
+      "file": "shot-01.webp",
+      "caption": "Dashboard — price trends and stats aggregated across tracked retailers.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
     },
     {
-      "file": "shot-02.png",
-      "caption": "Visuals needed: the retailer×method table from the README; a comparison-dashboard screenshot; a price-trend chart.",
-      "type": "placeholder"
+      "file": "shot-02.webp",
+      "caption": "Deals — biggest price drops surfaced across every tracked store.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "file": "shot-03.webp",
+      "caption": "Search — live product search across all scraped retailer catalogs.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "file": "shot-04.webp",
+      "caption": "Stores — retailer coverage and catalog size per source.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "file": "demo.webm",
+      "caption": "Recorded walk-through of the running app.",
+      "type": "video",
+      "width": 1440,
+      "height": 900
     }
   ]
 }

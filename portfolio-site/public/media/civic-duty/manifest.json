@@ -1,16 +1,35 @@
 {
   "project": "CivicDuty",
   "demo_type": "live",
+  "captured_at": "2026-08-12T06:25:46.397Z",
   "items": [
     {
-      "file": "shot-01.png",
-      "caption": "Demo: Deploy to a public URL (repo stays private) with seeded/public Fishers data behind a demo login.",
-      "type": "placeholder"
+      "file": "shot-01.webp",
+      "caption": "Dashboard — unified counts and latest activity across every scraped civic data source.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
     },
     {
-      "file": "shot-02.png",
-      "caption": "Visuals needed: the unified dashboard/search; a council-votes or zoning detail view; a small diagram of the nightly ingestion schedule.",
-      "type": "placeholder"
+      "file": "shot-02.webp",
+      "caption": "Council — meeting votes with tallies, tags, and summaries, pulled from CivicClerk and extracted PDFs.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "file": "shot-03.webp",
+      "caption": "Zoning — rezoning notices and active development projects from Fishers ArcGIS.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "file": "demo.webm",
+      "caption": "Recorded walk-through of the running app.",
+      "type": "video",
+      "width": 1440,
+      "height": 900
     }
   ]
 }

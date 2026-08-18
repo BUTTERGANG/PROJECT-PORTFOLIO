@@ -1,16 +1,42 @@
 {
   "project": "DJ Ops (Complete Paperwork)",
   "demo_type": "live",
+  "captured_at": "2026-08-12T06:35:35.221Z",
   "items": [
     {
-      "file": "shot-01.png",
-      "caption": "Demo: Deploy to a public URL (repo is public). Seed with a sample (non-real) contract so a visitor can scan → see extracted fields → search. Use a dummy document, not a client's real contract.",
-      "type": "placeholder"
+      "file": "shot-01.webp",
+      "caption": "Dashboard — completed/upcoming counts, YTD and per-event pay, and next gigs at a glance.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
     },
     {
-      "file": "shot-02.png",
-      "caption": "Visuals needed: the scan/capture screen; the extracted-fields result; the search view. Blur or fake any real client/PII.",
-      "type": "placeholder"
+      "file": "shot-02.webp",
+      "caption": "Events — every gig, searchable by client or venue, filterable by status.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "file": "shot-03.webp",
+      "caption": "Event detail — venue, timeline, wedding party, and pay breakdown, all pulled from the scanned paperwork.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "file": "shot-04.webp",
+      "caption": "Scan Paperwork — photograph a contract or run-of-show sheet to extract with Claude Vision.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "file": "demo.webm",
+      "caption": "Recorded walk-through of the running app.",
+      "type": "video",
+      "width": 1440,
+      "height": 900
     }
   ]
 }

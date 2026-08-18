@@ -1,16 +1,42 @@
 {
   "project": "365 Day Productivity Tracker",
   "demo_type": "live",
+  "captured_at": "2026-08-12T06:52:50.718Z",
   "items": [
     {
-      "file": "shot-01.png",
-      "caption": "Demo: Deploy the static build to Vercel/Pages (repo is public) — instant live URL.",
-      "type": "placeholder"
+      "file": "shot-01.webp",
+      "caption": "Contribution grid — a year of daily task activity, with an active current streak and category filters.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
     },
     {
-      "file": "shot-02.png",
-      "caption": "Visuals needed: the filled-in contribution grid; a streak view.",
-      "type": "placeholder"
+      "file": "shot-02.webp",
+      "caption": "Analytics — completion rate, weekly activity heatmap, tasks by category, and productivity by day of week.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "file": "shot-03.webp",
+      "caption": "Goals & Achievements — streak and volume milestones unlocked from the tracked history.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "file": "shot-04.webp",
+      "caption": "Day detail panel — tasks for a selected day, with category tagging and notes.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "file": "demo.webm",
+      "caption": "Recorded walk-through of the running app.",
+      "type": "video",
+      "width": 1440,
+      "height": 900
     }
   ]
 }

@@ -1,16 +1,35 @@
 {
   "project": "Bible Study App",
   "demo_type": "live",
+  "captured_at": "2026-08-12T06:10:20.083Z",
   "items": [
     {
-      "file": "shot-01.png",
-      "caption": "Demo: Deploy to a public URL (repo is public); note prototype status and which features are live.",
-      "type": "placeholder"
+      "file": "shot-01.webp",
+      "caption": "Reader — KJV text with chapter navigation and the study tool panel alongside.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
     },
     {
-      "file": "shot-02.png",
-      "caption": "Visuals needed: the study interface (passage + commentary + word study); an AI-assistant answer; the ingest pipeline diagram.",
-      "type": "placeholder"
+      "file": "shot-02.webp",
+      "caption": "Timeline — biblical events plotted chronologically.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "file": "shot-03.webp",
+      "caption": "NT-OT connections — links between this passage and related Old/New Testament text.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "file": "demo.webm",
+      "caption": "Recorded walk-through of the running app.",
+      "type": "video",
+      "width": 1440,
+      "height": 900
     }
   ]
 }
