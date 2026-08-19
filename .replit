@@ -1,4 +1,4 @@
-modules = ["nodejs-20", "web", "nix"]
+modules = ["nodejs-24", "web"]
 
 run = "cd portfolio-site && npm run dev -- --host 0.0.0.0 --port 5000"
 
