@@ -5,7 +5,7 @@ visibility: public
 demo_url: ""
 demo_type: case-study-only
 cluster: deal-hunting
-tier: standard
+tier: advanced
 status: live
 ---
 
