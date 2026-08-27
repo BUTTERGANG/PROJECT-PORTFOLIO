@@ -1,0 +1,16 @@
+{
+  "project": "SALES-BOT",
+  "demo_type": "live",
+  "items": [
+    {
+      "file": "shot-01.png",
+      "caption": "Demo: The dashboard at the configured port showing a sample transcript report card and the growing playbook.",
+      "type": "placeholder"
+    },
+    {
+      "file": "shot-02.png",
+      "caption": "Visuals needed: the report card view showing scores per category; the playbook page showing accumulated patterns; a sample transcript annotated by the tool.",
+      "type": "placeholder"
+    }
+  ]
+}

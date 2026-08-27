@@ -1,0 +1,16 @@
+{
+  "project": "Indiana Jobs Data",
+  "demo_type": "live",
+  "items": [
+    {
+      "file": "shot-01.png",
+      "caption": "Demo: The analytics dashboard showing market trends; a sample DOCX market report.",
+      "type": "placeholder"
+    },
+    {
+      "file": "shot-02.png",
+      "caption": "Visuals needed: the trend chart showing posting volume over time; the top-companies table; a sample DOCX report page.",
+      "type": "placeholder"
+    }
+  ]
+}

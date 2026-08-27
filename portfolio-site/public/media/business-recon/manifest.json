@@ -1,0 +1,16 @@
+{
+  "project": "Business Recon",
+  "demo_type": "live",
+  "items": [
+    {
+      "file": "shot-01.png",
+      "caption": "Demo: Deploy to a public URL (repo is public). The CRM view with a populated lead table and the SMTP verification results is the hero.",
+      "type": "placeholder"
+    },
+    {
+      "file": "shot-02.png",
+      "caption": "Visuals needed: the CRM view showing enriched leads with verification scores; the deep-crawl results panel per company; the retry queue showing \"unknown → verified\" progression.",
+      "type": "placeholder"
+    }
+  ]
+}

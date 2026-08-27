@@ -1,0 +1,16 @@
+{
+  "project": "Weightlifting Equipment Price Tracker",
+  "demo_type": "live",
+  "items": [
+    {
+      "file": "shot-01.png",
+      "caption": "Demo: Deploy the Replit app to a public URL. The price browse page with category filters is the hero view.",
+      "type": "placeholder"
+    },
+    {
+      "file": "shot-02.png",
+      "caption": "Visuals needed: the browse interface showing barbell prices across retailers; a product detail view showing price history; the retailer adapter count.",
+      "type": "placeholder"
+    }
+  ]
+}

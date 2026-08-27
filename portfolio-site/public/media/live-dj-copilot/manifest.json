@@ -1,0 +1,16 @@
+{
+  "project": "Live DJ Co-Pilot",
+  "demo_type": "live",
+  "items": [
+    {
+      "file": "shot-01.png",
+      "caption": "Demo: Deploy to a public URL (repo is public). The suggestion UI on mobile with a current-track context and next-track suggestion is the hero.",
+      "type": "placeholder"
+    },
+    {
+      "file": "shot-02.png",
+      "caption": "Visuals needed: the mobile PWA suggestion screen; the genre-map visualization; a sample suggestion with transition type and energy delta.",
+      "type": "placeholder"
+    }
+  ]
+}

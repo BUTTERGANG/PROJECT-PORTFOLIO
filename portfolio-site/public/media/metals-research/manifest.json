@@ -1,0 +1,16 @@
+{
+  "project": "Metals Research",
+  "demo_type": "case-study-only",
+  "items": [
+    {
+      "file": "shot-01.png",
+      "caption": "Demo: Case-study-only (research repository). The silver supply model chart with byproduct breakdown is the hero; the thesis write-ups show the thinking process.",
+      "type": "placeholder"
+    },
+    {
+      "file": "shot-02.png",
+      "caption": "Visuals needed: the silver byproduct supply-model chart (mine production split by primary vs byproduct); a macro-cycle timeline annotated with policy/price milestones; the dashboard-series reference table per thesis.",
+      "type": "placeholder"
+    }
+  ]
+}
