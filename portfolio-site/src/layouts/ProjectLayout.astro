@@ -10,7 +10,7 @@ import { pillarByKey } from '../data/pillars';
 
 interface Props { project: Project; }
 const { project } = Astro.props;
-const { data, id: slug, body } = project;
+const { data, body } = project;
 
 const { Content } = await render(project);
 const oneLiner = extractOneLiner(body);
@@ -54,7 +54,7 @@ const description = oneLiner ?? `${data.project} case study.`;
     </div>
 
     <div class="wrap-narrow proj__gallery">
-      <MediaGallery slug={slug} title="What it looks like" />
+      <MediaGallery slug={project.id} title="What it looks like" />
     </div>
 
     <div class="wrap-narrow prose proj__prose">

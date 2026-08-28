@@ -5,6 +5,10 @@ import { fullPageProjects } from '../../lib/projects';
 // Only anchor + advanced projects get their own page (tiering).
 export async function getStaticPaths() {
   const projects = await fullPageProjects();
+  console.log(`[slug] getStaticPaths: ${projects.length} projects`);
+  projects.forEach(p => {
+    console.log(`  slug=${p.id}, project=${p.data?.project}, tier=${p.data?.tier}`);
+  });
   return projects.map((project) => ({
     params: { slug: project.id },
     props: { project },

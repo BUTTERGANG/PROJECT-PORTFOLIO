@@ -5,7 +5,7 @@ visibility: public
 demo_url: ""
 demo_type: live
 cluster: life-admin
-tier: standard
+tier: advanced
 status: live
 ---
 

@@ -1,0 +1,16 @@
+{
+  "project": "Wedding Pricing Compare",
+  "demo_type": "case-study-only",
+  "items": [
+    {
+      "file": "shot-01.png",
+      "caption": "Demo: Case-study-only (sensitive data — real vendor pricing). The dashboard showing price distributions per service type is the hero.",
+      "type": "placeholder"
+    },
+    {
+      "file": "shot-02.png",
+      "caption": "Visuals needed: the price distribution histogram per service type; the metro-level median comparison; the source analysis table (permissions, rate limits, techniques); the GraphQL introspection cheat sheet.",
+      "type": "placeholder"
+    }
+  ]
+}

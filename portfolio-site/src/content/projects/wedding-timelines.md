@@ -5,7 +5,7 @@ visibility: private
 demo_url: ""
 demo_type: live
 cluster: weddings
-tier: standard
+tier: advanced
 status: live
 ---
 

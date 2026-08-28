@@ -1,0 +1,16 @@
+{
+  "project": "WeddingOS",
+  "demo_type": "live",
+  "items": [
+    {
+      "file": "shot-01.png",
+      "caption": "Demo: Deploy to a public URL once Stripe + AgentMail keys are in place (repo stays private). Until then, screenshots of each module.",
+      "type": "placeholder"
+    },
+    {
+      "file": "shot-02.png",
+      "caption": "Visuals needed: the couple dashboard showing all modules; the gallery view; the invoice form with partial payment controls; the CSV import merge preview; a simple architecture diagram (React → Express → Drizzle → Neon).",
+      "type": "placeholder"
+    }
+  ]
+}

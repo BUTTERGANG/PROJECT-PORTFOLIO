@@ -9,11 +9,12 @@ import { extractOneLiner, extractOrigin, mdBoldToHtml, repoUrl, type Project } f
 interface Props { project: Project; }
 const { project } = Astro.props;
 const { data, slug, body } = project;
+const projSlug = slug ?? project.id;
 
 const oneLiner = extractOneLiner(body);
 const origin = extractOrigin(body);
 const hasPage = data.tier !== 'standard';
-const href = `/projects/${slug}/`;
+const href = `/projects/${projSlug}/`;
 const gitHub = repoUrl(data);
 ---
 <article class="pcard card">
@@ -34,7 +35,7 @@ const gitHub = repoUrl(data);
         <summary>The story &amp; how it’s built</summary>
         {origin && <p class="pcard__origin" set:html={mdBoldToHtml(origin)}></p>}
         <div class="pcard__media">
-          <MediaItem slug={slug} file="shot-01.png" caption={oneLiner ?? data.project} type="placeholder" />
+          <MediaItem slug={projSlug} file="shot-01.png" caption={oneLiner ?? data.project} type="placeholder" />
         </div>
         {(data.demo_url || gitHub) && (
           <div class="pcard__actions">
