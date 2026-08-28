@@ -17,9 +17,9 @@ const oneLiner = jobHunter ? extractOneLiner(jobHunter.body) : null;
       <h1>{pillar.label}</h1>
       <p class="lede">{pillar.tagline}</p>
       <p class="muted">
-        The whole portfolio makes one argument: I run high-stakes things in real time, and I build
-        the systems that make them run better. The next chapter is taking that profile into an
-        operations/management role — an AGM-type seat with more leverage than a solo side hustle gives.
+        The whole portfolio makes one argument: when something's in my way, I build the tool that
+        removes it — {projects.length}+ shipped projects, entirely self-taught. The next chapter is
+        doing that as the job itself, not something built around the edges of one.
       </p>
     </div>
   </section>
@@ -36,7 +36,7 @@ const oneLiner = jobHunter ? extractOneLiner(jobHunter.body) : null;
         </div>
         <p>
           The same instinct that turns a wedding into a paperwork PWA and a lift into a competition
-          simulator turned “I need a better job” into a system. That’s the operator you’d be hiring.
+          simulator turned “I need a better job” into a system. That’s what you’d be hiring.
         </p>
         <a class="btn btn--accent" href={`/projects/${jobHunter.id}/`}>Read the full case study →</a>
       </div>
@@ -47,18 +47,20 @@ const oneLiner = jobHunter ? extractOneLiner(jobHunter.body) : null;
     <div class="wrap-narrow prose">
       <h2>What I’m looking for</h2>
       <p>
-        Operations and management roles — AGM and similar — that need someone who can execute live
-        <em>and</em> build the systems behind the execution. Fitness/events backgrounds map directly,
-        but the core skill is domain-agnostic: I learn the operation, then I improve it in code.
+        Software and technical builder roles — full-stack, automation-heavy, or AI-integration work
+        especially. I’m self-taught and shipped, not credentialed: {projects.length}+ live projects
+        across Next.js/React, Python automation, Postgres/SQLite pipelines, Playwright-driven scraping,
+        and Claude/AI integrations — each one built because I hit a real problem and refused to
+        work around it by hand.
       </p>
       <p>
-        And this isn’t a career pivot — it’s the through-line. I’ve run high-throughput operations at
-        <strong>Amazon</strong> (teams of 25–50, ~25,000 packages/day), held
-        <strong>R2 V3 compliance</strong> on a returns-and-repair line, and coordinated
-        <strong>3 simultaneous events</strong> with sub-15-minute room flips — then spent years as the
-        person couples and vendors rely on to keep a live event on the rails. The
-        <a href="/live-execution/">operations track record</a> is already there; the AGM seat just
-        gives it more leverage.
+        This isn’t a career pivot so much as a change in what I get paid for. The
+        <a href="/live-execution/">execution track record</a> — running high-throughput operations at
+        <strong>Amazon</strong> (teams of 25–50, ~25,000 packages/day), holding
+        <strong>R2 V3 compliance</strong> on a returns-and-repair line, coordinating
+        <strong>3 simultaneous events</strong> with sub-15-minute room flips — is what taught me to
+        ship under pressure and learn fast. The next chapter just puts that instinct on the tools
+        full-time instead of around the edges of a day job.
       </p>
       <h2>Resume</h2>
       <p class="muted">

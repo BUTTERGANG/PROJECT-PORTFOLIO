@@ -27,6 +27,8 @@ A working strength gym had talent, athletes, and programming — but no system. 
 - **Admin back office** — announcements, surveys with response tracking, article/SOP content management, team/tier management, expense tracking with receipt uploads, and Stripe payment links.
 - **Signed waivers** — typed-signature waiver flow that captures IP, user agent, waiver version, and a SHA-256 hash of the exact text agreed to, exportable to PDF.
 - **Near-real-time updates** — lightweight 45-second polling on the program and alerts managers, paused when the browser tab is hidden.
+- **Coach-facing analytics** — per-athlete trend detail pages and a team-wide trends dashboard, plus a public team leaderboard.
+- **Operational hardening** — scheduled athlete-data sync with failure alerting, a match-queue admin UI, a waiver-text drift guard (flags if the live waiver text no longer matches what was actually signed), and automated database backups to Replit Object Storage.
 
 ## How it's built
 - **Stack:** Next.js 16 (App Router) + React 19 + TypeScript, Tailwind CSS v4. NextAuth / Auth.js (JWT sessions, credentials provider) for auth. Prisma 5 ORM over NeonDB (serverless PostgreSQL). `bcryptjs` for password hashing, `pdf-lib` for waiver PDFs, `nodemailer` for email, `sharp` for image re-encoding, DOMPurify for HTML sanitization, and Three.js for the ambient visual background.
@@ -42,6 +44,7 @@ A working strength gym had talent, athletes, and programming — but no system. 
 - Complete relational programming model — Program → Block → Week → Day → Exercise, with templates and per-athlete overrides — not a flat workout list.
 - Security taken seriously for a small-gym app: centralized guards, edge middleware, hashed passwords, sanitized rich HTML, magic-byte upload validation, and a hashed waiver audit trail.
 - Front-of-house and back-of-house in one codebase: marketing site, approval flow, athlete portal, and full admin panel.
+- Kept shipping after launch: coach-facing trends dashboards, a public leaderboard, scheduled sync with failure alerting, a waiver-text drift guard, and automated DB backups — the kind of post-launch operational hardening that separates a real production app from a portfolio demo.
 
 ## What to show
 - **Demo:** Deploy to a public URL (repo stays private). Land on the public home page, walk through Programs and Coaches, then log into a seeded demo athlete account to show the portal and an assigned program; a seeded admin account can show the program builder and check-in sparklines.

@@ -1,6 +1,6 @@
 # Project Docs — Index
 
-37 project case-study docs, grouped by origin cluster (the Build Loop). Each follows `_TEMPLATE.md`.
+38 project case-study docs, grouped by origin cluster (the Build Loop). Each follows `_TEMPLATE.md`.
 **Convention:** repos stay **private**; projects go viewable via a **public demo URL** (`demo_url`). `demo_type: case-study-only` = backend/sensitive, no clickable demo — use screenshots/diagrams.
 
 Legend: 🟢 public repo · 🔒 private repo · ⭐ anchor/advanced · 🖥️ live-demo-able · 📄 case-study-only
@@ -28,8 +28,8 @@ Legend: 🟢 public repo · 🔒 private repo · ⭐ anchor/advanced · 🖥️ 
 ## Deal-hunting & scraping
 - ⭐🔒🖥️ [thrift-lens](thrift-lens.md) — Vision + eBay comps + deal score (sibling of complete-paperwork)
 - ⭐🔒📄 [polybot](polybot.md) — Polymarket AI trading bot; Kelly + Bayesian + risk manager
-- ⭐🟢📄 [price-scrapers](price-scrapers.md) — 12 retailers, ~7 techniques, honest working/blocked
-- ⭐🟢📄 [theknot-scraper](theknot-scraper.md) — TheKnot vendor data collection; real-browser reliability *(repo named "TEST" — rename before linking)*
+- ⭐🟢📄 [price-scrapers](price-scrapers.md) — 14 retailers, ~8 techniques incl. an Akamai WAF bypass, honest working/blocked
+- ⭐🟢📄 [theknot-scraper](theknot-scraper.md) — nationwide 3-marketplace vendor scraper + sentiment-analysis dashboard; real-browser reliability
 - ⭐🟢📄 [wedding-pricing-compare](wedding-pricing-compare.md) — 1,734 vendors across 3 marketplaces; 32,613 reviews; cracked TheKnot GraphQL via introspection
 - ⭐🟢📄 [business-recon](business-recon.md) — B2B lead enrichment pipeline; SMTP verification + deep crawl + CRM view; paid-tool replacement at zero cost
 - 🔒📄 [public-storage-bot](public-storage-bot.md) — storage rates + Claude deal bot (Telegram)
@@ -44,7 +44,7 @@ Legend: 🟢 public repo · 🔒 private repo · ⭐ anchor/advanced · 🖥️ 
 - 🟢🖥️ [bible-study-app](bible-study-app.md) — Logos-style study app + AI *(prototype)*
 
 ## Civic & community
-- ⭐🔒🖥️ [civic-duty](civic-duty.md) — Fishers, IN civic aggregator; nightly scheduled scrapers
+- ⭐🔒🖥️ [civic-duty](civic-duty.md) — 3-region civic aggregator (Fishers, Indianapolis, Hamilton Co.); ~20 sources, live alerting
 - ⭐🟢🖥️ [k9-overwatch](k9-overwatch.md) — lost-pet aggregation; 5 sources, 5 techniques *(live)*
 
 ## Job search *(the thesis, applied to itself)*
@@ -54,7 +54,8 @@ Legend: 🟢 public repo · 🔒 private repo · ⭐ anchor/advanced · 🖥️ 
 ## Infrastructure & off-repo *(no repo to link — screenshots/write-ups)*
 - ⭐📄 [infra-metals-dashboard](infra-metals-dashboard.md) — zero-budget commodities dashboard; 93 series, 8 metals, 3 extraction techniques, 3 production crons *(public repo)*
 - ⭐📄 [hermes](hermes.md) — self-hosted market-intel agent; n8n + MCP on VPS
-- ⭐📄 [security-research](security-research.md) — Kali/Metasploit MCP servers; 5 HackerOne; PicoCTF
+- ⭐📄 [security-research](security-research.md) — Kali/Metasploit MCP servers; 78 verified bug-bounty findings across 21 targets; PicoCTF
+- 📄 [master-dashboard](master-dashboard.md) — live command center for the whole portfolio; GitHub webhooks + SSE, agent-facing JSON API, human 2FA login
 - 📄 [metals-research](metals-research.md) — silver supply-side model; byproduct production analysis; decades-long macro research; companion to Infra Metals Dashboard
 - 📄 [home-infrastructure](home-infrastructure.md) — QNAP + Tailscale + CCS proxy; OS/network debugging
 

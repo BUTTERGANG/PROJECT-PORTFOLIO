@@ -49,9 +49,9 @@ export const PILLARS: Pillar[] = [
     num: 4,
     slug: '/next-chapter/',
     label: 'Where It’s Heading',
-    tagline: 'Same operator mindset, next chapter.',
+    tagline: 'Same builder instinct, aimed at a technical seat.',
     teaser:
-      'Operations and AGM roles that use this exact execution-plus-systems profile. And the proof: I built my own AI-ranked job-hunting dashboard to run this search.',
+      'Software/technical roles where building is the job, not something squeezed in around one. The proof: I built my own AI-ranked job-hunting dashboard to run this exact search.',
     order: 4,
   },
 ];

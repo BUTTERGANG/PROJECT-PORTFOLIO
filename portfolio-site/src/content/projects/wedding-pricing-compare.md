@@ -45,7 +45,7 @@ Wedding vendors need to know the market rate to price competitively, but the pri
 - **Visuals needed:** the price distribution histogram per service type; the metro-level median comparison; the source analysis table (permissions, rate limits, techniques); the GraphQL introspection cheat sheet.
 
 ## Cross-links
-- Shares the **GraphQL introspection technique** with [theknot-scraper](theknot-scraper.md) (they target the same underlying API).
+- Shares the **GraphQL introspection technique** and the underlying vendor/review dataset with [theknot-scraper](theknot-scraper.md), which analyzes the same data for sentiment/complaint patterns rather than pricing.
 - The **multi-source scraping discipline** connects it to [price-scrapers](price-scrapers.md), [EARLS](earls.md), and [infra-metals-dashboard](infra-metals-dashboard.md).
 - Feeds directly into [SALES-BOT](sales-bot.md) (market-rate anchoring for sales calls).
 

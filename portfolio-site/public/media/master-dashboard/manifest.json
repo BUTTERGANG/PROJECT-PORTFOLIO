@@ -1,0 +1,16 @@
+{
+  "project": "Master Dashboard",
+  "demo_type": "case-study-only",
+  "items": [
+    {
+      "file": "shot-01.png",
+      "caption": "Demo: None — internal tooling with real project data and credentials. Case-study-only.",
+      "type": "placeholder"
+    },
+    {
+      "file": "shot-02.png",
+      "caption": "Visuals needed: the dashboard's stat tiles + \"needs attention\" panel; a project detail drawer showing the activity log with actor attribution; the SSE/webhook flow as a short diagram; the login + 2FA screen (with credentials blurred).",
+      "type": "placeholder"
+    }
+  ]
+}
