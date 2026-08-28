@@ -1,4 +1,4 @@
-modules = ["nodejs-20", "web", "nix"]
+modules = ["nodejs-22", "web", "nix"]
 
 run = "cd portfolio-site && npm run dev -- --host 0.0.0.0 --port 5000"
 
@@ -11,6 +11,10 @@ expertMode = true
 [[ports]]
 localPort = 5000
 externalPort = 80
+
+[[ports]]
+localPort = 5001
+externalPort = 3000
 
 # ── Static Deployment ────────────────────────────────────────────────
 # In the Replit Deployments pane choose "Static", then set:

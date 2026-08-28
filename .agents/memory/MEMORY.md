@@ -1,0 +1,1 @@
+- [Astro workflow foreground mode](astro-workflow-foreground.md) — disable Astro’s agent auto-backgrounding so Replit keeps the preview workflow running.

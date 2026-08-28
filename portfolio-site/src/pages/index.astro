@@ -6,7 +6,7 @@ import { allProjects } from '../lib/projects';
 
 const projects = await allProjects();
 const count = projects.length;
-const featured = projects.find((p) => p.slug === 'mind-games');
+const featured = projects.find((p) => p.id === 'mind-games');
 ---
 <BaseLayout>
   <!-- Hero: the Build Loop thesis first -->
@@ -63,7 +63,7 @@ const featured = projects.find((p) => p.slug === 'mind-games');
             records ETL’d into PostgreSQL, fed by Playwright automation through Sport80’s authenticated portal.
             The clearest proof of the thesis: I build where my lived expertise is deepest.
           </p>
-          <a class="btn btn--accent" href={`/projects/${featured.slug}/`}>Read the case study →</a>
+          <a class="btn btn--accent" href={`/projects/${featured.id}/`}>Read the case study →</a>
         </div>
       </div>
     </section>

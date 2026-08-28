@@ -6,7 +6,7 @@ import { fullPageProjects } from '../../lib/projects';
 export async function getStaticPaths() {
   const projects = await fullPageProjects();
   return projects.map((project) => ({
-    params: { slug: project.slug },
+    params: { slug: project.id },
     props: { project },
   }));
 }

@@ -1,4 +1,5 @@
 import { defineCollection, z } from 'astro:content';
+import { glob } from 'astro/loaders';
 
 // Mirrors the frontmatter of the docs/*.md files exactly, so NO doc edits are
 // required. `visibility` is free-form for off-repo projects
@@ -10,7 +11,7 @@ const CLUSTERS = [
 ] as const;
 
 const projects = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/*.md', base: './src/content/projects' }),
   schema: z.object({
     project: z.string(),
     repo: z.string().default(''),

@@ -5,14 +5,14 @@
   "private": true,
   "scripts": {
     "prebuild": "node scripts/sync-content.mjs",
-    "dev": "node scripts/sync-content.mjs && astro dev",
+    "dev": "node scripts/sync-content.mjs && ASTRO_DEV_BACKGROUND=0 astro dev",
     "build": "astro build",
     "preview": "astro preview",
     "sync": "node scripts/sync-content.mjs"
   },
   "dependencies": {
-    "astro": "^5.7.0",
-    "@astrojs/sitemap": "^3.2.1"
+    "@astrojs/sitemap": "^3.2.1",
+    "astro": "^7.2.3"
   },
   "allowScripts": {
     "esbuild@0.27.7": true,

@@ -9,4 +9,7 @@ export default defineConfig({
   output: 'static',
   integrations: [sitemap()],
   build: { format: 'directory' },
+  // Replit's preview proxies through a per-workspace *.worf.replit.dev host that
+  // changes per Repl/fork — the dev server's host check rejects it by default.
+  server: { allowedHosts: true },
 });

@@ -7,7 +7,7 @@ import { allProjects, extractOneLiner } from '../lib/projects';
 
 const pillar = pillarByKey('next')!;
 const projects = await allProjects();
-const jobHunter = projects.find((p) => p.slug === 'job-hunter');
+const jobHunter = projects.find((p) => p.id === 'job-hunter');
 const oneLiner = jobHunter ? extractOneLiner(jobHunter.body) : null;
 ---
 <BaseLayout title={`${pillar.label} — Alex Butterfield`} description={pillar.tagline}>
@@ -32,13 +32,13 @@ const oneLiner = jobHunter ? extractOneLiner(jobHunter.body) : null;
         {oneLiner && <p class="lede">{oneLiner}</p>}
         <Chips data={jobHunter.data} />
         <div class="proof__gallery">
-          <MediaGallery slug={jobHunter.slug} title="Job Hunter — what it looks like" />
+          <MediaGallery slug={jobHunter.id} title="Job Hunter — what it looks like" />
         </div>
         <p>
           The same instinct that turns a wedding into a paperwork PWA and a lift into a competition
           simulator turned “I need a better job” into a system. That’s the operator you’d be hiring.
         </p>
-        <a class="btn btn--accent" href={`/projects/${jobHunter.slug}/`}>Read the full case study →</a>
+        <a class="btn btn--accent" href={`/projects/${jobHunter.id}/`}>Read the full case study →</a>
       </div>
     </section>
   )}

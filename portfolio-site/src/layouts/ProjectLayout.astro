@@ -3,15 +3,16 @@ import BaseLayout from './BaseLayout.astro';
 import Chips from '../components/Chips.astro';
 import OriginBlock from '../components/OriginBlock.astro';
 import MediaGallery from '../components/MediaGallery.astro';
+import { render } from 'astro:content';
 import { extractOneLiner, extractOrigin, repoUrl, type Project } from '../lib/projects';
 import { CLUSTERS } from '../data/clusters';
 import { pillarByKey } from '../data/pillars';
 
 interface Props { project: Project; }
 const { project } = Astro.props;
-const { data, slug, body } = project;
+const { data, id: slug, body } = project;
 
-const { Content } = await project.render();
+const { Content } = await render(project);
 const oneLiner = extractOneLiner(body);
 const origin = extractOrigin(body);
 const cluster = CLUSTERS[data.cluster];
