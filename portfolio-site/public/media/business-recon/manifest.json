@@ -1,16 +1,21 @@
 {
   "project": "Business Recon",
   "demo_type": "live",
+  "captured_at": "2026-08-30T09:40:23.471Z",
   "items": [
     {
-      "file": "shot-01.png",
-      "caption": "Demo: Deploy to a public URL (repo is public). The CRM view with a populated lead table and the SMTP verification results is the hero.",
-      "type": "placeholder"
+      "file": "shot-01.webp",
+      "caption": "CRM view — enriched leads with verification status and outreach context.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
     },
     {
-      "file": "shot-02.png",
-      "caption": "Visuals needed: the CRM view showing enriched leads with verification scores; the deep-crawl results panel per company; the retry queue showing \"unknown → verified\" progression.",
-      "type": "placeholder"
+      "file": "shot-02-full.webp",
+      "caption": "Full CRM table — SMTP-verified leads from the deep-crawl pipeline.",
+      "type": "image",
+      "width": 1600,
+      "height": 3017
     }
   ]
 }

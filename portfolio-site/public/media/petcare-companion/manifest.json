@@ -1,16 +1,35 @@
 {
   "project": "PetCare Companion",
   "demo_type": "live",
+  "captured_at": "2026-08-30T22:36:40.836Z",
   "items": [
     {
-      "file": "shot-01.png",
-      "caption": "Demo: Deploy to a public URL (repo is public). The per-pet dashboard showing records + weight chart is the hero.",
-      "type": "placeholder"
+      "file": "shot-01.webp",
+      "caption": "Sign-in — one password, no tutorial required.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
     },
     {
-      "file": "shot-02.png",
-      "caption": "Visuals needed: the pet dashboard with medical summary + weight trend chart; the breed browser with AKC-standard details; the vet report output.",
-      "type": "placeholder"
+      "file": "shot-02.webp",
+      "caption": "Pet dashboard — medical records, vaccinations, and weight trend per pet.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "file": "shot-03-full.webp",
+      "caption": "Full pet dashboard.",
+      "type": "image",
+      "width": 1600,
+      "height": 1224
+    },
+    {
+      "file": "shot-04.webp",
+      "caption": "Breed reference — 123 AKC breed profiles with traits, sizes, and standards.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
     }
   ]
 }

@@ -1,16 +1,28 @@
 {
   "project": "Weightlifting Equipment Price Tracker",
   "demo_type": "live",
+  "captured_at": "2026-08-30T22:47:28.029Z",
   "items": [
     {
-      "file": "shot-01.png",
-      "caption": "Demo: Deploy the Replit app to a public URL. The price browse page with category filters is the hero view.",
-      "type": "placeholder"
+      "file": "shot-01.webp",
+      "caption": "Login — rate-limited, salted-scrypt auth (AgentMail-backed password reset).",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
     },
     {
-      "file": "shot-02.png",
-      "caption": "Visuals needed: the browse interface showing barbell prices across retailers; a product detail view showing price history; the retailer adapter count.",
-      "type": "placeholder"
+      "file": "shot-02.webp",
+      "caption": "Price dashboard — 27+ retailers, deal flags, category filters.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "file": "shot-03-full.webp",
+      "caption": "Full price browse view.",
+      "type": "image",
+      "width": 1600,
+      "height": 4311
     }
   ]
 }

@@ -1,16 +1,35 @@
 {
   "project": "SALES-BOT",
   "demo_type": "live",
+  "captured_at": "2026-08-30T07:26:33.866Z",
   "items": [
     {
-      "file": "shot-01.png",
-      "caption": "Demo: The dashboard at the configured port showing a sample transcript report card and the growing playbook.",
-      "type": "placeholder"
+      "file": "shot-01.webp",
+      "caption": "SALES-BOT dashboard — post-call analyst + live co-pilot for sales calls.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
     },
     {
-      "file": "shot-02.png",
-      "caption": "Visuals needed: the report card view showing scores per category; the playbook page showing accumulated patterns; a sample transcript annotated by the tool.",
-      "type": "placeholder"
+      "file": "shot-02.webp",
+      "caption": "View: live — rule-based scoring + LLM-enriched analysis.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "file": "shot-03.webp",
+      "caption": "View: playbook — rule-based scoring + LLM-enriched analysis.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "file": "shot-03-full.webp",
+      "caption": "Full dashboard page.",
+      "type": "image",
+      "width": 1600,
+      "height": 4648
     }
   ]
 }

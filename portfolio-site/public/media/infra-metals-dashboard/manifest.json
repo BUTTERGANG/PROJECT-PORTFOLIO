@@ -1,16 +1,35 @@
 {
   "project": "Infra Metals Dashboard",
   "demo_type": "case-study-only",
+  "captured_at": "2026-08-30T07:22:48.589Z",
   "items": [
     {
-      "file": "shot-01.png",
-      "caption": "Demo: Case-study-only (private VPS + Replit host). The dashboard itself is the deliverable — it's a fully rendered static HTML page with 93 charts.",
-      "type": "placeholder"
+      "file": "shot-01.webp",
+      "caption": "Commodities & macro dashboard — 93 data series across metals, equities, COT, LME and power, all from free sources.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
     },
     {
-      "file": "shot-02.png",
-      "caption": "Visuals needed: the dashboard overview page showing the 93-series grid; the copper COT ladder chart with commercial vs non-commercial positioning; the Dalio-views panel showing category breakdown; the SHFE extraction flow (playwright → PDF → data).",
-      "type": "placeholder"
+      "file": "shot-03-full-a.webp",
+      "caption": "Full dashboard (1/3) — series grid and category views.",
+      "type": "image",
+      "width": 1600,
+      "height": 11212
+    },
+    {
+      "file": "shot-03-full-b.webp",
+      "caption": "Full dashboard (2/3) — metals and equities charts.",
+      "type": "image",
+      "width": 1600,
+      "height": 11212
+    },
+    {
+      "file": "shot-03-full-c.webp",
+      "caption": "Full dashboard (3/3) — COT positioning and macro cycle panels.",
+      "type": "image",
+      "width": 1600,
+      "height": 11214
     }
   ]
 }

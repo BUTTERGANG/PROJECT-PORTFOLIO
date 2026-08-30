@@ -2,6 +2,8 @@
 // Compact card. Standard-tier projects render as a self-contained expandable
 // card (no dedicated page). Anchor/advanced render as a linking card to
 // /projects/<slug>. Both lead with the origin one-liner.
+import { promises as fs } from 'node:fs';
+import path from 'node:path';
 import Chips from './Chips.astro';
 import MediaItem from './MediaItem.astro';
 import { extractOneLiner, extractOrigin, mdBoldToHtml, repoUrl, type Project } from '../lib/projects';
@@ -16,6 +18,15 @@ const origin = extractOrigin(body);
 const hasPage = data.tier !== 'standard';
 const href = `/projects/${projSlug}/`;
 const gitHub = repoUrl(data);
+
+// First real media item from the manifest, if any — cards lead with a visual
+// when one exists, falling back to the neutral placeholder box.
+let hero: { file: string; type?: string; width?: number; height?: number } | null = null;
+try {
+  const m = JSON.parse(await fs.readFile(
+    path.resolve(process.cwd(), 'public', 'media', projSlug, 'manifest.json'), 'utf8'));
+  hero = (m.items || []).find((i: any) => i.type && i.type !== 'placeholder') ?? null;
+} catch { /* no manifest — placeholder */ }
 ---
 <article class="pcard card">
   <div class="pcard__body">
@@ -35,7 +46,12 @@ const gitHub = repoUrl(data);
         <summary>The story &amp; how it’s built</summary>
         {origin && <p class="pcard__origin" set:html={mdBoldToHtml(origin)}></p>}
         <div class="pcard__media">
-          <MediaItem slug={projSlug} file="shot-01.png" caption={oneLiner ?? data.project} type="placeholder" />
+          {hero ? (
+            <MediaItem slug={projSlug} file={hero.file} caption={oneLiner ?? data.project}
+                       type={hero.type as any} width={hero.width} height={hero.height} />
+          ) : (
+            <MediaItem slug={projSlug} file="shot-01.png" caption={oneLiner ?? data.project} type="placeholder" />
+          )}
         </div>
         {(data.demo_url || gitHub) && (
           <div class="pcard__actions">
