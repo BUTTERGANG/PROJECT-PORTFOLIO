@@ -1,0 +1,42 @@
+{
+  "project": "Wedding Data Explorer",
+  "demo_type": "case-study-only",
+  "captured_at": "2026-09-02T18:27:42.468Z",
+  "items": [
+    {
+      "file": "shot-01.webp",
+      "caption": "Passphrase gate — one shared code, 30-day cookie session, fully read-only.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "file": "shot-02.webp",
+      "caption": "Overview — KPI cards, sentiment split, top complaints, pricing by category, top metros.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "file": "shot-03-full.webp",
+      "caption": "Full overview — snapshot of 1,734 vendors and 28,819 customer reviews.",
+      "type": "image",
+      "width": 1600,
+      "height": 1326
+    },
+    {
+      "file": "shot-04.webp",
+      "caption": "Vendors — 1,734 listings filterable by name, category, and state with pricing and ratings.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "file": "shot-05.webp",
+      "caption": "Ask the Data — plain-English question through text-to-SQL to answer + source table.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
+    }
+  ]
+}

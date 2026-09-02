@@ -1,0 +1,16 @@
+{
+  "project": "eBay Endpoint",
+  "demo_type": "case-study-only",
+  "items": [
+    {
+      "file": "shot-01.png",
+      "caption": "Demo: Case-study-only (internal service holding credentials). A sequence diagram of consumer → endpoint → eBay is the visual.",
+      "type": "placeholder"
+    },
+    {
+      "file": "shot-02.png",
+      "caption": "Visuals needed: an architecture diagram (consumers → ebay-endpoint → eBay); a redacted token-refresh log line.",
+      "type": "placeholder"
+    }
+  ]
+}

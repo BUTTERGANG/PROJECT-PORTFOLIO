@@ -10,35 +10,40 @@ status: live
 ---
 
 # eBay Endpoint
-**One-liner:** A self-hosted eBay API layer — OAuth token management and a clean endpoint other projects call instead of each re-implementing eBay auth.
+**One-liner:** A standalone eBay Marketplace webhook service — challenge-response verification, ECDSA-signed deletion notifications, and a status dashboard — the compliance plumbing every eBay marketplace app must have.
 
 ## Origin (the Build Loop)
-> Because I **kept building eBay-powered projects** (price trackers, comp lookups, deal alerts), I kept hitting **the fact that every one of them needed the same OAuth dance — token fetch, refresh, expiry handling, rate limits — copy-pasted into each repo**, so I built **a small standalone service that owns eBay auth and exposes one clean endpoint**, that **gives every deal-hunting project a single place to get eBay data.** It taught me **that a shared credential-and-auth layer is a product, even when it's one file.**
+> Because I **kept building eBay-powered projects** (price trackers, comp lookups, deal alerts), I kept hitting **the fact that eBay's marketplace program requires a public account-deletion endpoint with challenge/response verification and ECDSA signature checks before an app can go live**, so I built **a small standalone service that implements the full webhook spec — verification token, signed notifications, public-key lookup, negative caching — plus a status dashboard**, that **gives every eBay project a compliant notification receiver from day one.** It taught me **that platform compliance plumbing is its own artifact: get it right once, standalone, and every future app inherits it.**
 
 ## The problem
-The eBay Browse API requires OAuth (client credentials → access token → refresh before expiry → 429 handling). Duplicating that logic in romaleos-2-tracker, EARLS's retail floor, thrift-lens comps, and everything after it means four places to fix when the flow changes — and four chances to leak a token.
+eBay's Marketplace Account Deletion/Closure notifications are a hard requirement for production marketplace apps. The spec is unforgiving: a GET challenge must echo a hashed verification token, POST notifications must carry a valid `X-EBAY-SIGNATURE` (ECDSA/SHA-1) checked against eBay's published public key for the notification's `kid`, and everything must respond correctly without leaking credentials. Burying that in each app means repeating the hardest, most security-sensitive part of the integration every time.
 
 ## What it does
-- **Owns eBay OAuth** — token fetch, refresh, and expiry handling in one place.
-- **Exposes a clean endpoint** — internal projects call it with a query; it returns listings/pricing data without knowing anything about OAuth.
-- **Centralizes credentials** — `.env.example` documents the setup; the token never lives in consumer repos.
+- **Challenge-response verification** — GET handler answers eBay's `challenge_response` per spec.
+- **Signed notification receiver** — POST handler validates `X-EBAY-SIGNATURE` (ECDSA/SHA-1) against eBay's published public key for the notification's `kid`; invalid signatures get `412`.
+- **OAuth plumbing** — application token via `EBAY_APP_ID`/`EBAY_CERT_ID`; production or sandbox hosts.
+- **Status dashboard** — uptime, last-activity, notification counter (operational metadata only — never tokens or payload contents); optional HTTP Basic Auth.
+- **Hardening** — 64KB body cap, disabled decompression, 300 req/min per-IP rate limit, negative caching of bogus public-key lookups (60s) so unknown `kid`s can't spam eBay's API.
 
 ## How it's built
-- **Stack:** Node.js (JavaScript), Express-style service; `.replit` deploy config.
-- **Notable engineering:** deliberately tiny — the value is the *contract*, not the code size. One auth owner, N consumers.
-- **Architecture:** consumer project → ebay-endpoint (token cache + refresh) → eBay Browse API.
+- **Stack:** Node.js (Express-style service), Replit deployment; `.env`-driven config.
+- **Notable engineering:**
+  - **Signature verification done right** — public keys fetched per-`kid` from eBay's API and negatively cached, so forgery attempts cost the attacker nothing and cost the service one failed lookup per minute.
+  - **Deliberately small** — the value is the *contract*: one compliant webhook receiver that every eBay app shares.
+  - **Kept standalone** — separated from the portfolio site specifically so that stays a static deployment.
+- **Architecture:** eBay → `/ebay/deletion` (GET challenge / POST signed notification) → signature check → notification log; dashboard + `/api/*` read operational state only.
 
 ## Proof points
-- **In active use** as the auth layer behind the eBay-powered trackers.
-- **Converted repeated OAuth plumbing into a shared service** — the textbook "extract the pattern" refactor applied across his own repos.
+- Implements the full eBay compliance spec (challenge/response + ECDSA signature verification) — the part most hobby marketplace apps skip and get rejected for.
+- Security-first defaults: signed-only POSTs, negative caching, body caps, rate limiting, metadata-only dashboard.
 
 ## What to show
-- **Demo:** Case-study-only (internal service holding credentials). A sequence diagram of consumer → endpoint → eBay is the visual.
-- **Visuals needed:** an architecture diagram (consumers → ebay-endpoint → eBay); a redacted token-refresh log line.
+- **Demo:** Case-study-only (holds eBay credentials; webhook endpoint is private). A sequence diagram of the challenge + signed-notification flow is the visual.
+- **Visuals needed:** sequence diagram (eBay → GET challenge → POST signed notification → verification); a redacted dashboard screenshot showing uptime/counter.
 
 ## Cross-links
-- The extracted auth layer behind [romaleos-2-tracker](romaleos-2-tracker.md), [EARLS](earls.md) (retail floor comps), and [thrift-lens](thrift-lens.md) (eBay comps).
+- The compliance layer behind [romaleos-2-tracker](romaleos-2-tracker.md) and the eBay comps in [thrift-lens](thrift-lens.md) and [EARLS](earls.md).
 - Same "extract the shared service" instinct as the business-recon CRM serving multiple scrape flows.
 
 ## Case-study angle
-The smallest repo in the portfolio might be the best engineering-judgment signal: after the third project copy-pasted eBay OAuth, Alex extracted it into one owned service. **Knowing when to deduplicate your own infrastructure is the difference between a pile of scripts and a platform.**
+Compliance plumbing is usually invisible until an app gets rejected. Alex implemented eBay's hardest integration requirement once — signature verification, challenge-response, negative caching — as a standalone service every future marketplace app inherits. **Security-critical infrastructure, done deliberately small.**

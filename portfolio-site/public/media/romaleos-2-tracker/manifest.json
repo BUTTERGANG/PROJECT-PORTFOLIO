@@ -1,0 +1,35 @@
+{
+  "project": "Romaleos 2 Tracker",
+  "demo_type": "live",
+  "captured_at": "2026-09-02T18:28:59.504Z",
+  "items": [
+    {
+      "file": "shot-01.webp",
+      "caption": "Live listings — eBay Browse API results with US-size extraction, condition, and freshness badges.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "file": "shot-02-full.webp",
+      "caption": "Full dashboard — filters for size, price, condition; sort by newest / price / ending-soonest.",
+      "type": "image",
+      "width": 1600,
+      "height": 1022
+    },
+    {
+      "file": "shot-03.webp",
+      "caption": "Smart watches — per-size / price-range alerts with one-ping-per-listing Discord delivery.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "file": "demo.webm",
+      "caption": "Recorded walk-through of the running app.",
+      "type": "video",
+      "width": 1440,
+      "height": 900
+    }
+  ]
+}

@@ -35,7 +35,7 @@ Legend: 🟢 public repo · 🔒 private repo · ⭐ anchor/advanced · 🖥️ 
 - ⭐🟢📄 [business-recon](business-recon.md) — B2B lead enrichment pipeline; SMTP verification + deep crawl + CRM view; paid-tool replacement at zero cost
 - 🔒📄 [public-storage-bot](public-storage-bot.md) — storage rates + Claude deal bot (Telegram)
 - 🟢🖥️ [romaleos-2-tracker](romaleos-2-tracker.md) — discontinued-shoe grail tracker; eBay Browse API + US-size extraction + Discord watches
-- 🔒📄 [ebay-endpoint](ebay-endpoint.md) — shared eBay OAuth service behind all eBay-powered trackers; the extracted-auth-layer refactor
+- 🔒📄 [ebay-endpoint](ebay-endpoint.md) — eBay marketplace webhook compliance service; ECDSA signature verification, challenge/response, status dashboard
 - 🟢🖥️ [earls](earls.md) — Earl's Auction monitor; real-browser rendering
 
 ## Life admin
