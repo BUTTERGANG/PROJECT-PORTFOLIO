@@ -24,12 +24,14 @@ Earl's runs live online auctions where prices move as people bid. The whole game
 - **Price-change detection** — logs new bids, increases, and decreases per lot over time
 - **Retail price lookup** — searches Google Shopping per lot and caches the result
 - **Savings calculation** — auction price vs. retail, in dollars and percent
+- **Scraper v2 (Aug 2026)** — **realtime WebSocket client** that reverse-engineered the auction site's live protocol (`graphql-transport-ws` subscriptions, validated browser-free and documented in `docs/REALTIME_PROTOCOL.md`), plus an **eBay pricing-floor module** for comp resolution
 - Full history in SQLite (`auctions.db`): auctions, lots, price history, retail products, comparisons, and a lot-change log
 - CLI: single-run (`--once`), daemon, CSV/JSON export, manual retail products, and per-lot price history
 
 ## How it's built
 - **Stack:** Python, Playwright (Chromium), SQLite, Google Shopping for retail comps.
 - **Notable engineering:**
+  - **Realtime protocol reverse-engineering (v2).** The v1 poller became a realtime subscriber: the site's `graphql-transport-ws` subscription protocol was reverse-engineered from the browser's WebSocket traffic, validated without a browser session, and documented — bids now arrive as they happen instead of on a polling interval.
   - **Real-browser rendering.** Playwright driving Chromium renders the JavaScript-heavy auction site that plain HTTP scrapers can't read, so the data comes back complete and reliable.
   - **Time-series price tracking.** Every monitoring cycle timestamps each lot's price into `price_history`, and a `lot_change` table logs new/removed lots between cycles — so the tool captures the whole arc of an auction, not just a snapshot.
   - **Cost-controlled retail lookups.** Retail searches are the expensive, rate-limit-sensitive part, so results are cached in `retail_products` and the run is bounded by `MAX_RETAIL_SEARCHES_PER_CYCLE` (default 15) with a `RETAIL_SEARCH_INTERVAL_SECONDS` delay (default 3s) between searches. A `SKIP_KEYWORDS` list drops lots that aren't worth a retail comparison.
@@ -38,6 +40,7 @@ Earl's runs live online auctions where prices move as people bid. The whole game
 
 ## Proof points
 - **6 SQLite tables** modeling the full lifecycle: auctions → lots → timestamped price history → retail products → savings comparisons → lot-change log.
+- **Realtime v2** — reverse-engineered `graphql-transport-ws` protocol documented and implemented browser-free, replacing the 30-minute poll with live bid events.
 - Retail lookups **capped at 15/cycle** with a 3s delay and a persistent cache — a long-running monitor that doesn't hammer Google.
 - JavaScript-heavy target read reliably with a real Chromium browser.
 - Exports to **CSV and JSON** for offline sorting of the best deals.

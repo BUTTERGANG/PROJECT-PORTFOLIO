@@ -1,6 +1,6 @@
 # Project Docs — Index
 
-38 project case-study docs, grouped by origin cluster (the Build Loop). Each follows `_TEMPLATE.md`.
+42 project case-study docs, grouped by origin cluster (the Build Loop). Each follows `_TEMPLATE.md`.
 **Convention:** repos stay **private**; projects go viewable via a **public demo URL** (`demo_url`). `demo_type: case-study-only` = backend/sensitive, no clickable demo — use screenshots/diagrams.
 
 Legend: 🟢 public repo · 🔒 private repo · ⭐ anchor/advanced · 🖥️ live-demo-able · 📄 case-study-only
@@ -18,6 +18,7 @@ Legend: 🟢 public repo · 🔒 private repo · ⭐ anchor/advanced · 🖥️ 
 - ⭐🔒🖥️ [sales-bot](sales-bot.md) — sales negotiation co-pilot for wedding vendors; pricing psychology analysis + growing playbook from real calls
 - 🔒🖥️ [wedding-timelines](wedding-timelines.md) — run-of-show planner (v2 rebuild of public TIMELINE)
 - 🟢🖥️ [live-dj-copilot](live-dj-copilot.md) — mobile DJ suggestion engine; LLM read parsing, mobile PWA, next-track & transition suggestions
+- 🔒📄 [wedding-data-explorer](wedding-data-explorer.md) — gated read-only UI over the 1,734-vendor dataset; text-to-SQL ask-the-data box; the interface layer for theknot/pricing-compare data
 
 ## Photography & LA Media
 - ⭐🔒🖥️ [la-media-dashboard](la-media-dashboard.md) — ops/CRM/invoicing/contracts
@@ -33,9 +34,12 @@ Legend: 🟢 public repo · 🔒 private repo · ⭐ anchor/advanced · 🖥️ 
 - ⭐🟢📄 [wedding-pricing-compare](wedding-pricing-compare.md) — 1,734 vendors across 3 marketplaces; 32,613 reviews; cracked TheKnot GraphQL via introspection
 - ⭐🟢📄 [business-recon](business-recon.md) — B2B lead enrichment pipeline; SMTP verification + deep crawl + CRM view; paid-tool replacement at zero cost
 - 🔒📄 [public-storage-bot](public-storage-bot.md) — storage rates + Claude deal bot (Telegram)
+- 🟢🖥️ [romaleos-2-tracker](romaleos-2-tracker.md) — discontinued-shoe grail tracker; eBay Browse API + US-size extraction + Discord watches
+- 🔒📄 [ebay-endpoint](ebay-endpoint.md) — shared eBay OAuth service behind all eBay-powered trackers; the extracted-auth-layer refactor
 - 🟢🖥️ [earls](earls.md) — Earl's Auction monitor; real-browser rendering
 
 ## Life admin
+- ⭐🟢🖥️ [wine](wine.md) — social wine tracking & discovery; glass+label photo ID, Leaflet map, ~50,214-winery free-data venue DB, spirit groups
 - ⭐🔒📄 [personal-finance-dashboard](personal-finance-dashboard.md) — Plaid/OFX aggregator *(NEVER public — real accounts)*
 - ⭐🔒📄 [echo](echo.md) — local-first voice journal; on-device Whisper + SQLite-WASM
 - ⭐🟢🖥️ [petcare-companion](petcare-companion.md) — pet records + 123 AKC breed reference + weight chart + printable vet report; zero-jargon PWA for non-technical users
