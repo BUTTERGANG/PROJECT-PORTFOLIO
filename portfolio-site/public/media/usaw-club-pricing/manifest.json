@@ -1,0 +1,21 @@
+{
+  "project": "USAW Club Pricing",
+  "demo_type": "case-study-only",
+  "captured_at": "2026-09-08T21:27:33.565Z",
+  "items": [
+    {
+      "file": "shot-01.webp",
+      "caption": "USAW club pricing dashboard — 770 clubs, 331 with published rates, 11 interactive charts.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "file": "shot-02-full.webp",
+      "caption": "Full dashboard — distributions, state coverage, and the \"why 43%\" explainer.",
+      "type": "image",
+      "width": 1600,
+      "height": 4066
+    }
+  ]
+}

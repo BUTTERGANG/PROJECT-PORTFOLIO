@@ -1,0 +1,16 @@
+{
+  "project": "Skyscanner Flight Tracker",
+  "demo_type": "live",
+  "items": [
+    {
+      "file": "shot-01.png",
+      "caption": "Demo: The SkyApp dashboard (weekend grid + price history). The scraper side is credential-heavy — case-study-only.",
+      "type": "placeholder"
+    },
+    {
+      "file": "shot-02.png",
+      "caption": "Visuals needed: the weekend-deal grid for a home airport; a price-history chart for one route; the architecture diagram (mobile API → PX solver → proxy → feed → app).",
+      "type": "placeholder"
+    }
+  ]
+}

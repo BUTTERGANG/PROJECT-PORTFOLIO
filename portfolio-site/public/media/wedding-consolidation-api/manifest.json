@@ -1,0 +1,16 @@
+{
+  "project": "Wedding Consolidation API",
+  "demo_type": "case-study-only",
+  "items": [
+    {
+      "file": "shot-01.png",
+      "caption": "Demo: Case-study-only (multi-tenant backend holding vendor credentials). The TIER1 status board and an architecture diagram are the visuals.",
+      "type": "placeholder"
+    },
+    {
+      "file": "shot-02.png",
+      "caption": "Visuals needed: service architecture diagram (WeddingOS → consolidation API → Dropbox/AgentMail/DB); the isolation test matrix; the Design DNA token flow.",
+      "type": "placeholder"
+    }
+  ]
+}

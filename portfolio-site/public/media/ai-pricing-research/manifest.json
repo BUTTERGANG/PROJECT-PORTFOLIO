@@ -1,0 +1,42 @@
+{
+  "project": "AI Pricing Research",
+  "demo_type": "case-study-only",
+  "captured_at": "2026-09-08T21:20:00Z",
+  "items": [
+    {
+      "file": "shot-01.webp",
+      "caption": "Consolidated price history — 216 LLM price points across 11 providers, 2020–2026.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "file": "shot-02.webp",
+      "caption": "OpenRouter free-model availability dashboard — current reachability per model.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "file": "shot-03-full-a.webp",
+      "caption": "Full report (1/3) — per-provider price histories.",
+      "type": "image",
+      "width": 1600,
+      "height": 13386
+    },
+    {
+      "file": "shot-03-full-b.webp",
+      "caption": "Full report (2/3) — provider comparisons and market data.",
+      "type": "image",
+      "width": 1600,
+      "height": 13386
+    },
+    {
+      "file": "shot-03-full-c.webp",
+      "caption": "Full report (3/3) — free-model churn, thinking-token pricing, sources.",
+      "type": "image",
+      "width": 1600,
+      "height": 13386
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "project": "Strain Catalog",
+  "demo_type": "live",
+  "captured_at": "2026-09-08T21:27:25.553Z",
+  "items": [
+    {
+      "file": "shot-01.webp",
+      "caption": "Home — hero, stats, and featured strains from the 4,800-strain dataset.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "file": "shot-02.webp",
+      "caption": "Strain listing — image-first cards with breeder badges, THC, and effect pills.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "file": "shot-03.webp",
+      "caption": "Strain detail — THC meter, color-coded terpene bars, effects, and genetic lineage tree.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "file": "shot-04-full.webp",
+      "caption": "Full strain detail — similar-strains engine and photo gallery below.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "file": "shot-05.webp",
+      "caption": "Dispensary map — locations and menus on Leaflet.",
+      "type": "image",
+      "width": 1600,
+      "height": 1000
+    }
+  ]
+}
