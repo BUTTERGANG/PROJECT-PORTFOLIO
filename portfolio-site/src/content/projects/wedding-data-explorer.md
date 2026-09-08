@@ -35,6 +35,7 @@ The wedding-vendor dataset (1,734 vendors, 32,613 reviews across TheKnot and Zol
 ## Proof points
 - **1,734 vendors and 32,613 reviews** made browsable to non-technical users.
 - **Vendor replies excluded** from every sentiment number — a data-integrity choice most review dashboards skip.
+- **Living dataset** — snapshots refresh on a schedule (2026-08-31 and 2026-09-07 shipped so far), so the numbers stay current.
 - **~11MB snapshot** — the entire national dataset ships inside the repo.
 
 ## What to show

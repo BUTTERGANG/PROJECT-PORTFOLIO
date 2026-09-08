@@ -36,6 +36,7 @@ Olympic weightlifting meets are as much strategy as strength: when you open, how
 ## Proof points
 - ~7,000 USAW CSV files ingested into a production PostgreSQL database — surfacing **68,637 lifters across 7,358 competitions** in the live Data Browser.
 - Automated a real SAML login + cookie-consent + pagination flow to collect the data at scale.
+- **Pre-launch hardening complete** (Sept 2026) — full-scale audit fixes, TypeScript clean, **215 tests green, zero CRITICAL/HIGH issues remaining**.
 - End-to-end: scraper → ETL → database → API → interactive simulator, all one person.
 - Separate USA Masters dataset/config — the platform generalizes beyond one data source.
 

@@ -29,6 +29,7 @@ The wine app market has 70M+ users across Vivino, CellarTracker, Wine-Searcher, 
 - **Spirit groups** — create/join groups, group-filtered feed, category model.
 - **Ratings, reviews, venue detail pages** with stats, wines poured, and recent tastings.
 - **Notifications and security hardening** alongside the map improvements.
+- **Premium design system** (Sept 2026) — brand identity, expanded color palette, depth and material treatment across every page.
 
 ## How it's built
 - **Stack:** Python (FastAPI), SQLite (WAL mode), Leaflet + OpenStreetMap, vanilla JS frontend; ~608K lines across Python/HTML/CSS/JS.

@@ -23,6 +23,8 @@ A working DJ manages three things at once: what's playing now, what comes next, 
 - **Crowd-read integration** — logs energy assessments per track and builds a model of what works with this specific crowd.
 - **Genre mapping** — tracks relationships between songs by energy, key, era, and genre to suggest viable transitions even between different styles.
 - **Mobile PWA** — accessible from a phone or tablet on the DJ table, no second laptop required.
+- **Two-tier audio recognition (Sept 2026)** — local **audfprint** fingerprinting for owned audio/edits, with **AcoustID** cloud fallback (100M+ track DB, chromaprint) identifying mainstream Spotify/Apple catalog tracks even with no local audio files; cloud matches auto-add as library stub rows so history links up.
+- **Library import (Sept 2026)** — **Rekordbox XML, JSON, and CSV** ingestion with auto-format detection, flexible column mapping, upsert-on-(title, artist) semantics that never delete, and Rekordbox rating → energy-scale conversion.
 
 ## How it's built
 - **Stack:** Python, FastAPI, LLM (OpenRouter), SQLite, PWA (mobile-first manifest)
@@ -35,6 +37,8 @@ A working DJ manages three things at once: what's playing now, what comes next, 
 ## Proof points
 - **Shipped MVP** (August 24) — live and functional with core suggestion loop working.
 - **Context-aware output** — not just a track list but actual transition advice (blend, cut, fade, acapella intro).
+- **Two-tier audio recognition** — local fingerprint + cloud AcoustID fallback covering both owned edits and mainstream catalog tracks.
+- **Real library ingestion** — Rekordbox XML/JSON/CSV import verified across all three formats, duplicate-safe.
 - **Real-event workflow** — built for Alex's own weekend workflow, not a hypothetical use case.
 
 ## What to show

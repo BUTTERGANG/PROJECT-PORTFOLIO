@@ -1,6 +1,6 @@
 # Project Docs — Index
 
-42 project case-study docs, grouped by origin cluster (the Build Loop). Each follows `_TEMPLATE.md`.
+47 project case-study docs, grouped by origin cluster (the Build Loop). Each follows `_TEMPLATE.md`.
 **Convention:** repos stay **private**; projects go viewable via a **public demo URL** (`demo_url`). `demo_type: case-study-only` = backend/sensitive, no clickable demo — use screenshots/diagrams.
 
 Legend: 🟢 public repo · 🔒 private repo · ⭐ anchor/advanced · 🖥️ live-demo-able · 📄 case-study-only
@@ -11,6 +11,7 @@ Legend: 🟢 public repo · 🔒 private repo · ⭐ anchor/advanced · 🖥️ 
 - ⭐🔒🖥️ [workoutflow](workoutflow.md) — team programming platform; NIST-grade security hardening
 - 🔒🖥️ [moran-website](moran-website.md) — shipped gym platform for a real gym; public site + athlete portal + program builder (client sibling of workoutflow)
 - 🟢🖥️ [weightlifting-equipment](weightlifting-equipment.md) — 20+ retailer price tracker for barbells, plates, racks, belts, apparel & shoes; public dataset
+- 🟢📄 [usaw-club-pricing](usaw-club-pricing.md) — 770 USAW clubs, 331 with public pricing, 11 charts; the coaching-cost dataset that didn't exist
 
 ## Weddings & DJ work
 - ⭐🔒🖥️ [weddingos](weddingos.md) — **ANCHOR.** Single-tenant platform replacing HoneyBook + Pixieset + Calendly + DocuSign; 68/68 smoke tests, security-hardened, Neon-backed
@@ -18,6 +19,7 @@ Legend: 🟢 public repo · 🔒 private repo · ⭐ anchor/advanced · 🖥️ 
 - ⭐🔒🖥️ [sales-bot](sales-bot.md) — sales negotiation co-pilot for wedding vendors; pricing psychology analysis + growing playbook from real calls
 - 🔒🖥️ [wedding-timelines](wedding-timelines.md) — run-of-show planner (v2 rebuild of public TIMELINE)
 - 🟢🖥️ [live-dj-copilot](live-dj-copilot.md) — mobile DJ suggestion engine; LLM read parsing, mobile PWA, next-track & transition suggestions
+- ⭐🔒📄 [wedding-consolidation-api](wedding-consolidation-api.md) — multi-org backend collapsing the vendor tool stack; BYO Dropbox + branded email + migration; 44 tests, row-level isolation verified
 - 🔒📄 [wedding-data-explorer](wedding-data-explorer.md) — gated read-only UI over the 1,734-vendor dataset; text-to-SQL ask-the-data box; the interface layer for theknot/pricing-compare data
 
 ## Photography & LA Media
@@ -36,6 +38,7 @@ Legend: 🟢 public repo · 🔒 private repo · ⭐ anchor/advanced · 🖥️ 
 - 🔒📄 [public-storage-bot](public-storage-bot.md) — storage rates + Claude deal bot (Telegram)
 - 🟢🖥️ [romaleos-2-tracker](romaleos-2-tracker.md) — discontinued-shoe grail tracker; eBay Browse API + US-size extraction + Discord watches
 - 🔒📄 [ebay-endpoint](ebay-endpoint.md) — eBay marketplace webhook compliance service; ECDSA signature verification, challenge/response, status dashboard
+- ⭐🔒🖥️ [skyscanner](skyscanner.md) — PerimeterX bypass on Skyscanner's mobile API + self-hosted weekend-deal tracker; 200+ destinations
 - 🟢🖥️ [earls](earls.md) — Earl's Auction monitor; real-browser rendering
 
 ## Life admin
@@ -46,6 +49,7 @@ Legend: 🟢 public repo · 🔒 private repo · ⭐ anchor/advanced · 🖥️ 
 - 🟢🖥️ [productivity-tracker](productivity-tracker.md) — GitHub-style habit grid *(easiest first live demo)*
 - 🟢🖥️ [3d-car-manual](3d-car-manual.md) — Three.js Traverse manual + RAG *(prototype)*
 - 🟢🖥️ [bible-study-app](bible-study-app.md) — Logos-style study app + AI *(prototype)*
+- ⭐🟢🖥️ [strain-catalog](strain-catalog.md) — 4,800-strain catalog; genetic lineage trees, terpene bars, similar-strains engine; 4-source enrichment pipeline
 
 ## Civic & community
 - ⭐🔒🖥️ [civic-duty](civic-duty.md) — 3-region civic aggregator (Fishers, Indianapolis, Hamilton Co.); ~20 sources, live alerting
@@ -60,6 +64,7 @@ Legend: 🟢 public repo · 🔒 private repo · ⭐ anchor/advanced · 🖥️ 
 - ⭐📄 [hermes](hermes.md) — self-hosted market-intel agent; n8n + MCP on VPS
 - ⭐📄 [security-research](security-research.md) — Kali/Metasploit MCP servers; 78 verified bug-bounty findings across 21 targets; PicoCTF
 - 📄 [master-dashboard](master-dashboard.md) — live command center for the whole portfolio; GitHub webhooks + SSE, agent-facing JSON API, human 2FA login
+- 🟢📄 [ai-pricing-research](ai-pricing-research.md) — 216 LLM price points across 11 providers, 2020-2026; generated dashboard; the model-cost time series nobody else keeps
 - 📄 [metals-research](metals-research.md) — silver supply-side model; byproduct production analysis; decades-long macro research; companion to Infra Metals Dashboard
 - 📄 [home-infrastructure](home-infrastructure.md) — QNAP + Tailscale + CCS proxy; OS/network debugging
 
