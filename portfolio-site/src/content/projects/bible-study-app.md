@@ -24,7 +24,7 @@ Good Bible-study software exists but it's costly and bloated. I wanted the core 
 - Structured scripture/study data ingestion pipeline.
 
 ## How it's built
-- **Stack:** FastAPI + SQLAlchemy + SQLite (async, aiosqlite), Alembic migrations, Anthropic Claude (`anthropic`), `pypdf` for source ingestion, JWT auth (python-jose), Playwright in the ingest tooling; JS/React frontend. Dockerized with a Makefile.
+- **Stack:** FastAPI + SQLAlchemy + SQLite (async, aiosqlite), Alembic migrations, Anthropic Claude (`anthropic`), `pypdf` for source ingestion, JWT auth (PyJWT), Playwright in the ingest tooling; JS/React frontend. Dockerized with a Makefile.
 - **Notable engineering:** a real data-ingestion pipeline for study resources; async FastAPI backend with migrations and auth; an AI assistant layered over structured scripture data.
 - **Architecture:** ingest (Playwright/pypdf) → structured store (SQLAlchemy/SQLite, Alembic) → FastAPI (JWT) → React study UI with Claude assistant.
 
