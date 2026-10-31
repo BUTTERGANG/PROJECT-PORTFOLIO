@@ -287,14 +287,22 @@ const packages = [
     </div>
   </section>
 
-  <!-- Lightbox: native <dialog>, same pattern as the project media galleries. -->
+  <!-- Lightbox: native <dialog>, same pattern as the project media galleries.
+       Deliberately no src attribute — an <img src=""> resolves to the page URL
+       and fires a spurious window error event on every load. The script adds
+       the src when a photo opens and removes it again on close. -->
   <dialog id="lightbox" class="lightbox" aria-label="Enlarged photo">
     <button class="lightbox__close" type="button" aria-label="Close">✕</button>
-    <img class="lightbox__img" src="" alt="" />
+    <img class="lightbox__img" alt="" />
   </dialog>
 
   <script is:inline>
     /* ---- Carousel: select a cover, drop its gallery in below --------------- */
+    /* Wrapped in try/catch on purpose. `html.js` (set pre-paint in BaseLayout)
+       is what hides the inactive panels, so if this script ever fails on a
+       browser we don't control, the page must fall back to rendering every
+       gallery stacked rather than leaving three disciplines unreachable. */
+    try {
     (function () {
       var strip = document.querySelector('.reel__strip');
       var holder = document.getElementById('reel-panels');
@@ -446,6 +454,12 @@ const packages = [
       fromHash();
       window.addEventListener('hashchange', fromHash);
     })();
+    } catch (err) {
+      if (window.console && console.warn) {
+        console.warn('[photography] carousel init failed — showing all galleries stacked:', err);
+      }
+      document.documentElement.classList.remove('js');
+    }
 
     /* ---- Lightbox: native <dialog>, same pattern as the project galleries --- */
     (function () {
@@ -463,7 +477,7 @@ const packages = [
       }
       function close() {
         if (dlg.open) dlg.close();
-        img.src = '';
+        img.removeAttribute('src');
       }
 
       shots.forEach(function (el) {
@@ -471,7 +485,7 @@ const packages = [
       });
       dlg.querySelector('.lightbox__close').addEventListener('click', close);
       dlg.addEventListener('click', function (e) { if (e.target === dlg) close(); });
-      dlg.addEventListener('close', function () { img.src = ''; });
+      dlg.addEventListener('close', function () { img.removeAttribute('src'); });
     })();
   </script>
 </BaseLayout>
