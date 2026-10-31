@@ -17,7 +17,8 @@ export interface PhotoCategory {
   key: 'portraits' | 'sports' | 'weddings' | 'travel';
   label: string;
   blurb: string;
-  hero?: Photo;
+  /** The one image that represents the discipline in the carousel. */
+  cover?: Photo;
   photos: Photo[];
 }
 
@@ -27,7 +28,7 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
     label: 'Weddings',
     blurb:
       'Full-day coverage — getting ready through the last dance — with the film cut alongside the stills. Coverage runs 4 to 10+ hours; 250+ edited images per wedding on an 8–10 week turnaround.',
-    hero: { src: '/photography/weddings/hero.webp', alt: 'Outdoor wedding at golden hour', w: 1800, h: 1200 },
+    cover: { src: '/photography/weddings/hero.webp', alt: 'Outdoor wedding at golden hour', w: 1800, h: 1200 },
     photos: [
       { src: '/photography/weddings/w-02.webp',   alt: 'Wedding portrait',              w: 666,  h: 1000 },
       { src: '/photography/weddings/w-66.webp',   alt: 'Ceremony moment',               w: 1000, h: 666 },
@@ -44,7 +45,7 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
     label: 'Sports & Powerlifting',
     blurb:
       'Meet coverage built from the inside of the sport — I compete in Olympic weightlifting, so I know the attempts worth shooting. 40+ edited photos per lifter, plus video of the lifts and a 45–60 second hype reel.',
-    hero: { src: '/photography/sports/hero.webp', alt: 'Athlete mid-lift under meet lighting', w: 1500, h: 1000 },
+    cover: { src: '/photography/sports/hero.webp', alt: 'Athlete mid-lift under meet lighting', w: 1500, h: 1000 },
     photos: [
       { src: '/photography/sports/aiden.webp',      alt: 'Competitor at a powerlifting meet',  w: 666,  h: 1000 },
       { src: '/photography/sports/august.webp',     alt: 'Athlete setup before an attempt',    w: 666,  h: 1000 },
@@ -63,7 +64,7 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
     label: 'Portraits',
     blurb:
       'Sessions for headshots, seniors, couples and families — posed but never stiff. 30-minute to 2-hour sessions, every shoot delivered with an online gallery and full-resolution downloads.',
-    hero: { src: '/photography/portraits/hero.webp', alt: 'Outdoor portrait session', w: 1500, h: 899 },
+    cover: { src: '/photography/portraits/hero.webp', alt: 'Outdoor portrait session', w: 1500, h: 899 },
     photos: [
       { src: '/photography/portraits/lydia.webp',    alt: 'Portrait session — Lydia',      w: 666,  h: 1000 },
       { src: '/photography/portraits/lydia-02.webp', alt: 'Portrait session, second look',  w: 666,  h: 1000 },
@@ -80,7 +81,7 @@ export const PHOTO_CATEGORIES: PhotoCategory[] = [
     label: 'Travel & Place',
     blurb:
       'The work that keeps the eye sharp between paid jobs — city, light and detail, shot on assignment and on the road.',
-    hero: { src: '/photography/travel/hero.webp', alt: 'City street photographed at dusk', w: 1000, h: 1500 },
+    cover: { src: '/photography/travel/hero.webp', alt: 'City street photographed at dusk', w: 1000, h: 1500 },
     photos: [
       { src: '/photography/travel/nyc-01.webp', alt: 'New York street scene',    w: 800, h: 1200 },
       { src: '/photography/travel/nyc-02.webp', alt: 'New York cityscape',       w: 800, h: 1200 },

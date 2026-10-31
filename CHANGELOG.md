@@ -2,34 +2,49 @@
 
 All notable changes to PROJECT-PORTFOLIO. Newest first.
 
-## 2026-10-31 — Photography: collapsible galleries
+## 2026-10-31 — Photography: cover carousel + dropping gallery
 
-The galleries page ran ~13,000px of photos in one scroll. Each discipline is now
-a disclosure you open on demand — and the collapsed row is deliberately thin so
-the collapse actually buys back scrolling.
+Replaces the stacked galleries with one cover photo per discipline in a
+carousel, and the gallery for the selected cover drops in underneath it.
 
-- **Weddings / Sports & Powerlifting / Portraits / Travel** are native
-  `<details>` disclosures: Weddings open on load, the rest collapsed. Clicking
-  the row toggles it; no JS, no framework, keyboard accessible for free.
-- **Collapsed row is 53px** — one line: title, photo count, 18px chevron. The
-  descriptive blurb moved *inside* the panel, so a closed section costs a single
-  row instead of a block of prose. (First cut left the blurb in the header and
-  the rows came out 153–178px each, which defeated the point.)
-- **Every default disclosure triangle is suppressed** — `::-webkit-details-marker`
-  *and* `::marker` — because Safari paints its own triangle sized off the
-  summary's font, which is how a summary ends up with a giant arrow. The chevron
-  SVG also carries explicit `width`/`height` attributes so it can never fall back
-  to the 300×150 replaced-element size if a stylesheet fails to load.
-- Page height: **13,283px all open → 4,087px all closed → 6,191px with Weddings
-  open**. Collapsed sections don't fetch their images (5 downloaded vs 34).
-- Deep links (`/photography/#portraits`) open their section before the anchor
-  lands — otherwise the link scrolls to a closed header.
+- **Four covers, one per discipline** (weddings / sports / portraits / travel),
+  each carrying its label and photo count. Selecting one is what switches the
+  gallery below.
+- **Genuinely scrollable, not just clickable.** The strip is a real horizontal
+  scroll container with scroll-snap, so swipe and trackpad work natively, plus a
+  pointer-drag handler for a mouse. Cards are sized so ~3.2 show at desktop
+  width — at the first sizing all four nearly fit in 1040px and the strip had
+  only 80px of travel, which is not a carousel.
+- **Motion on cycle:** the active cover lifts 4px, brightens (drops its dim
+  filter), zooms from 1.05 to 1.01, warms its count to accent, and takes a sweep
+  of accent light across it; inactive covers sit at 68% opacity and 96.5% scale.
+  The indicator pill widens and slides.
+- **The gallery drops in:** the new panel animates down from behind the carousel
+  (`translateY(-18px)` → 0 with a fade), while the container eases between the
+  old and new heights so nothing snaps.
+- **Navigation:** click a cover, click a dot, use the ← → buttons (both wrap), or
+  arrow-key through the strip with a proper roving tabindex and
+  `aria-selected`. Deep links (`/photography/#portraits`) open that discipline.
+- **Degrades cleanly:** with JS off every gallery renders stacked; under
+  `prefers-reduced-motion` the panels switch with no animation.
 - Stat tile corrected: **"2 shooters on the top tier" → "1 shooter, shoot to
   delivery"**, and the Legacy wedding package no longer claims a second shooter.
 
-Verified in Brave over raw CDP at 320/390/560/720/900/1100/1440px: 53px rows and
-18px chevrons at every width, no SVG over 30px anywhere on the page, 0px
-horizontal overflow and no clipped titles; click toggles open→closed→open.
+Two bugs found and fixed by testing rather than assuming:
+- **Mouse drag died after ~40px.** `pointerleave` fired as soon as the strip
+  shifted under the cursor and ended the gesture. Fixed with
+  `setPointerCapture` on pointerdown, and the covers now carry
+  `draggable="false"` + `user-drag: none` so a mouse drag can't start a native
+  image drag instead.
+- **The drag test itself was invalid at first** — it dispatched mouse events at
+  y=1076 in a 1000px viewport, so nothing was ever hit. Re-run with the carousel
+  scrolled into view, the drag tracks the cursor 1:1 and snaps on release.
+
+Verified in Brave over raw CDP at 320/390/560/720/900/1100/1440px: strip
+scrollable at every width, 0px horizontal overflow, cards 191–309px; click /
+arrow / dot / keyboard all switch the panel and update `aria-selected` and the
+roving tabindex; only one panel is ever visible; drag scrolls without selecting;
+deep link works; reduced-motion and no-JS paths both behave.
 
 ## 2026-10-31 — Photography section + freshness pass
 

@@ -87,32 +87,93 @@ const packages = [
     </div>
   </section>
 
-  <!-- ── Galleries ──────────────────────────────────────────────────────────
-       Each discipline is a native <details> disclosure: collapsed by default
-       except the first, click the header to open. No JS, no framework — the
-       chevron rotates, the panel fades up, and the page stays short until a
-       visitor asks for more. -->
-  <div class="wrap gallerys">
-    {PHOTO_CATEGORIES.map((cat, ci) => (
-      <details class="cat reveal" id={cat.key} open={ci === 0}>
-        <summary class="cat__head">
-          <h2 class="cat__label">{cat.label}</h2>
-          <span class="cat__count">{cat.photos.length + (cat.hero ? 1 : 0)} photos</span>
-          <svg class="cat__chev" width="18" height="18" viewBox="0 0 24 24" fill="none"
-               stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-               stroke-linejoin="round" aria-hidden="true">
-            <path d="m6 9 6 6 6-6"></path>
+  <!-- ── Gallery carousel ───────────────────────────────────────────────────
+       One cover photo per discipline, in a strip you can swipe or click.
+       Selecting a cover drops that discipline's gallery in below it. The strip
+       is a real scroll container (native swipe/trackpad, plus pointer-drag for
+       a mouse) with a tablist on top for keyboard and screen readers — so it
+       degrades to "all four galleries stacked" with JS off. -->
+  <section class="reel reveal" aria-labelledby="reel-title">
+    <div class="wrap">
+      <div class="reel__head">
+        <h2 id="reel-title">Four disciplines, one cover each</h2>
+        <p class="muted reel__hint">
+          Swipe the strip, click a cover, or use ← → — the gallery opens underneath it.
+        </p>
+      </div>
+
+      <div class="reel__viewport" data-reel-viewport>
+        <ul class="reel__strip" role="tablist" aria-label="Photography disciplines">
+          {PHOTO_CATEGORIES.map((cat, i) => (
+            <li class="reel__item">
+              <button type="button" role="tab"
+                      class:list={['reel__card', { 'is-active': i === 0 }]}
+                      id={cat.key}
+                      data-cat={cat.key}
+                      aria-controls={`panel-${cat.key}`}
+                      aria-selected={i === 0 ? 'true' : 'false'}
+                      tabindex={i === 0 ? 0 : -1}>
+                <img class="reel__img" src={cat.cover?.src} alt="" draggable="false"
+                     width={cat.cover?.w} height={cat.cover?.h}
+                     loading={i === 0 ? 'eager' : 'lazy'} decoding="async" />
+                <span class="reel__scrim" aria-hidden="true"></span>
+                <span class="reel__meta">
+                  <span class="reel__label">{cat.label}</span>
+                  <span class="reel__count">{cat.photos.length + (cat.cover ? 1 : 0)} photos</span>
+                </span>
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="reel__controls">
+        <button type="button" class="reel__arrow" data-reel="prev" aria-label="Previous discipline">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M15 18l-6-6 6-6"></path>
           </svg>
-        </summary>
+        </button>
 
-        <div class="cat__panel">
-          <p class="cat__blurb muted">{cat.blurb}</p>
+        <ol class="reel__dots">
+          {PHOTO_CATEGORIES.map((cat, i) => (
+            <li>
+              <button type="button" class:list={['reel__dot', { 'is-active': i === 0 }]}
+                      data-cat={cat.key} aria-label={`Show ${cat.label}`}></button>
+            </li>
+          ))}
+        </ol>
 
-          {cat.hero && (
-            <figure class="cat__feature">
-              <button type="button" class="shot" data-lightbox={cat.hero.src} aria-label={`Enlarge: ${cat.hero.alt}`}>
-                <img src={cat.hero.src} alt={cat.hero.alt} width={cat.hero.w} height={cat.hero.h}
-                     loading={ci === 0 ? 'eager' : 'lazy'} decoding="async" />
+        <button type="button" class="reel__arrow" data-reel="next" aria-label="Next discipline">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M9 18l6-6-6-6"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── The gallery that drops in ──────────────────────────────────────────
+       All four panels ship in the HTML; with `html.js` set, only the active one
+       renders, so no-JS visitors get every gallery stacked. -->
+  <div class="wrap">
+    <div class="reel__panels" id="reel-panels">
+      {PHOTO_CATEGORIES.map((cat, ci) => (
+        <section class="panel" id={`panel-${cat.key}`} role="tabpanel"
+                 aria-labelledby={cat.key} tabindex="0"
+                 data-cat={cat.key}
+                 data-active={ci === 0 ? 'true' : undefined}>
+          <header class="panel__head">
+            <h2 class="panel__label">{cat.label}</h2>
+            <p class="panel__blurb muted">{cat.blurb}</p>
+          </header>
+
+          {cat.cover && (
+            <figure class="panel__banner">
+              <button type="button" class="shot" data-lightbox={cat.cover.src} aria-label={`Enlarge: ${cat.cover.alt}`}>
+                <img src={cat.cover.src} alt={cat.cover.alt} width={cat.cover.w} height={cat.cover.h}
+                     loading="lazy" decoding="async" />
               </button>
             </figure>
           )}
@@ -126,9 +187,9 @@ const packages = [
               </figure>
             ))}
           </div>
-        </div>
-      </details>
-    ))}
+        </section>
+      ))}
+    </div>
   </div>
 
   <!-- ── Video ────────────────────────────────────────────────────────────── -->
@@ -233,18 +294,161 @@ const packages = [
   </dialog>
 
   <script is:inline>
+    /* ---- Carousel: select a cover, drop its gallery in below --------------- */
     (function () {
-      // Deep links (#sports, #portraits…) must open their collapsed section,
-      // otherwise the anchor lands on a closed header and the work is hidden.
-      function openFromHash() {
-        var id = decodeURIComponent((location.hash || '').replace(/^#/, ''));
-        if (!id) return;
-        var el = document.getElementById(id);
-        if (el && el.tagName === 'DETAILS' && !el.open) el.open = true;
-      }
-      openFromHash();
-      window.addEventListener('hashchange', openFromHash);
+      var strip = document.querySelector('.reel__strip');
+      var holder = document.getElementById('reel-panels');
+      if (!strip || !holder) return;
 
+      var cards = [].slice.call(strip.querySelectorAll('.reel__card'));
+      var panels = [].slice.call(holder.querySelectorAll('.panel[data-cat]'));
+      var dots = [].slice.call(document.querySelectorAll('.reel__dot'));
+      var arrows = [].slice.call(document.querySelectorAll('.reel__arrow'));
+      var viewport = document.querySelector('[data-reel-viewport]');
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!cards.length) return;
+
+      function byCat(list, cat) {
+        for (var i = 0; i < list.length; i++) {
+          if (list[i].getAttribute('data-cat') === cat) return list[i];
+        }
+        return null;
+      }
+      function catOf(el) { return el && el.getAttribute('data-cat'); }
+      function current() {
+        for (var i = 0; i < cards.length; i++) {
+          if (cards[i].classList.contains('is-active')) return catOf(cards[i]);
+        }
+        return catOf(cards[0]);
+      }
+      function indexOf(cat) {
+        for (var i = 0; i < cards.length; i++) if (catOf(cards[i]) === cat) return i;
+        return 0;
+      }
+
+      function select(cat, opts) {
+        opts = opts || {};
+        if (!cat || (!opts.force && cat === current())) return;
+
+        // Measure before the swap so the container can ease between the two
+        // heights instead of snapping.
+        var fromH = holder.getBoundingClientRect().height;
+
+        for (var i = 0; i < panels.length; i++) {
+          if (catOf(panels[i]) === cat) panels[i].setAttribute('data-active', 'true');
+          else panels[i].removeAttribute('data-active');
+        }
+        for (var j = 0; j < cards.length; j++) {
+          var on = catOf(cards[j]) === cat;
+          cards[j].classList.toggle('is-active', on);
+          cards[j].setAttribute('aria-selected', on ? 'true' : 'false');
+          cards[j].tabIndex = on ? 0 : -1;
+        }
+        for (var k = 0; k < dots.length; k++) {
+          dots[k].classList.toggle('is-active', catOf(dots[k]) === cat);
+        }
+
+        var toH = holder.getBoundingClientRect().height;
+        if (!reduce && holder.animate && fromH && toH && Math.abs(fromH - toH) > 1) {
+          holder.style.overflow = 'hidden';
+          var a = holder.animate(
+            [{ height: fromH + 'px' }, { height: toH + 'px' }],
+            { duration: 440, easing: 'cubic-bezier(.2,.7,.2,1)' }
+          );
+          a.onfinish = function () { holder.style.overflow = ''; holder.style.height = ''; };
+        }
+
+        // Centre the newly selected cover in the strip.
+        var card = byCat(cards, cat);
+        if (card && viewport && !opts.noScroll) {
+          var want = card.offsetLeft - (viewport.clientWidth - card.offsetWidth) / 2;
+          viewport.scrollTo({ left: Math.max(0, want), behavior: reduce ? 'auto' : 'smooth' });
+        }
+      }
+
+      cards.forEach(function (c) {
+        c.addEventListener('click', function () { select(catOf(c)); });
+      });
+      dots.forEach(function (d) {
+        d.addEventListener('click', function () { select(catOf(d)); });
+      });
+      arrows.forEach(function (b) {
+        b.addEventListener('click', function () {
+          var dir = b.getAttribute('data-reel') === 'next' ? 1 : -1;
+          var next = cards[(indexOf(current()) + dir + cards.length) % cards.length];
+          select(catOf(next));
+          next.focus();
+        });
+      });
+
+      // Roving arrow-key navigation across the tabs.
+      strip.addEventListener('keydown', function (e) {
+        var dir = e.key === 'ArrowRight' ? 1 : (e.key === 'ArrowLeft' ? -1 : 0);
+        if (!dir) return;
+        e.preventDefault();
+        var next = cards[(indexOf(current()) + dir + cards.length) % cards.length];
+        select(catOf(next));
+        next.focus();
+      });
+
+      // Pointer-drag for a mouse. Touch/trackpad already scroll the strip
+      // natively, so they're left alone.
+      if (viewport) {
+        var down = false, moved = 0, startX = 0, startLeft = 0;
+
+        viewport.addEventListener('pointerdown', function (e) {
+          if (e.pointerType === 'touch') return;
+          down = true; moved = 0; startX = e.clientX; startLeft = viewport.scrollLeft;
+          // Capture the pointer for the whole gesture. Without this the browser
+          // fires pointerleave as soon as the content shifts under the cursor and
+          // the drag dies after a few pixels — which is exactly what happened
+          // before capture was added.
+          if (viewport.setPointerCapture) {
+            try { viewport.setPointerCapture(e.pointerId); } catch (err) {}
+          }
+        });
+
+        viewport.addEventListener('pointermove', function (e) {
+          if (!down) return;
+          moved = e.clientX - startX;
+          if (Math.abs(moved) > 6) {
+            e.preventDefault();
+            viewport.classList.add('is-dragging');
+            viewport.scrollLeft = startLeft - moved;
+          }
+        });
+
+        function endDrag(e) {
+          if (!down) return;
+          down = false;
+          viewport.classList.remove('is-dragging');
+          if (e && viewport.releasePointerCapture && e.pointerId != null) {
+            try { viewport.releasePointerCapture(e.pointerId); } catch (err) {}
+          }
+          if (Math.abs(moved) > 6) {
+            // Swallow the click that trails a real drag so it can't also select.
+            viewport.addEventListener('click', function once(ev) {
+              ev.preventDefault(); ev.stopPropagation();
+              viewport.removeEventListener('click', once, true);
+            }, true);
+          }
+        }
+
+        viewport.addEventListener('pointerup', endDrag);
+        viewport.addEventListener('pointercancel', endDrag);
+      }
+
+      // Deep links: /photography/#portraits should open that discipline.
+      function fromHash() {
+        var id = decodeURIComponent((location.hash || '').replace(/^#/, ''));
+        if (id && byCat(panels, id)) select(id);
+      }
+      fromHash();
+      window.addEventListener('hashchange', fromHash);
+    })();
+
+    /* ---- Lightbox: native <dialog>, same pattern as the project galleries --- */
+    (function () {
       var dlg = document.getElementById('lightbox');
       if (!dlg) return;
       var img = dlg.querySelector('.lightbox__img');
@@ -297,55 +501,135 @@ const packages = [
   /* ── Band ──────────────────────────────────────────────────────────────── */
   .band { padding-block: clamp(2rem, 5vw, 3rem) 0; }
 
-  /* ── Category galleries (native <details> disclosures) ───────────────────
-     The collapsed row is deliberately thin — one line, ~52px: title, photo
-     count, small chevron. Nothing else. The blurb lives inside the panel, so
-     a closed section costs a single row instead of a block of prose. */
-  .cat { border-top: 1px solid var(--border); }
-  .cat:first-of-type { border-top: 0; }
-  .cat__head {
-    display: grid; gap: .6rem 1rem;
-    grid-template-columns: minmax(0, 1fr) auto auto;
-    align-items: center;
-    min-height: 52px; padding-block: .55rem;
-    cursor: pointer; list-style: none;
-  }
-  /* Kill every flavour of default disclosure triangle. `display:grid` already
-     drops it in Chrome, but Safari still paints its own, and it is sized off
-     the summary's font — which is how you end up with a giant arrow. */
-  .cat__head::-webkit-details-marker { display: none; }
-  .cat__head::marker { content: ""; }
-  .cat__label {
-    grid-column: 1; margin: 0;
-    font-size: 1.2rem; font-weight: 700; letter-spacing: -.015em;
-    transition: color .18s ease;
-  }
-  .cat__count {
-    grid-column: 2;
-    font-family: var(--font-mono); font-size: .68rem; font-weight: 600;
-    letter-spacing: .06em; text-transform: uppercase; color: var(--text-faint);
-    white-space: nowrap;
-  }
-  .cat__chev {
-    grid-column: 3; width: 18px; height: 18px; flex: none;
-    color: var(--text-faint);
-    transition: transform .3s cubic-bezier(.2,.7,.2,1), color .18s ease;
-  }
-  .cat__head:hover .cat__label,
-  .cat__head:hover .cat__chev { color: var(--accent-text); }
-  .cat[open] .cat__chev { transform: rotate(180deg); color: var(--accent-text); }
+  /* ── Carousel of covers ─────────────────────────────────────────────────
+     A real horizontal scroll container (native swipe/trackpad, plus a
+     pointer-drag handler for a mouse) with one cover per discipline. The
+     active card lifts, warms and gets a sweep of accent light when selected;
+     the gallery for it drops in below. */
+  .reel { border-top: 1px solid var(--border); padding-block: clamp(2rem, 5vw, 3rem) 0; }
+  .reel__head { margin-bottom: 1.2rem; }
+  .reel__head h2 { margin-bottom: .3em; }
+  .reel__hint { margin: 0; max-width: 62ch; font-size: .95rem; }
 
-  .cat__panel { padding-block: .2rem clamp(1.6rem, 4vw, 2.4rem); }
-  .cat__blurb { margin: 0 0 1rem; max-width: 68ch; font-size: .95rem; }
-  .cat__feature { margin: 0 0 1rem; }
-  .cat__feature img { width: 100%; height: auto; display: block; border-radius: var(--radius); border: 1px solid var(--border); }
+  .reel__viewport {
+    overflow-x: auto; overflow-y: hidden;
+    scroll-snap-type: x proximity;
+    /* vertical padding gives the lifted cards room so nothing is clipped */
+    padding-block: .7rem 1rem;
+    cursor: grab;
+    scrollbar-width: thin; scrollbar-color: var(--border-strong) transparent;
+  }
+  .reel__viewport.is-dragging { cursor: grabbing; scroll-snap-type: none; }
+  .reel__viewport::-webkit-scrollbar { height: 6px; }
+  .reel__viewport::-webkit-scrollbar-track { background: transparent; }
+  .reel__viewport::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 99px; }
 
-  /* Panel entrance — skipped entirely under reduced motion (global stylesheet
-     clamps animation-duration), so the open panel simply appears. */
+  .reel__strip { display: flex; gap: 1rem; margin: 0; padding: 0; list-style: none; }
+  /* Sized so ~3.2 covers show at desktop width: the strip genuinely overflows,
+     so it reads as a carousel instead of four cards that happen to fit. */
+  .reel__item { flex: 0 0 clamp(200px, 30vw, 320px); scroll-snap-align: center; }
+
+  .reel__card {
+    position: relative; display: block; width: 100%; aspect-ratio: 4 / 5;
+    padding: 0; overflow: hidden; cursor: pointer;
+    border: 1px solid var(--border); border-radius: var(--radius);
+    background: var(--bg-inset);
+    /* The card is a drag surface, not a text/image selection target: without
+       this a mouse drag over the photo starts a native image drag instead of
+       scrolling the strip. */
+    user-select: none; -webkit-user-select: none;
+    opacity: .68; transform: scale(.965);
+    transition: opacity .45s ease, transform .45s cubic-bezier(.2,.7,.2,1),
+                border-color .3s ease, box-shadow .35s ease;
+  }
+  .reel__card img { -webkit-user-drag: none; user-drag: none; }
+  .reel__card.is-active {
+    opacity: 1; transform: translateY(-4px) scale(1);
+    border-color: var(--accent);
+    box-shadow: 0 12px 34px rgba(0,0,0,.42);
+  }
+  :root[data-theme="light"] .reel__card.is-active { box-shadow: 0 10px 26px rgba(0,0,0,.16); }
+
+  .reel__img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    filter: saturate(.8) brightness(.82);
+    transform: scale(1.05);
+    transition: filter .4s ease, transform .7s cubic-bezier(.2,.7,.2,1);
+  }
+  .reel__card.is-active .reel__img { filter: none; transform: scale(1.01); }
+  .reel__card:hover .reel__img { transform: scale(1.06); }
+
+  .reel__scrim {
+    position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(180deg, rgba(0,0,0,.05) 40%, rgba(0,0,0,.78) 100%);
+  }
+  .reel__meta {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    display: grid; gap: .18rem; padding: .9rem 1rem; text-align: left;
+  }
+  .reel__label { font-weight: 700; font-size: 1.02rem; line-height: 1.2; color: #fff; letter-spacing: -.01em; }
+  .reel__count {
+    font-family: var(--font-mono); font-size: .66rem; font-weight: 600;
+    letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.72);
+  }
+  .reel__card.is-active .reel__count { color: var(--accent-text); }
+
+  /* A sweep of accent light across the cover the moment it's selected. */
+  .reel__card::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0;
+    background: linear-gradient(105deg, transparent 32%,
+                color-mix(in srgb, var(--accent) 26%, transparent) 50%, transparent 68%);
+  }
   @media (prefers-reduced-motion: no-preference) {
-    .cat[open] > .cat__panel { animation: cat-in .4s cubic-bezier(.2,.7,.2,1) both; }
-    @keyframes cat-in {
-      from { opacity: 0; transform: translateY(8px); }
+    .reel__card.is-active::after { animation: reel-sheen 1.05s cubic-bezier(.2,.7,.2,1); }
+    @keyframes reel-sheen {
+      from { opacity: .85; transform: translateX(-65%); }
+      to   { opacity: 0;   transform: translateX(65%); }
+    }
+  }
+
+  .reel__controls { display: flex; align-items: center; gap: 1rem; margin-top: .5rem; }
+  .reel__arrow {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 40px; height: 40px; flex: none; border-radius: 50%; cursor: pointer;
+    border: 1px solid var(--border-strong); background: var(--bg-raised); color: var(--text-dim);
+    transition: color .18s ease, border-color .18s ease, transform .15s ease;
+  }
+  .reel__arrow:hover { color: var(--accent-text); border-color: var(--accent); }
+  .reel__arrow:active { transform: scale(.94); }
+  .reel__dots { display: flex; gap: .45rem; margin: 0; padding: 0; list-style: none; }
+  .reel__dot {
+    width: 26px; height: 4px; padding: 0; border: 0; border-radius: 99px; cursor: pointer;
+    background: var(--border-strong);
+    transition: background-color .3s ease, width .35s cubic-bezier(.2,.7,.2,1);
+  }
+  .reel__dot.is-active { background: var(--accent); width: 46px; }
+
+  /* ── The panel that drops in below ──────────────────────────────────────── */
+  /* Only the active panel renders once JS is up. Without `html.js` (no JS at
+     all) every panel is visible, i.e. the whole portfolio stacked. */
+  html.js .panel[data-cat]:not([data-active="true"]) { display: none; }
+
+  .reel__panels { position: relative; }
+  .panel { padding-block: clamp(1.8rem, 4.5vw, 2.8rem) 0; }
+  .panel:focus { outline: none; }
+  .panel:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; border-radius: var(--radius); }
+  .panel__head { margin-bottom: 1.2rem; }
+  .panel__label { margin-bottom: .3em; }
+  .panel__blurb { margin: 0; max-width: 68ch; font-size: .95rem; }
+  .panel__banner { margin: 0 0 1rem; }
+  .panel__banner img {
+    width: 100%; height: auto; display: block;
+    border-radius: var(--radius); border: 1px solid var(--border);
+  }
+
+  /* The drop: new panel falls in from behind the carousel. */
+  @media (prefers-reduced-motion: no-preference) {
+    html.js .panel[data-active="true"] {
+      animation: panel-drop .46s cubic-bezier(.2,.7,.2,1) both;
+    }
+    @keyframes panel-drop {
+      from { opacity: 0; transform: translateY(-18px); }
       to   { opacity: 1; transform: none; }
     }
   }
@@ -412,8 +696,10 @@ const packages = [
     .phero { min-height: min(66svh, 520px); }
   }
   @media (max-width: 560px) {
-    /* Give the title room on a phone: drop the photo count, keep the chevron. */
-    .cat__count { display: none; }
+    /* Cards a touch narrower so a second cover always peeks in, which is the
+       cue that the strip scrolls. */
+    .reel__item { flex-basis: clamp(160px, 62vw, 220px); }
+    .reel__head h2 { font-size: 1.5rem; }
   }
   @media (max-width: 420px) {
     .masonry { columns: 1; }
