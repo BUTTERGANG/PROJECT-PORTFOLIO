@@ -402,38 +402,44 @@ const packages = [
       // Pointer-drag for a mouse. Touch/trackpad already scroll the strip
       // natively, so they're left alone.
       if (viewport) {
-        var down = false, moved = 0, startX = 0, startLeft = 0;
+        var down = false, moved = 0, startX = 0, startLeft = 0, captured = false;
 
         viewport.addEventListener('pointerdown', function (e) {
           if (e.pointerType === 'touch') return;
-          down = true; moved = 0; startX = e.clientX; startLeft = viewport.scrollLeft;
-          // Capture the pointer for the whole gesture. Without this the browser
-          // fires pointerleave as soon as the content shifts under the cursor and
-          // the drag dies after a few pixels — which is exactly what happened
-          // before capture was added.
-          if (viewport.setPointerCapture) {
-            try { viewport.setPointerCapture(e.pointerId); } catch (err) {}
-          }
+          down = true; moved = 0; captured = false;
+          startX = e.clientX; startLeft = viewport.scrollLeft;
         });
 
         viewport.addEventListener('pointermove', function (e) {
           if (!down) return;
           moved = e.clientX - startX;
-          if (Math.abs(moved) > 6) {
-            e.preventDefault();
-            viewport.classList.add('is-dragging');
-            viewport.scrollLeft = startLeft - moved;
+          if (Math.abs(moved) <= 6) return;
+
+          // Capture the pointer only now that this is genuinely a drag. Capturing
+          // on pointerdown instead retargets the follow-up `click` to the
+          // viewport, so a plain click on a cover never reaches the card's own
+          // listener and nothing gets selected.
+          if (!captured) {
+            captured = true;
+            if (viewport.setPointerCapture) {
+              try { viewport.setPointerCapture(e.pointerId); } catch (err) {}
+            }
           }
+          e.preventDefault();
+          viewport.classList.add('is-dragging');
+          viewport.scrollLeft = startLeft - moved;
         });
 
         function endDrag(e) {
           if (!down) return;
           down = false;
           viewport.classList.remove('is-dragging');
-          if (e && viewport.releasePointerCapture && e.pointerId != null) {
+          if (captured && e && viewport.releasePointerCapture && e.pointerId != null) {
             try { viewport.releasePointerCapture(e.pointerId); } catch (err) {}
           }
-          if (Math.abs(moved) > 6) {
+          var wasDrag = Math.abs(moved) > 6;
+          captured = false;
+          if (wasDrag) {
             // Swallow the click that trails a real drag so it can't also select.
             viewport.addEventListener('click', function once(ev) {
               ev.preventDefault(); ev.stopPropagation();
