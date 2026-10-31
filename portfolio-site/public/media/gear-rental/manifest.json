@@ -1,0 +1,51 @@
+{
+  "project": "Gear Rental",
+  "demo_type": "case-study-only",
+  "items": [
+    {
+      "file": "shot-01.png",
+      "caption": "Demo: none clickable — the app is deploy-ready (`.replit` + `replit.nix` included) but not published, and the repo stays private. This is a screenshot + recording case study.",
+      "type": "placeholder"
+    },
+    {
+      "file": "shot-02.png",
+      "caption": "Dashboard — revenue, utilization, most-rented gear.",
+      "type": "placeholder"
+    },
+    {
+      "file": "shot-03.png",
+      "caption": "Rental detail — the agreement export buttons (PDF / Word / HTML) next to the payment state.",
+      "type": "placeholder"
+    },
+    {
+      "file": "shot-04.png",
+      "caption": "Sign page mid-signature — canvas signature with the audit-trail fields visible (IP, device fingerprint, timestamp, consent).",
+      "type": "placeholder"
+    },
+    {
+      "file": "shot-05.png",
+      "caption": "Price calculator — responding live to a date change, showing the weekend rule and the weekly discount.",
+      "type": "placeholder"
+    },
+    {
+      "file": "shot-06.png",
+      "caption": "Payments — a Stripe PaymentIntent for the fee *and* the separate manual-capture damage hold.",
+      "type": "placeholder"
+    },
+    {
+      "file": "shot-07.png",
+      "caption": "Reminders page — an overdue item with its email log.",
+      "type": "placeholder"
+    },
+    {
+      "file": "shot-08.png",
+      "caption": "Architecture diagram — FastAPI → SQLite, with Stripe, AgentMail and the eBay Browse API on the side.",
+      "type": "placeholder"
+    },
+    {
+      "file": "shot-09.png",
+      "caption": "Blur-sensitive: renter names, emails, amounts, and any Stripe keys shown in Settings.",
+      "type": "placeholder"
+    }
+  ]
+}

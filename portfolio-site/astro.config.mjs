@@ -2,10 +2,13 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
-// Static build → dist/, served by Replit Static Deployments.
-// Update `site` to the final Replit deployment URL for correct sitemap/OG absolute URLs.
+// Static build → dist/, served from the Replit Static Deployment that backs
+// the custom domain. `site` MUST be the canonical public origin, not the
+// internal *.replit.app host: canonical tags, og:url and the sitemap are all
+// generated from it, and a dead host there means every shared link and every
+// sitemap entry points at a 404.
 export default defineConfig({
-  site: 'https://butterfield-portfolio.replit.app',
+  site: 'https://alexbutterfield.com',
   output: 'static',
   integrations: [sitemap()],
   build: { format: 'directory' },

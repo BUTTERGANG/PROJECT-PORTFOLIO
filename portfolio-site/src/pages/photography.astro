@@ -1,0 +1,349 @@
+---
+// /photography/ — the LA Media photo/video portfolio, folded into the personal
+// site. Two audiences on purpose: clients who want to book a shoot (CTA to
+// workwithla.media) and hiring managers who want to see the creative work that
+// the LA Media tooling was built to run.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { PHOTO_CATEGORIES, VIDEO_OFFERING } from '../data/photography';
+import { projectsByCluster } from '../lib/projects';
+
+const photoProjects = await projectsByCluster('photo');
+const photoCount = PHOTO_CATEGORIES.reduce((n, c) => n + c.photos.length + (c.hero ? 1 : 0), 0);
+const BOOK = 'https://workwithla.media';
+
+const packages = [
+  {
+    discipline: 'Weddings',
+    rows: [
+      { tier: 'The Ceremony',  price: '$1,800', hours: '4 hours coverage',  inc: '300+ edited photos' },
+      { tier: 'The Full Day',  price: '$2,800', hours: '8 hours coverage',  inc: '500+ edited photos + highlight film' },
+      { tier: 'The Legacy',    price: '$4,200', hours: 'Full day + second shooter', inc: '700+ edited photos + full film + 60s reel' },
+    ],
+    note: 'Every wedding package includes an online gallery, full-resolution downloads and a print release.',
+  },
+  {
+    discipline: 'Portraits',
+    rows: [
+      { tier: 'The Essentials', price: '$300', hours: '30 min session', inc: 'Online gallery + downloads' },
+      { tier: 'The Signature',  price: '$450', hours: '1 hour session', inc: 'Online gallery + downloads' },
+      { tier: 'The Legacy',     price: '$600', hours: '2 hour session', inc: 'Online gallery + downloads' },
+    ],
+    note: 'Add-ons available per session — second location, extra looks, prints.',
+  },
+  {
+    discipline: 'Sports & meets',
+    rows: [
+      { tier: 'Bronze', price: 'Contact', hours: '40+ edited photos',   inc: 'Expedited delivery available' },
+      { tier: 'Silver', price: 'Contact', hours: '40+ edited photos',   inc: '+ video of 2 best lifts' },
+      { tier: 'Gold',   price: 'Contact', hours: '40+ edited photos',   inc: '+ video of all 6 lifts & 45–60s hype reel' },
+    ],
+    note: 'Priced per meet, per lifter. Commercial product/brand work is quoted per scope.',
+  },
+];
+---
+
+<BaseLayout
+  title="Photography & Video — Alex Butterfield"
+  description="The LA Media photo and video portfolio: portraits, sports and powerlifting, weddings and travel — plus the films and reels cut alongside them. Shot by Alex Butterfield in Indianapolis."
+  ogImage="/photography/weddings/hero.webp"
+>
+  <!-- ── Hero ─────────────────────────────────────────────────────────────── -->
+  <section class="phero">
+    <div class="phero__media">
+      <img src="/photography/weddings/hero.webp" alt="Outdoor wedding photographed at golden hour"
+           width="1800" height="1200" fetchpriority="high" decoding="async" />
+      <div class="phero__scrim" aria-hidden="true"></div>
+      <div class="phero__glow" aria-hidden="true"></div>
+    </div>
+    <div class="wrap phero__body">
+      <p class="eyebrow">LA Media · Photography &amp; Video</p>
+      <h1 class="phero__h1">I shoot the moments I know how to read.</h1>
+      <p class="lede phero__lede">
+        {photoCount} frames from the working portfolio — weddings, portraits, lifters, and the road in between.
+        Photography is the job that started all of this; the software came later, because running a photo
+        business well turns out to be an operations problem.
+      </p>
+      <p class="phero__note faint">
+        Available for weddings, portrait sessions, meet coverage and commercial product/brand work in
+        Indianapolis and Central Indiana.
+      </p>
+      <div class="phero__cta">
+        <a class="btn btn--accent" href={BOOK} target="_blank" rel="noopener">Book a shoot →</a>
+        <a class="btn" href="#packages">See packages &amp; pricing</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Numbers that are actually true ───────────────────────────────────── -->
+  <section class="band">
+    <div class="wrap">
+      <ul class="stat-band reveal-group">
+        <li class="stat" style="--i:0"><span class="stat__num">250+</span><span class="stat__label">edited photos per wedding</span></li>
+        <li class="stat" style="--i:1"><span class="stat__num">4–10h</span><span class="stat__label">typical wedding coverage</span></li>
+        <li class="stat" style="--i:2"><span class="stat__num">8–12wk</span><span class="stat__label">wedding film turnaround</span></li>
+        <li class="stat" style="--i:3"><span class="stat__num">2</span><span class="stat__label">shooters on the top tier</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ── Galleries ────────────────────────────────────────────────────────── -->
+  <div class="wrap">
+    {PHOTO_CATEGORIES.map((cat, ci) => (
+      <section class="cat reveal" id={cat.key} aria-labelledby={`cat-${cat.key}`}>
+        <div class="cat__head">
+          <h2 id={`cat-${cat.key}`}>{cat.label}</h2>
+          <p class="muted cat__blurb">{cat.blurb}</p>
+        </div>
+
+        {cat.hero && (
+          <figure class="cat__feature">
+            <button type="button" class="shot" data-lightbox={cat.hero.src} aria-label={`Enlarge: ${cat.hero.alt}`}>
+              <img src={cat.hero.src} alt={cat.hero.alt} width={cat.hero.w} height={cat.hero.h}
+                   loading={ci === 0 ? 'eager' : 'lazy'} decoding="async" />
+            </button>
+          </figure>
+        )}
+
+        <div class="masonry">
+          {cat.photos.map((p) => (
+            <figure class="shot-wrap">
+              <button type="button" class="shot" data-lightbox={p.src} aria-label={`Enlarge: ${p.alt}`}>
+                <img src={p.src} alt={p.alt} width={p.w} height={p.h} loading="lazy" decoding="async" />
+              </button>
+            </figure>
+          ))}
+        </div>
+      </section>
+    ))}
+  </div>
+
+  <!-- ── Video ────────────────────────────────────────────────────────────── -->
+  <section class="video" id="video">
+    <div class="wrap">
+      <div class="video__head">
+        <h2>Video &amp; film</h2>
+        <p class="muted">
+          Stills and motion are shot together, not bolted on afterwards — the same coverage day produces
+          the gallery and the cut.
+        </p>
+      </div>
+      <div class="grid grid--cards reveal-group">
+        {VIDEO_OFFERING.map((v, i) => (
+          <article class="card vid" style={`--i:${i}`}>
+            <h3>{v.title}</h3>
+            <p class="muted">{v.detail}</p>
+            <ul class="chips">
+              {v.tags.map((t) => <li class="chip">{t}</li>)}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Packages ─────────────────────────────────────────────────────────── -->
+  <section class="packages" id="packages">
+    <div class="wrap">
+      <div class="packages__head">
+        <h2>Packages &amp; pricing</h2>
+        <p class="muted">
+          Published menu, not “DM me for a quote”. Every shoot is delivered through an online gallery
+          clients log in to download from.
+        </p>
+      </div>
+      <div class="grid grid--cards reveal-group">
+        {packages.map((p, i) => (
+          <article class="card pkg" style={`--i:${i}`}>
+            <h3>{p.discipline}</h3>
+            <ul class="pkg__rows">
+              {p.rows.map((r) => (
+                <li>
+                  <span class="pkg__tier">{r.tier}</span>
+                  <span class="pkg__price">{r.price}</span>
+                  <span class="pkg__hours muted">{r.hours}</span>
+                  <span class="pkg__inc faint">{r.inc}</span>
+                </li>
+              ))}
+            </ul>
+            <p class="pkg__note faint">{p.note}</p>
+          </article>
+        ))}
+      </div>
+      <p class="packages__cta">
+        Full menu, availability and booking live on the studio site →
+        <a href={BOOK} target="_blank" rel="noopener">workwithla.media</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ── The bridge to the software ───────────────────────────────────────── -->
+  <section class="bridge">
+    <div class="wrap">
+      <div class="bridge__intro prose">
+        <h2>Why a photography page is on a software portfolio</h2>
+        <p>
+          Because this is where the Build Loop started. Running LA Media — quoting, booking, collecting,
+          delivering galleries, chasing renewals before they expire — was repetitive enough that I built
+          the software to run it. The photo business is the origin story for the tooling, not a separate
+          hobby next to it.
+        </p>
+        <p class="faint">
+          If you’re reading this as a hiring manager: the work below is the same instinct you’ll find in
+          <a href="/builder/">the case studies</a> — find the friction, then build the fix.
+        </p>
+      </div>
+      <div class="grid grid--cards">
+        {photoProjects.map((p) => <ProjectCard project={p} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Close ────────────────────────────────────────────────────────────── -->
+  <section class="close">
+    <div class="wrap-narrow close__inner">
+      <h2>Want your own set of these?</h2>
+      <p class="muted">
+        Weddings, portraits, meet coverage, product and brand work — booking through the studio.
+      </p>
+      <div class="close__cta">
+        <a class="btn btn--accent" href={BOOK} target="_blank" rel="noopener">workwithla.media →</a>
+        <a class="btn" href="mailto:alex@workwithla.media">alex@workwithla.media</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox: native <dialog>, same pattern as the project media galleries. -->
+  <dialog id="lightbox" class="lightbox" aria-label="Enlarged photo">
+    <button class="lightbox__close" type="button" aria-label="Close">✕</button>
+    <img class="lightbox__img" src="" alt="" />
+  </dialog>
+
+  <script is:inline>
+    (function () {
+      var dlg = document.getElementById('lightbox');
+      if (!dlg) return;
+      var img = dlg.querySelector('.lightbox__img');
+      var shots = document.querySelectorAll('[data-lightbox]');
+
+      function open(el) {
+        var inner = el.querySelector('img');
+        img.src = el.getAttribute('data-lightbox');
+        img.alt = (inner && inner.getAttribute('alt')) || '';
+        if (typeof dlg.showModal === 'function') dlg.showModal();
+        else dlg.setAttribute('open', '');
+      }
+      function close() {
+        if (dlg.open) dlg.close();
+        img.src = '';
+      }
+
+      shots.forEach(function (el) {
+        el.addEventListener('click', function () { open(el); });
+      });
+      dlg.querySelector('.lightbox__close').addEventListener('click', close);
+      dlg.addEventListener('click', function (e) { if (e.target === dlg) close(); });
+      dlg.addEventListener('close', function () { img.src = ''; });
+    })();
+  </script>
+</BaseLayout>
+
+<style>
+  /* ── Hero ──────────────────────────────────────────────────────────────── */
+  .phero { position: relative; padding-block: 0; min-height: min(72svh, 620px); display: flex; align-items: flex-end; }
+  .phero__media { position: absolute; inset: 0; overflow: hidden; }
+  .phero__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .phero__scrim {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg,
+      color-mix(in srgb, var(--bg) 72%, transparent) 0%,
+      color-mix(in srgb, var(--bg) 45%, transparent) 45%,
+      color-mix(in srgb, var(--bg) 96%, transparent) 100%);
+  }
+  .phero__glow {
+    position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(60% 45% at 50% 100%, var(--accent-soft) 0%, transparent 70%);
+  }
+  .phero__body { position: relative; padding-block: clamp(2.5rem, 7vw, 4rem); }
+  .phero__h1 { max-width: 20ch; margin-bottom: .4em; }
+  .phero__lede { max-width: 60ch; margin-bottom: .6rem; }
+  .phero__note { max-width: 60ch; font-size: .9rem; }
+  .phero__cta { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 1.6rem; }
+
+  /* ── Band ──────────────────────────────────────────────────────────────── */
+  .band { padding-block: clamp(2rem, 5vw, 3rem) 0; }
+
+  /* ── Category galleries ────────────────────────────────────────────────── */
+  .cat { border-top: 1px solid var(--border); padding-block: clamp(2.2rem, 5vw, 3.4rem); }
+  .cat:first-of-type { border-top: 0; }
+  .cat__head { margin-bottom: 1.4rem; }
+  .cat__head h2 { margin-bottom: .35em; }
+  .cat__blurb { max-width: 68ch; margin: 0; }
+  .cat__feature { margin: 0 0 1rem; }
+  .cat__feature img { width: 100%; height: auto; display: block; border-radius: var(--radius); border: 1px solid var(--border); }
+
+  /* Masonry via multi-column: mixed portrait/landscape crops tile evenly
+     instead of leaving ragged holes a fixed grid would. */
+  .masonry { columns: 3 260px; column-gap: var(--gap); }
+  .shot-wrap { margin: 0 0 var(--gap); break-inside: avoid; }
+
+  .shot {
+    display: block; width: 100%; padding: 0; border: 0; background: none;
+    cursor: zoom-in; border-radius: var(--radius-sm); overflow: hidden;
+    line-height: 0;
+  }
+  .shot img {
+    width: 100%; height: auto; display: block;
+    border-radius: var(--radius-sm); border: 1px solid var(--border);
+    background: var(--bg-inset);
+    transition: transform .45s cubic-bezier(.2,.7,.2,1), border-color .2s ease, filter .3s ease;
+  }
+  .shot:hover img, .shot:focus-visible img { transform: scale(1.02); border-color: var(--border-strong); filter: brightness(1.04); }
+  @media (prefers-reduced-motion: reduce) { .shot img { transition: none; } .shot:hover img { transform: none; } }
+
+  /* ── Video + packages ──────────────────────────────────────────────────── */
+  .video, .packages, .bridge { border-top: 1px solid var(--border); }
+  .video__head, .packages__head { margin-bottom: 1.4rem; }
+  .video__head p, .packages__head p { max-width: 68ch; margin: 0; }
+  .vid { padding: 1.4rem; display: grid; gap: .5rem; align-content: start; }
+  .vid h3 { margin: 0; color: var(--accent-text); }
+  .vid p { margin: 0; font-size: .94rem; }
+  .vid .chips { list-style: none; padding: 0; margin: .4rem 0 0; }
+
+  .pkg { padding: 1.4rem; display: grid; gap: .8rem; align-content: start; }
+  .pkg h3 { margin: 0; color: var(--accent-text); }
+  .pkg__rows { list-style: none; padding: 0; margin: 0; display: grid; gap: .7rem; }
+  .pkg__rows li {
+    display: grid; gap: .1rem; padding-bottom: .7rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .pkg__rows li:last-child { border-bottom: 0; padding-bottom: 0; }
+  .pkg__tier { font-weight: 700; font-size: .98rem; }
+  .pkg__price { font-family: var(--font-mono); font-size: .95rem; color: var(--accent-text); }
+  .pkg__hours { font-size: .88rem; }
+  .pkg__inc { font-size: .82rem; }
+  .pkg__note { margin: 0; font-size: .82rem; }
+  .packages__cta { margin-top: 1.6rem; }
+
+  /* ── Bridge + close ────────────────────────────────────────────────────── */
+  .bridge__intro { max-width: 70ch; margin-bottom: 1.6rem; }
+  .close__inner { text-align: left; }
+  .close__cta { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 1.2rem; }
+
+  /* ── Lightbox ──────────────────────────────────────────────────────────── */
+  .lightbox { border: none; background: transparent; padding: 0; max-width: 94vw; max-height: 94vh; }
+  .lightbox::backdrop { background: rgba(0,0,0,.86); backdrop-filter: blur(3px); }
+  .lightbox__img { display: block; max-width: 94vw; max-height: 86vh; border-radius: 10px; }
+  .lightbox__close {
+    position: fixed; top: 3vh; right: 4vw; width: 42px; height: 42px; border-radius: 50%;
+    border: 1px solid #ffffff55; background: #000000aa; color: #fff; font-size: 1.1rem; cursor: pointer;
+  }
+
+  @media (max-width: 720px) {
+    .masonry { columns: 2 160px; }
+    .phero { min-height: min(66svh, 520px); }
+  }
+  @media (max-width: 420px) {
+    .masonry { columns: 1; }
+  }
+</style>

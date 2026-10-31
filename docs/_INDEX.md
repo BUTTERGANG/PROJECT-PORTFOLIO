@@ -1,6 +1,6 @@
 # Project Docs — Index
 
-47 project case-study docs, grouped by origin cluster (the Build Loop). Each follows `_TEMPLATE.md`.
+48 project case-study docs, grouped by origin cluster (the Build Loop). Each follows `_TEMPLATE.md`.
 **Convention:** repos stay **private**; projects go viewable via a **public demo URL** (`demo_url`). `demo_type: case-study-only` = backend/sensitive, no clickable demo — use screenshots/diagrams.
 
 Legend: 🟢 public repo · 🔒 private repo · ⭐ anchor/advanced · 🖥️ live-demo-able · 📄 case-study-only
@@ -24,6 +24,7 @@ Legend: 🟢 public repo · 🔒 private repo · ⭐ anchor/advanced · 🖥️ 
 
 ## Photography & LA Media
 - ⭐🔒🖥️ [la-media-dashboard](la-media-dashboard.md) — ops/CRM/invoicing/contracts
+- ⭐🔒📄 [gear-rental](gear-rental.md) — rental desk: eBay-valued pricing, e-signed agreements with a SHA-256 audit trail, Stripe fee + damage hold, automated return chasing
 - 🔒🖥️ [la-media-website](la-media-website.md) — the commercial site
 - 🔒🖥️ [lightlog](lightlog.md) — shoot lighting tracker (astro + weather + AI settings)
 - 🟢🖥️ [photo-file-copier](photo-file-copier.md) — macOS selects-copier (desktop app)
