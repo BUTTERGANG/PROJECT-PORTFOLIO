@@ -20,6 +20,7 @@ const packages = [
       { tier: 'The Full Day',  price: '$2,800', hours: '8 hours coverage',  inc: '500+ edited photos + highlight film' },
       { tier: 'The Legacy',    price: '$4,200', hours: 'Full day coverage', inc: '700+ edited photos + full film + 60s reel' },
     ],
+    message: '',
     note: 'Every wedding package includes an online gallery, full-resolution downloads and a print release.',
   },
   {
@@ -29,15 +30,15 @@ const packages = [
       { tier: 'The Signature',  price: '$450', hours: '1 hour session', inc: 'Online gallery + downloads' },
       { tier: 'The Legacy',     price: '$600', hours: '2 hour session', inc: 'Online gallery + downloads' },
     ],
+    message: '',
     note: 'Add-ons available per session — second location, extra looks, prints.',
   },
   {
     discipline: 'Sports & meets',
-    rows: [
-      { tier: 'Bronze', price: 'Contact', hours: '40+ edited photos',   inc: 'Expedited delivery available' },
-      { tier: 'Silver', price: 'Contact', hours: '40+ edited photos',   inc: '+ video of 2 best lifts' },
-      { tier: 'Gold',   price: 'Contact', hours: '40+ edited photos',   inc: '+ video of all 6 lifts & 45–60s hype reel' },
-    ],
+    // No published tiers here on purpose — meets are quoted per event.
+    rows: [],
+    message:
+      'Have a meet coming up? Get in contact and we’ll capture it — every attempt, the lifts on video, and a short hype reel cut for social.',
     note: 'Priced per meet, per lifter. Commercial product/brand work is quoted per scope.',
   },
 ];
@@ -82,7 +83,6 @@ const packages = [
         <li class="stat" style="--i:0"><span class="stat__num">250+</span><span class="stat__label">edited photos per wedding</span></li>
         <li class="stat" style="--i:1"><span class="stat__num">4–10h</span><span class="stat__label">typical wedding coverage</span></li>
         <li class="stat" style="--i:2"><span class="stat__num">8–12wk</span><span class="stat__label">wedding film turnaround</span></li>
-        <li class="stat" style="--i:3"><span class="stat__num">1</span><span class="stat__label">shooter, shoot to delivery</span></li>
       </ul>
     </div>
   </section>
@@ -230,23 +230,27 @@ const packages = [
         {packages.map((p, i) => (
           <article class="card pkg" style={`--i:${i}`}>
             <h3>{p.discipline}</h3>
-            <ul class="pkg__rows">
-              {p.rows.map((r) => (
-                <li>
-                  <span class="pkg__tier">{r.tier}</span>
-                  <span class="pkg__price">{r.price}</span>
-                  <span class="pkg__hours muted">{r.hours}</span>
-                  <span class="pkg__inc faint">{r.inc}</span>
-                </li>
-              ))}
-            </ul>
+            {p.rows.length > 0 ? (
+              <ul class="pkg__rows">
+                {p.rows.map((r) => (
+                  <li>
+                    <span class="pkg__tier">{r.tier}</span>
+                    <span class="pkg__price">{r.price}</span>
+                    <span class="pkg__hours muted">{r.hours}</span>
+                    <span class="pkg__inc faint">{r.inc}</span>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p class="pkg__msg">{p.message}</p>
+            )}
             <p class="pkg__note faint">{p.note}</p>
           </article>
         ))}
       </div>
       <p class="packages__cta">
-        Full menu, availability and booking live on the studio site →
-        <a href={BOOK} target="_blank" rel="noopener">workwithla.media</a>
+        Commercial or brand work, or something not listed here — just ask.{' '}
+        <a href="/contact/">Get in touch →</a>
       </p>
     </div>
   </section>
@@ -695,6 +699,8 @@ const packages = [
   .pkg__hours { font-size: .88rem; }
   .pkg__inc { font-size: .82rem; }
   .pkg__note { margin: 0; font-size: .82rem; }
+  /* Used instead of a tier list where the offering is quoted per event. */
+  .pkg__msg { margin: 0; font-size: .98rem; line-height: 1.5; }
   .packages__cta { margin-top: 1.6rem; }
 
   /* ── Bridge + close ────────────────────────────────────────────────────── */

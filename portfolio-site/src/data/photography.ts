@@ -102,7 +102,7 @@ export const VIDEO_OFFERING = [
   {
     title: 'Sports hype reels',
     detail:
-      'Video of the lifts plus a 45–60 second hype reel cut for social — the format lifters actually post. Available on the Silver and Gold meet packages.',
+      'Video of the lifts plus a 45–60 second hype reel cut for social — the format lifters actually post. Add it to any meet coverage.',
     tags: ['Lift video', '45–60s reel', 'Expedited delivery'],
   },
   {
