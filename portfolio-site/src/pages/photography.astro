@@ -1,16 +1,18 @@
 ---
 // /photography/ — the LA Media photo/video portfolio, folded into the personal
-// site. Two audiences on purpose: clients who want to book a shoot (CTA to
-// workwithla.media) and hiring managers who want to see the creative work that
-// the LA Media tooling was built to run.
+// site. Two audiences on purpose: clients who want to book a shoot and hiring
+// managers who want to see the creative work that the LA Media tooling was
+// built to run. Booking routes to the inquiry form on /contact/ — the studio's
+// own old domain is no longer linked from here.
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import { PHOTO_CATEGORIES, VIDEO_OFFERING } from '../data/photography';
 import { projectsByCluster } from '../lib/projects';
 
 const photoProjects = await projectsByCluster('photo');
-const photoCount = PHOTO_CATEGORIES.reduce((n, c) => n + c.photos.length + (c.hero ? 1 : 0), 0);
-const BOOK = 'https://workwithla.media';
+const photoCount = PHOTO_CATEGORIES.reduce((n, c) => n + c.photos.length + (c.cover ? 1 : 0), 0);
+const BOOK = '/contact/';
+const EMAIL = 'alex@alexbutterfield.com';
 
 const packages = [
   {
@@ -70,7 +72,7 @@ const packages = [
         Indianapolis and Central Indiana.
       </p>
       <div class="phero__cta">
-        <a class="btn btn--accent" href={BOOK} target="_blank" rel="noopener">Book a shoot →</a>
+        <a class="btn btn--accent" href={BOOK}>Book a shoot →</a>
         <a class="btn" href="#packages">See packages &amp; pricing</a>
       </div>
     </div>
@@ -285,8 +287,8 @@ const packages = [
         Weddings, portraits, meet coverage, product and brand work — booking through the studio.
       </p>
       <div class="close__cta">
-        <a class="btn btn--accent" href={BOOK} target="_blank" rel="noopener">workwithla.media →</a>
-        <a class="btn" href="mailto:alex@workwithla.media">alex@workwithla.media</a>
+        <a class="btn btn--accent" href={BOOK}>Start an inquiry →</a>
+        <a class="btn" href={`mailto:${EMAIL}`}>{EMAIL}</a>
       </div>
     </div>
   </section>

@@ -2,6 +2,45 @@
 
 All notable changes to PROJECT-PORTFOLIO. Newest first.
 
+## 2026-10-31 — Own-site links, new address, inquiry form
+
+The photography business used to live on its own domain. It no longer does, so
+nothing on the site links out to it any more — and inquiries now have a real
+form instead of a link off-site.
+
+- **Every `workwithla.media` link is gone** from the built output. Footer entry
+  "LA Media" → "Photography" (internal), `/business/` → "See the photography &
+  video portfolio →" pointing at `/photography/`, and `/contact/`'s channel list
+  links the portfolio instead of the retired domain.
+- **Address is now `alex@alexbutterfield.com`** everywhere (contact page,
+  photography page, the form's fallback and the mailto links).
+- **`/photography/` booking CTAs route to `/contact/`** — "Book a shoot →" and
+  "Start an inquiry →" are internal links now, no `target="_blank"`.
+- **New inquiry form on `/contact/`** — name, email, shoot type, date and
+  details, plus an off-screen honeypot. Server-rendered, native validation
+  (`required` + typed inputs, `:user-invalid` styling), and it still works with
+  JS off because the form's own `action`/`method` submit it.
+- **`FORM_ENDPOINT` in `contact.astro` picks the transport.** Left empty it runs
+  in **mailto mode**: the script composes the message and hands off to the
+  visitor's mail client. Set it to a Formspree / Basin / Web3Forms / self-hosted
+  URL and *both* paths switch over — the script POSTs via `fetch` with inline
+  success/error, and the no-JS `action` becomes the endpoint instead of mailto.
+- Fixed: the photography hero counted frames with `c.hero` — stale after the
+  hero→cover rename — so it under-reported the set by 4.
+
+Verified end-to-end in Brave with real mouse/keystroke input:
+- **Endpoint mode** against a local POST echo: a 677-byte payload arrived
+  containing the typed name, email and message; status flipped to success; form
+  reset.
+- **Honeypot:** a filled trap reports success and sends nothing.
+- **Mailto mode:** empty submit blocked by native validation (handler never
+  runs); a valid submit does not navigate away, keeps the values, and Chrome's
+  own `Page.frameRequestedNavigation` event confirms the composed URL is
+  `mailto:alex@alexbutterfield.com?subject=Photography%20inquiry…&body=…`.
+- 0px horizontal overflow at 1280/900/640/390/320px; the field grid collapses to
+  one column at 640px; with JS disabled the form still has a real action and its
+  required fields.
+
 ## 2026-10-31 — Photography: cover carousel + dropping gallery
 
 Replaces the stacked galleries with one cover photo per discipline in a

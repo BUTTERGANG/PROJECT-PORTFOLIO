@@ -4,12 +4,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 // Contact channels. To go live, replace the `value`/`href` on any pending
 // item and flip `pending` to false. Items left pending render as a muted
 // "coming soon" row instead of a dead link.
+//
+// The photography business used to live on its own domain; that's been retired
+// in favour of this site, so the portfolio link is now internal and the address
+// is on alexbutterfield.com.
+const EMAIL = 'alex@alexbutterfield.com';
+
 const channels = [
   {
-    label: 'LA Media',
-    value: 'workwithla.media',
-    href: 'https://workwithla.media',
-    external: true,
+    label: 'Photography',
+    value: 'Photo & video portfolio',
+    href: '/photography/',
+    external: false,
     pending: false,
   },
   {
@@ -21,8 +27,8 @@ const channels = [
   },
   {
     label: 'Email',
-    value: 'alex@workwithla.media',
-    href: 'mailto:alex@workwithla.media',
+    value: EMAIL,
+    href: `mailto:${EMAIL}`,
     external: false,
     pending: false,
   },
@@ -36,6 +42,27 @@ const channels = [
 ];
 
 const resumeReady = false; // flip true once assets/resume.pdf is in place
+
+// ---------------------------------------------------------------------------
+// Inquiry form
+// ---------------------------------------------------------------------------
+// Where the form POSTs. Left EMPTY it runs in mailto mode: the script composes
+// an email to EMAIL from the field values and hands off to the visitor's mail
+// client — no third-party account, and it delivers to the inbox today.
+//
+// Set this to a form endpoint (Formspree / Basin / Web3Forms / your own) and
+// BOTH paths switch over with no other change: the script POSTs via fetch with
+// inline success/error, and the no-JS `action`/`method` fall back to the real
+// endpoint instead of mailto.
+const FORM_ENDPOINT = '';
+
+const inquiryTypes = [
+  'Wedding',
+  'Portrait session',
+  'Meet / competition coverage',
+  'Commercial or product',
+  'Something else',
+];
 ---
 <BaseLayout title="Contact — Alex Butterfield" description="Get in touch with Alex Butterfield — operator who builds his own tools.">
   <section class="phead">
@@ -50,7 +77,76 @@ const resumeReady = false; // flip true once assets/resume.pdf is in place
     </div>
   </section>
 
+  <!-- ── Inquiry form ───────────────────────────────────────────────────────
+       The primary action on this page. Server-rendered and submitted by the
+       browser's own machinery when JS is off (action falls back to mailto);
+       with JS it validates natively, then POSTs to the configured endpoint or
+       composes the mailto, and reports the result inline. -->
+  <section class="inquiry" aria-labelledby="inquiry-h">
+    <div class="wrap-narrow">
+      <h2 id="inquiry-h">Start an inquiry</h2>
+      <p class="muted inquiry__lede">
+        Tell me what you’re shooting and when. Booking, availability and pricing questions all
+        start here — inquiries come to me directly and I answer them personally.
+      </p>
+
+      <form id="inquiry-form" class="form"
+            action={FORM_ENDPOINT || `mailto:${EMAIL}`}
+            method={FORM_ENDPOINT ? 'post' : 'get'}
+            enctype={FORM_ENDPOINT ? undefined : 'text/plain'}
+            data-endpoint={FORM_ENDPOINT || undefined}
+            data-email={EMAIL}>
+        <div class="form__grid">
+          <div class="field">
+            <label for="name">Name <span class="req" aria-hidden="true">*</span></label>
+            <input id="name" name="name" type="text" required autocomplete="name" />
+          </div>
+
+          <div class="field">
+            <label for="email">Email <span class="req" aria-hidden="true">*</span></label>
+            <input id="email" name="email" type="email" required autocomplete="email" inputmode="email" />
+          </div>
+
+          <div class="field">
+            <label for="kind">What’s the shoot?</label>
+            <select id="kind" name="kind">
+              {inquiryTypes.map((t) => <option value={t}>{t}</option>)}
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="when">Date <span class="faint">(if you have one)</span></label>
+            <input id="when" name="when" type="date" />
+          </div>
+
+          <div class="field field--full">
+            <label for="message">Details <span class="req" aria-hidden="true">*</span></label>
+            <textarea id="message" name="message" rows="5" required
+                      placeholder="Venue or location, roughly how long, and anything you already know you want."></textarea>
+          </div>
+        </div>
+
+        <!-- Honeypot. Bots fill it, people never see it; a filled value is
+             dropped silently rather than bounced. -->
+        <div class="hp" aria-hidden="true">
+          <label for="company">Company</label>
+          <input id="company" name="company" type="text" tabindex="-1" autocomplete="off" />
+        </div>
+
+        <div class="form__foot">
+          <button class="btn btn--accent" type="submit" id="inquiry-submit">Send inquiry</button>
+          <p class="form__status" id="inquiry-status" role="status" aria-live="polite"></p>
+        </div>
+
+        <p class="form__alt faint">
+          Prefer email? <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
+        </p>
+      </form>
+    </div>
+  </section>
+
   <div class="wrap-narrow prose">
+    <h2 class="channels__h">Or reach me directly</h2>
     <ul class="contact">
       {channels.map((c) => (
         <li class="contact__row" class:list={[{ 'is-pending': c.pending }]}>
@@ -82,6 +178,78 @@ const resumeReady = false; // flip true once assets/resume.pdf is in place
       )}
     </div>
   </div>
+
+  <script is:inline>
+    /* Inquiry form transport.
+       The inputs are `required` and correctly typed, so the browser's own
+       validation runs first and this only has to move the data: POST to the
+       configured endpoint, or compose a mailto when none is set. With JS off the
+       form's action does the same job, so nothing here is load-bearing. */
+    (function () {
+      var form = document.getElementById('inquiry-form');
+      if (!form) return;
+
+      var endpoint = (form.getAttribute('data-endpoint') || '').trim();
+      var email = form.getAttribute('data-email') || '';
+      var status = document.getElementById('inquiry-status');
+      var submit = document.getElementById('inquiry-submit');
+
+      function val(id) {
+        var el = document.getElementById(id);
+        return el && el.value ? el.value.trim() : '';
+      }
+      function say(msg, state) {
+        if (!status) return;
+        status.textContent = msg;
+        if (state) status.setAttribute('data-state', state);
+        else status.removeAttribute('data-state');
+      }
+
+      form.addEventListener('submit', function (e) {
+        // Honeypot: a filled value means a bot. Report success, send nothing.
+        var trap = document.getElementById('company');
+        if (trap && trap.value) {
+          e.preventDefault();
+          say('Thanks — your inquiry is in.', 'ok');
+          return;
+        }
+
+        if (!endpoint) {
+          // mailto mode: hand the composed message to the visitor's mail client.
+          e.preventDefault();
+          var body = [
+            'Name: ' + val('name'),
+            'Email: ' + val('email'),
+            'Shoot: ' + val('kind'),
+            'Date: ' + (val('when') || 'not set'),
+            '',
+            val('message')
+          ].join('\n');
+          window.location.href = 'mailto:' + email +
+            '?subject=' + encodeURIComponent('Photography inquiry — ' + (val('kind') || 'general')) +
+            '&body=' + encodeURIComponent(body);
+          say('Opening your email app — if nothing happens, email ' + email + ' directly.', 'ok');
+          return;
+        }
+
+        e.preventDefault();
+        if (submit) submit.disabled = true;
+        say('Sending…');
+        fetch(endpoint, { method: 'POST', headers: { Accept: 'application/json' }, body: new FormData(form) })
+          .then(function (r) {
+            if (!r.ok) throw new Error('HTTP ' + r.status);
+            form.reset();
+            say('Thanks — your inquiry is in. I’ll reply personally.', 'ok');
+          })
+          .catch(function () {
+            say('That didn’t send. Email me directly at ' + email + '.', 'error');
+          })
+          .then(function () {
+            if (submit) submit.disabled = false;
+          });
+      });
+    })();
+  </script>
 </BaseLayout>
 
 <style>
@@ -110,4 +278,57 @@ const resumeReady = false; // flip true once assets/resume.pdf is in place
   .resume h2 { margin-bottom: .6em; }
   .resume__pending { color: var(--text-dim); font-size: .98rem; line-height: 1.6; }
   .resume__pending strong { color: var(--text); }
+
+  /* ── Inquiry form ──────────────────────────────────────────────────────── */
+  .inquiry { padding-block: clamp(1.8rem, 4.5vw, 2.8rem) .5rem; }
+  .inquiry h2 { margin-bottom: .4em; }
+  .inquiry__lede { max-width: 58ch; margin: 0 0 1.4rem; }
+
+  .form {
+    background: var(--bg-raised);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: clamp(1.1rem, 3vw, 1.6rem);
+  }
+  .form__grid { display: grid; gap: 1rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .field { display: grid; gap: .35rem; align-content: start; }
+  .field--full { grid-column: 1 / -1; }
+  .field label { font-size: .88rem; font-weight: 600; color: var(--text); }
+  .req { color: var(--accent-text); }
+
+  .field input, .field select, .field textarea {
+    width: 100%; font: inherit; font-size: .97rem; color: var(--text);
+    background: var(--bg-inset);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    padding: .6em .7em;
+    transition: border-color .15s ease;
+  }
+  .field textarea { resize: vertical; min-height: 7rem; line-height: 1.55; }
+  .field input::placeholder, .field textarea::placeholder { color: var(--text-faint); }
+  .field input:hover, .field select:hover, .field textarea:hover {
+    border-color: color-mix(in srgb, var(--accent) 45%, var(--border-strong));
+  }
+  .field input:focus, .field select:focus, .field textarea:focus {
+    outline: 2px solid var(--accent); outline-offset: 1px; border-color: var(--accent);
+  }
+  /* Only after the visitor has interacted, so an untouched form isn't shouting. */
+  .field input:user-invalid, .field textarea:user-invalid { border-color: var(--warn); }
+
+  /* Honeypot — off-screen, unreachable by keyboard. */
+  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+  .form__foot { display: flex; flex-wrap: wrap; align-items: center; gap: .8rem 1rem; margin-top: 1.3rem; }
+  .form__status { margin: 0; font-size: .9rem; color: var(--text-dim); }
+  .form__status[data-state="ok"] { color: var(--live); }
+  .form__status[data-state="error"] { color: var(--warn); }
+  .form__alt { margin: 1rem 0 0; font-size: .82rem; }
+
+  /* Beats `.prose h2`'s margin-top on the channels heading. */
+  .prose .channels__h { margin-top: 0; }
+
+  @media (max-width: 640px) {
+    .form__grid { grid-template-columns: 1fr; }
+  }
 </style>
