@@ -2,6 +2,35 @@
 
 All notable changes to PROJECT-PORTFOLIO. Newest first.
 
+## 2026-10-31 — Photography: collapsible galleries
+
+The galleries page ran ~13,000px of photos in one scroll. Each discipline is now
+a disclosure you open on demand — and the collapsed row is deliberately thin so
+the collapse actually buys back scrolling.
+
+- **Weddings / Sports & Powerlifting / Portraits / Travel** are native
+  `<details>` disclosures: Weddings open on load, the rest collapsed. Clicking
+  the row toggles it; no JS, no framework, keyboard accessible for free.
+- **Collapsed row is 53px** — one line: title, photo count, 18px chevron. The
+  descriptive blurb moved *inside* the panel, so a closed section costs a single
+  row instead of a block of prose. (First cut left the blurb in the header and
+  the rows came out 153–178px each, which defeated the point.)
+- **Every default disclosure triangle is suppressed** — `::-webkit-details-marker`
+  *and* `::marker` — because Safari paints its own triangle sized off the
+  summary's font, which is how a summary ends up with a giant arrow. The chevron
+  SVG also carries explicit `width`/`height` attributes so it can never fall back
+  to the 300×150 replaced-element size if a stylesheet fails to load.
+- Page height: **13,283px all open → 4,087px all closed → 6,191px with Weddings
+  open**. Collapsed sections don't fetch their images (5 downloaded vs 34).
+- Deep links (`/photography/#portraits`) open their section before the anchor
+  lands — otherwise the link scrolls to a closed header.
+- Stat tile corrected: **"2 shooters on the top tier" → "1 shooter, shoot to
+  delivery"**, and the Legacy wedding package no longer claims a second shooter.
+
+Verified in Brave over raw CDP at 320/390/560/720/900/1100/1440px: 53px rows and
+18px chevrons at every width, no SVG over 30px anywhere on the page, 0px
+horizontal overflow and no clipped titles; click toggles open→closed→open.
+
 ## 2026-10-31 — Photography section + freshness pass
 
 **The site was live but its links pointed at a dead host.** `astro.config.mjs`

@@ -97,17 +97,17 @@ const packages = [
       <details class="cat reveal" id={cat.key} open={ci === 0}>
         <summary class="cat__head">
           <h2 class="cat__label">{cat.label}</h2>
-          <span class="cat__blurb muted">{cat.blurb}</span>
-          <span class="cat__toggle">
-            <span class="cat__count">{cat.photos.length + (cat.hero ? 1 : 0)} photos</span>
-            <svg class="cat__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="m6 9 6 6 6-6"></path>
-            </svg>
-          </span>
+          <span class="cat__count">{cat.photos.length + (cat.hero ? 1 : 0)} photos</span>
+          <svg class="cat__chev" width="18" height="18" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+               stroke-linejoin="round" aria-hidden="true">
+            <path d="m6 9 6 6 6-6"></path>
+          </svg>
         </summary>
 
         <div class="cat__panel">
+          <p class="cat__blurb muted">{cat.blurb}</p>
+
           {cat.hero && (
             <figure class="cat__feature">
               <button type="button" class="shot" data-lightbox={cat.hero.src} aria-label={`Enlarge: ${cat.hero.alt}`}>
@@ -297,57 +297,55 @@ const packages = [
   /* ── Band ──────────────────────────────────────────────────────────────── */
   .band { padding-block: clamp(2rem, 5vw, 3rem) 0; }
 
-  /* ── Category galleries (native <details> disclosures) ─────────────────── */
-  .cat { border-top: 1px solid var(--border); padding-block: clamp(1.1rem, 2.6vw, 1.6rem); }
-  .cat:first-of-type { border-top: 0; padding-top: clamp(1.6rem, 4vw, 2.4rem); }
-  .cat[open] { padding-bottom: clamp(2.2rem, 5vw, 3.4rem); }
-
-  /* Header is the toggle: title + blurb on the left, count + chevron right. */
+  /* ── Category galleries (native <details> disclosures) ───────────────────
+     The collapsed row is deliberately thin — one line, ~52px: title, photo
+     count, small chevron. Nothing else. The blurb lives inside the panel, so
+     a closed section costs a single row instead of a block of prose. */
+  .cat { border-top: 1px solid var(--border); }
+  .cat:first-of-type { border-top: 0; }
   .cat__head {
-    display: grid; gap: .35rem 1.25rem;
-    grid-template-columns: minmax(0, 1fr) auto;
-    align-items: start; cursor: pointer; list-style: none;
-    padding-block: .35rem;
-    transition: color .18s ease;
+    display: grid; gap: .6rem 1rem;
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    align-items: center;
+    min-height: 52px; padding-block: .55rem;
+    cursor: pointer; list-style: none;
   }
+  /* Kill every flavour of default disclosure triangle. `display:grid` already
+     drops it in Chrome, but Safari still paints its own, and it is sized off
+     the summary's font — which is how you end up with a giant arrow. */
   .cat__head::-webkit-details-marker { display: none; }
+  .cat__head::marker { content: ""; }
   .cat__label {
-    grid-column: 1; grid-row: 1; margin: 0;
-    font-size: clamp(1.35rem, 3vw, 1.85rem);
+    grid-column: 1; margin: 0;
+    font-size: 1.2rem; font-weight: 700; letter-spacing: -.015em;
     transition: color .18s ease;
-  }
-  .cat__blurb { grid-column: 1; grid-row: 2; margin: 0; max-width: 68ch; font-size: .95rem; }
-  .cat__toggle {
-    grid-column: 2; grid-row: 1 / span 2; align-self: center;
-    display: inline-flex; align-items: center; gap: .7rem; flex: none;
   }
   .cat__count {
-    font-family: var(--font-mono); font-size: .72rem; font-weight: 600;
+    grid-column: 2;
+    font-family: var(--font-mono); font-size: .68rem; font-weight: 600;
     letter-spacing: .06em; text-transform: uppercase; color: var(--text-faint);
     white-space: nowrap;
   }
   .cat__chev {
-    width: 26px; height: 26px; padding: 3px; flex: none;
-    color: var(--text-dim); border: 1px solid var(--border); border-radius: 50%;
-    background: var(--bg-inset);
-    transition: transform .35s cubic-bezier(.2,.7,.2,1), color .18s ease, border-color .18s ease;
+    grid-column: 3; width: 18px; height: 18px; flex: none;
+    color: var(--text-faint);
+    transition: transform .3s cubic-bezier(.2,.7,.2,1), color .18s ease;
   }
   .cat__head:hover .cat__label,
   .cat__head:hover .cat__chev { color: var(--accent-text); }
-  .cat__head:hover .cat__chev { border-color: var(--accent); }
   .cat[open] .cat__chev { transform: rotate(180deg); color: var(--accent-text); }
-  .cat[open] .cat__head { padding-bottom: .5rem; }
 
-  .cat__panel { padding-top: 1rem; }
+  .cat__panel { padding-block: .2rem clamp(1.6rem, 4vw, 2.4rem); }
+  .cat__blurb { margin: 0 0 1rem; max-width: 68ch; font-size: .95rem; }
   .cat__feature { margin: 0 0 1rem; }
   .cat__feature img { width: 100%; height: auto; display: block; border-radius: var(--radius); border: 1px solid var(--border); }
 
   /* Panel entrance — skipped entirely under reduced motion (global stylesheet
      clamps animation-duration), so the open panel simply appears. */
   @media (prefers-reduced-motion: no-preference) {
-    .cat[open] > .cat__panel { animation: cat-in .42s cubic-bezier(.2,.7,.2,1) both; }
+    .cat[open] > .cat__panel { animation: cat-in .4s cubic-bezier(.2,.7,.2,1) both; }
     @keyframes cat-in {
-      from { opacity: 0; transform: translateY(10px); }
+      from { opacity: 0; transform: translateY(8px); }
       to   { opacity: 1; transform: none; }
     }
   }
